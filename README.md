@@ -2,7 +2,7 @@
 Proyecto final para la materia Algoritmos y Programación, del segundo año de la carrera Ingeniería en Informática
 
 ## Integrantes
-* aa
+* Gonzalo Fernandez (nos faltaria un integrante xd)
 * aa
 * aa
 
