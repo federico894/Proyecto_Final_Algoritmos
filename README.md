@@ -4,7 +4,7 @@ Proyecto final para la materia Algoritmos y Programación, del segundo año de l
 ## Integrantes
 * Gonzalo Fernandez
 * Torres Federico
-* 3er integrante (creo que se puede hacer con 2 xd)
+* nombre 3er integrante
 
 ## Consigna
-aaaaaaaaaaaaaaaaaaaaaaaa
+
