@@ -19,32 +19,32 @@ organiza y controla el desarrollo del evento y cobra un plus sobre el sueldo.
 Se deberá desarrollar una aplicación, utilizando las clases que considere necesarias, utilizando
 herencia cuando corresponda. La aplicación debe proveer, mediante un menú, las siguientes
 funcionalidades:
-a- Agregar un servicio
-b- Eliminar un servicio.
-c- Dar de alta un empleado/encargado
-d- Dar de baja un empleado/encargado
-e- Reservar el salón para un evento. El cliente puede incluir en su pedido un solo servicio o
+- a) Agregar un servicio
+- b) Eliminar un servicio.
+- c) Dar de alta un empleado/encargado
+- d) Dar de baja un empleado/encargado
+- e) Reservar el salón para un evento. El cliente puede incluir en su pedido un solo servicio o
 varios. El salón toma una sola reserva para la misma fecha. En caso de que ya tenga una
 reserva previa se levanta una excepción indicando lo ocurrido. Al confirmar la reserva se le
 asigna un encargado al evento.
-f- Cancelar un evento. En caso que el cliente solicite la cancelación con más de un mes de
+- f) Cancelar un evento. En caso que el cliente solicite la cancelación con más de un mes de
 anticipación a la fecha del servicio, no se le reintegra la seña. En otro caso, el cliente debe
 abonar el servicio completo.
-g- Submenú de impresión: listado de eventos, de clientes, de empleados, listado de eventos de
+- g) Submenú de impresión: listado de eventos, de clientes, de empleados, listado de eventos de
 un mes determinado
 
 ### Pautas generales
 Pautas generales:
-1- Pueden conformar grupos de hasta 3 integrantes.
-2- Cuando el proyecto se encuentra finalizado, es decir compila y ejecuta, se entrega en clase
+1. Pueden conformar grupos de hasta 3 integrantes.
+2. Cuando el proyecto se encuentra finalizado, es decir compila y ejecuta, se entrega en clase
 presencial (de ser posible) para mostrarle al docente su ejecución. Luego se debe enviar por
 mail o compartir por Drive, cada uno de los archivos que contienen la definición de una
 clase, y la aplicación, más un archivo Word con el diagrama de clases UML.
-3- Podrán entregar el proyecto hasta 3 veces: es decir pueden hacer correcciones 2 veces. La
+3. Podrán entregar el proyecto hasta 3 veces: es decir pueden hacer correcciones 2 veces. La
 tercer entrega ya lleva la nota definitiva (aprobado o desaprobado).
-4- En caso de estar aprobado, el docente pautará la fecha del coloquio grupal oral. El mismo
+4. En caso de estar aprobado, el docente pautará la fecha del coloquio grupal oral. El mismo
 podrá ser presencial o virtual.
-5- Si el proyecto NO compila o no ejecuta, no se acepta la entrega. Las consultas son previas a
+5. Si el proyecto NO compila o no ejecuta, no se acepta la entrega. Las consultas son previas a
 la entrega. Cada entrega que hacen (presencial o virtual) se contabiliza.
 
 ### Desarrollo
