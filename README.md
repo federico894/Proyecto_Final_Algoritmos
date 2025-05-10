@@ -4,7 +4,7 @@ Proyecto final para la materia Algoritmos y Programación, del segundo año de l
 ## Integrantes
 * Gonzalo Fernandez
 * Torres Federico
-* nombre 3er integrante
+* Agüero Rocío
 
 ## Consigna
 En un salón de fiestas se tienen registrados los eventos contratados y el conjunto de empleados que
