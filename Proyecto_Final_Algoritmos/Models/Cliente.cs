@@ -1,22 +1,57 @@
-﻿/*
- * Created by SharpDevelop.
- * User: fede
- * Date: 13/5/2025
- * Time: 12:32
- * 
- * To change this template use Tools | Options | Coding | Edit Standard Headers.
- */
-using System;
+﻿using System;
 
-namespace Proyecto_Final_Algoritmos.Models
+
+namespace Proyecto_Final
 {
-	/// <summary>
-	/// Description of Cliente.
-	/// </summary>
+
 	public class Cliente
 	{
-		public Cliente()
-		{
+		// Declaracion de variables para el constructor
+		private String nombre;
+		private int dni;
+		
+    	// Creación de propiedad la cual utilizamos para asignarle valor a las variables privadas
+		public String Name {
+			get {
+    			return nombre; //get, nos devuelve el valor de la variable
+    		} 
+			set {
+    			nombre = value; //determinamos el valor de la variable cuando instanciemos
+    		}
 		}
+    
+		public int Dni {
+			get {
+    			return dni;
+    		}
+			set {
+    			dni = value;
+    		}
+		}
+    
+		
+		public Cliente(String nombre, int dni)
+		{
+			// Creacion del objeto y sus atributos;
+			this.nombre = nombre;
+			this.dni = dni;
+		}
+
+		/* ESTO LO MOVEMOS A Salon.cs LUEGO
+		// Lista la cual almacenara cada cliente
+		public ArrayList listClientes = new ArrayList();
+		
+		public void NewReserva(Reserva reserva)
+		{
+			listClientes.Add(reserva);
+		}
+
+		public void MostrarDatosReserva()
+		{
+			foreach (Reserva r in listClientes) {
+				Console.WriteLine("| Reserva a nombre de: " + NameReserva + " | DNI " + DniReserva + " | Fecha de Reserva: " + r.diaReservado + "/" + r.mesReservado + " |");
+			}
+		}*/
+
 	}
 }
