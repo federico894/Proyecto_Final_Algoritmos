@@ -8,7 +8,7 @@
  */
 using System;
 
-namespace Proyecto_Final_Algoritmos.Models
+namespace Proyecto_Final_Algoritmos
 {
 	/// <summary>
 	/// Description of Servicio.
