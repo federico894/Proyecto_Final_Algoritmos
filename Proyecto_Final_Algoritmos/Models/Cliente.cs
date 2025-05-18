@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections;
 
 
 namespace Proyecto_Final
@@ -13,13 +12,21 @@ namespace Proyecto_Final
 		
     	// Creación de propiedad la cual utilizamos para asignarle valor a las variables privadas
 		public String Name {
-			get { return nombre; } //get, nos devuelve el valor de la variable
-			set { nombre = value; } //determinamos el valor de la variable cuando instanciemos
+			get {
+    			return nombre; //get, nos devuelve el valor de la variable
+    		} 
+			set {
+    			nombre = value; //determinamos el valor de la variable cuando instanciemos
+    		}
 		}
     
 		public int Dni {
-			get { return dni; }
-			set { dni = value; }
+			get {
+    			return dni;
+    		}
+			set {
+    			dni = value;
+    		}
 		}
     
 		
@@ -28,11 +35,9 @@ namespace Proyecto_Final
 			// Creacion del objeto y sus atributos;
 			this.nombre = nombre;
 			this.dni = dni;
-			
-			
 		}
 
-		/*
+		/* ESTO LO MOVEMOS A Salon.cs LUEGO
 		// Lista la cual almacenara cada cliente
 		public ArrayList listClientes = new ArrayList();
 		
