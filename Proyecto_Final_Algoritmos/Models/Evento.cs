@@ -5,8 +5,7 @@ namespace Proyecto_Final_Algoritmos
 {
 	public class Evento
 	{
-		private String nombre_cliente;
-		private int dni_cliente;
+		private Cliente cliente;
 		private DateTime fecha;
 		private String tipo_evento;
 		private ArrayList servicios;
@@ -14,10 +13,10 @@ namespace Proyecto_Final_Algoritmos
 		private int costo_total;
 		private int senia; // No Ñ :c
 
-		public Evento(String nombre_cliente, int dni_cliente, DateTime fecha, String tipo, ArrayList servicios, Encargado encargado, int costo_total, int senia)
+		public Evento(Cliente cliente, DateTime fecha, String tipo, ArrayList servicios, Encargado encargado, int costo_total, int senia)
 		{
-			this.nombre_cliente = nombre_cliente;
-			this.dni_cliente = dni_cliente;
+			// Constructor para instanciar la reserva
+			this.cliente = cliente;
 			this.fecha = fecha;
 			this.tipo_evento = tipo;
 			this.servicios = servicios;
@@ -26,12 +25,29 @@ namespace Proyecto_Final_Algoritmos
 			this.senia = senia;
 		}
 		
+		public void agregar_servicio(){
+			
+		}
+		
+		public void eliminar_servicio(){
+			
+		}
+		
 		public ArrayList Servicios{
 			get {
 				return servicios;
 			}
-			set {
-				servicios = value;
+		}
+		
+		public Cliente Cliente{
+			get {
+				return cliente;
+			}
+		}
+		
+		public DateTime Fecha{
+			get {
+				return fecha;
 			}
 		}
 	}
