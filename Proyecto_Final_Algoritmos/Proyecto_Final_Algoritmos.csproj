@@ -49,10 +49,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Exceptions\Exception.cs" />
+    <Compile Include="Models\Calendario.cs" />
     <Compile Include="Models\Cliente.cs" />
     <Compile Include="Models\Empleado.cs" />
     <Compile Include="Models\Encargado.cs" />
     <Compile Include="Models\Evento.cs" />
+    <Compile Include="Models\Reservas.cs" />	
     <Compile Include="Models\Salon.cs" />
     <Compile Include="Models\Servicio.cs" />
     <Compile Include="Program.cs" />
