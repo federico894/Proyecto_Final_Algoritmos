@@ -1,14 +1,20 @@
 ﻿using System;
 
 
-namespace Proyecto_Final
+namespace Proyecto_Final_Algoritmos
 {
-
 	public class Cliente
 	{
 		// Declaracion de variables para el constructor
 		private String nombre;
 		private int dni;
+		
+		public Cliente(String nombre, int dni)
+		{
+			// Creacion del objeto y sus atributos;
+			this.nombre = nombre;
+			this.dni = dni;
+		}
 		
     	// Creación de propiedad la cual utilizamos para asignarle valor a las variables privadas
 		public String Name {
@@ -28,16 +34,8 @@ namespace Proyecto_Final
     			dni = value;
     		}
 		}
-    
-		
-		public Cliente(String nombre, int dni)
-		{
-			// Creacion del objeto y sus atributos;
-			this.nombre = nombre;
-			this.dni = dni;
-		}
 
-		/* ESTO LO MOVEMOS A Salon.cs LUEGO
+		/*
 		// Lista la cual almacenara cada cliente
 		public ArrayList listClientes = new ArrayList();
 		

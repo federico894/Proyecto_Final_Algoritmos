@@ -1,6 +1,7 @@
+/*
 using System;
 
-namespace Proyecto_Final{
+namespace Proyecto_Final_Algoritmos{
 public class Reserva
 {
     private int mes;
@@ -23,4 +24,4 @@ public class Reserva
     }
 }
 
-}
+}*/
