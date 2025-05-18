@@ -5,14 +5,14 @@ namespace Proyecto_Final_Algoritmos
 {
 	public class Salon
 	{
-		private ArrayList eventos;
 		private ArrayList empleados;
 		private String nombre;
+		private Calendario calendario;
 
 		public Salon(String nombre)
 		{
 			empleados = new ArrayList();
-			eventos = new ArrayList();
+			this.calendario = new Calendario();
 			this.nombre = nombre;
 		}
 		
@@ -24,8 +24,8 @@ namespace Proyecto_Final_Algoritmos
 			
 		}
 		
-		public void reservar_salon(){
-			eventos.Add();
+		public void reservar_salon(Cliente cliente){
+			calendario.AgendarTurno(c);
 			// Añadir un evento + servicios
 			// Comprobar si ya está reservado y levantar excepción
 			// Asignar un encargado
@@ -41,8 +41,8 @@ namespace Proyecto_Final_Algoritmos
 		
 		public void menu_eventos(){
 			// Listar eventos
-			foreach (Evento e in eventos) {
-				Console.WriteLine("| Reserva a nombre de: " + e.Cliente.Name + " | DNI " + e.Cliente.Dni + " | Fecha de Reserva: " + e.Fecha.Date + " |");
+			foreach (Evento e in Calendario.ListaDeEventos) {
+				Console.WriteLine("| Evento a nombre de: " + e.Cliente.Name + " | DNI " + e.Cliente.Dni + " | Fecha de Reserva: " + e.Dia_reserva + "/" + e.Mes_reserva + " |");
 			}
 		}
 		
