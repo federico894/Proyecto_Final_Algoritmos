@@ -25,9 +25,13 @@ namespace Proyecto_Final
     	// Lista la cual almacenara cada cliente
 		public ArrayList listClientes = new ArrayList();
 		
-		public Cliente()
+		public Cliente(String nombre, int dni)
 		{
-			//Creacion del objeto y sus atributos(definimos atributos con set, por eso el constructor esta vacio);
+			// Creacion del objeto y sus atributos;
+			this.nombre = nombre;
+			this.dni = dni;
+			
+			
 		}
 
 		public void NewReserva(Reserva reserva)
