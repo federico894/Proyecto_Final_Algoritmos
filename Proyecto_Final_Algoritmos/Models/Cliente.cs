@@ -21,9 +21,7 @@ namespace Proyecto_Final
 			get { return dni; }
 			set { dni = value; }
 		}
-    	
-    	// Lista la cual almacenara cada cliente
-		public ArrayList listClientes = new ArrayList();
+    
 		
 		public Cliente(String nombre, int dni)
 		{
@@ -34,6 +32,10 @@ namespace Proyecto_Final
 			
 		}
 
+		/*
+		// Lista la cual almacenara cada cliente
+		public ArrayList listClientes = new ArrayList();
+		
 		public void NewReserva(Reserva reserva)
 		{
 			listClientes.Add(reserva);
@@ -44,7 +46,7 @@ namespace Proyecto_Final
 			foreach (Reserva r in listClientes) {
 				Console.WriteLine("| Reserva a nombre de: " + NameReserva + " | DNI " + DniReserva + " | Fecha de Reserva: " + r.diaReservado + "/" + r.mesReservado + " |");
 			}
-		}
+		}*/
 
 	}
 }
