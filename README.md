@@ -1,8 +1,8 @@
-# Nombre del proyecto
+# Administrador de Salón de Fiestas
 Proyecto final para la materia Algoritmos y Programación, del segundo año de la carrera Ingeniería en Informática
 
 ## Integrantes
-* Gonzalo Fernandez
+* Fernandez Gonzalo
 * Torres Federico
 * Agüero Rocío
 
