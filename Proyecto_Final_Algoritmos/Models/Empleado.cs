@@ -31,7 +31,6 @@ namespace Proyecto_Final_Algoritmos
 		public string Apellido {get{return apellido;} set{apellido = value;} }
 		public int Dni {get{return dni;} set{dni = value;} }
 		public int NroDeLegajo {get{return nro_legajo;} set{nro_legajo = value;} }
-		public int Salario {get{return salario;} set{salario = value;} }
 		public string TareaDesempeniar {get{return tareaDesempeniar;} set{tareaDesempeniar = value;} }
 		
 		public void MostrarInformación(){
@@ -41,7 +40,7 @@ namespace Proyecto_Final_Algoritmos
 			Console.WriteLine("Cargo: " + TareaDesempeniar + " ");
 			Console.WriteLine("Dni: " + Dni + " ");
 			Console.WriteLine("NroDeLegajo: " + NroDeLegajo + " ");
-			Console.WriteLine("Sueldo: " + Salario + " ");
+			Console.WriteLine("Sueldo: " + calcularSalario() + " ");
 			Console.WriteLine("TareaDesempeniar: " + TareaDesempeniar + " ");
 		}
 	}
