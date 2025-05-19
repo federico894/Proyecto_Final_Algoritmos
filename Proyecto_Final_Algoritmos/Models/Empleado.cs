@@ -7,11 +7,11 @@ namespace Proyecto_Final_Algoritmos
 		private String nombre;
 		private String apellido;
 		private int nro_legajo;
-		private int salario;
+		protected double salario;
 		private String tareaDesempeniar;
 		private int dni;
 
-		public Empleado(String nombre, String apellido, int dni, int nro_legajo, int salario, String tareaDesempeniar)
+		public Empleado(String nombre, String apellido, int dni, int nro_legajo, double salario, String tareaDesempeniar)
 		{
 			this.nombre = nombre;
 			this.apellido = apellido;
@@ -19,6 +19,11 @@ namespace Proyecto_Final_Algoritmos
 			this.nro_legajo = nro_legajo;
 			this.salario = salario;
 			this.tareaDesempeniar = tareaDesempeniar;
+		}
+		
+		// Método para obtener sueldo
+		public virtual double calcularSalario(){
+			return salario;
 		}
 		
 		// Todas las propiedades
