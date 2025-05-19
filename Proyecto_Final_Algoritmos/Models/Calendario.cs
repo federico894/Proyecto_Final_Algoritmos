@@ -90,10 +90,10 @@ namespace Proyecto_Final_Algoritmos
 			//ACA DEBERIA HACER ALGO QUE FRENE LA EJECUCION NUEVAMENTE SI DA INVALIDO;
 
 			//y usamos de parametros los datos ingresados previamente por consola
-			Evento nuevoEvento = new Evento(cliente, diaElegido, mesElegido);//instanciamos la clase reserva
+			//Evento nuevoEvento = new Evento(cliente, diaElegido, mesElegido);//instanciamos la clase reserva
         
 			//el objeto instanciado lo agregamos a la lista de reservas
-			listaDeEventos.Add(nuevoEvento);
+			//listaDeEventos.Add(nuevoEvento);
 
 			Console.WriteLine("Reserva guardada con exito!...");
 		}
