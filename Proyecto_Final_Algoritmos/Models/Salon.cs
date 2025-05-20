@@ -19,11 +19,20 @@ namespace Proyecto_Final_Algoritmos
 		}
 		
 		public void subir_empleado(Empleado empleado){
-			
+			empleados.Add(empleado);
 		}
 		
 		public void bajar_empleado(Empleado empleado){
-			
+			empleados.Remove(empleado);
+		}
+		
+		public Empleado buscar_empleado_por_legajo(int legajo){
+			foreach (Empleado empleado in empleados) {
+				if(empleado.NroDeLegajo == legajo){
+					return empleado;
+				}
+			}
+			return null;
 		}
 		
 		public void reservar_salon(Cliente cliente){

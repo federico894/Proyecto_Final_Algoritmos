@@ -4,9 +4,9 @@ namespace Proyecto_Final_Algoritmos
 {
 	public class Encargado:Empleado
 	{
-		private int plus;
+		private double plus;
 		
-		public Encargado(String nombre, String apellido, int dni, int nro_legajo, int salario, String tareaDesempeniar, int plus)
+		public Encargado(String nombre, String apellido, int dni, int nro_legajo, double salario, String tareaDesempeniar, double plus)
 			: base(nombre, apellido, dni, nro_legajo, salario, tareaDesempeniar)
 		{
 			this.plus = plus;
