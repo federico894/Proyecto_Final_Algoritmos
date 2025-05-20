@@ -65,7 +65,7 @@ namespace Proyecto_Final_Algoritmos
 			}
 		}
 
-		public void AgendarTurno(Cliente cliente)//Pasamos los datos del cliente al metodo
+		public void agendar_turno(Cliente cliente)//Pasamos los datos del cliente al metodo
 		{   //cuando llamamos al metodo realizamos una entrada de datos con Console.readline
 			Console.WriteLine("Ingrese el numero del mes a reservar: ");
 			int mesElegido = int.Parse(Console.ReadLine());//Aca nos pide que ingresemos un mes (en valor numerico)
@@ -95,11 +95,21 @@ namespace Proyecto_Final_Algoritmos
 			//el objeto instanciado lo agregamos a la lista de reservas
 			//listaDeEventos.Add(nuevoEvento);
 
-			Console.WriteLine("Reserva guardada con exito!...");
+			Console.WriteLine("Evento reservado con exito!...");
+		}
+		
+		public ArrayList buscar_eventos_por_mes(int mes_seleccionado){
+			ArrayList eventos_en_ese_mes = new ArrayList();
+			foreach (Evento evento in listaDeEventos) {
+				if (evento.Mes_reserva == mes_seleccionado){
+					eventos_en_ese_mes.Add(evento);
+				}
+			}
+			return eventos_en_ese_mes;
 		}
 
 
-		public void buscarReservasDisponibles()
+		public void buscar_eventos_disponibles()
 		{
 			ArrayList mesPorNum = new ArrayList();//lista para guardar el mes por su numero y no por la cant de dias
 			for (int i = 0; i < mes.Count; i++) {//Bucle para llenar la lista con numeros del 1 al 12//es decir, los numeros de los meses

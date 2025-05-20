@@ -51,7 +51,7 @@ namespace Proyecto_Final_Algoritmos
 		}
 		
 		public void reservar_salon(Cliente cliente){
-			calendario.AgendarTurno(cliente);
+			calendario.agendar_turno(cliente);
 			// Añadir un evento + servicios
 			// Comprobar si ya está reservado y levantar excepción
 			// Asignar un encargado

@@ -58,5 +58,29 @@ namespace Proyecto_Final_Algoritmos
 				return dia_reserva;
 			}
 		}
+		
+		public String Tipo_evento{
+			get {
+				return tipo_evento;
+			}
+		}
+		
+		public Encargado Encargado{
+			get {
+				return encargado;
+			}
+		}
+		
+		public int Costo_total{
+			get {
+				return costo_total;
+			}
+		}
+		
+		public int Senia{
+			get {
+				return senia;
+			}
+		}
 	}
 }

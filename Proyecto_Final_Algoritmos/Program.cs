@@ -2,6 +2,7 @@
  (Main Program File)
 */
 using System;
+using System.Collections;
 
 namespace Proyecto_Final_Algoritmos
 {
@@ -40,11 +41,11 @@ namespace Proyecto_Final_Algoritmos
 				switch (eleccion) {
 					case "1":
 						// Agregar un servicio
-						salon.agregar_servicio();
+						//salon.agregar_servicio();
 						break;
 					case "2":
 						// Eliminar un servicio
-						salon.eliminar_servicio();
+						//salon.eliminar_servicio();
 						break;
 					case "3":
 						// Dar de alta un empleado
@@ -105,7 +106,6 @@ namespace Proyecto_Final_Algoritmos
 						break;
 					case "8":
 						salir = true;
-						Console.WriteLine("Saliendo...");
 						break;
 					default:
 						Console.WriteLine("Opción incorrecta");
@@ -120,7 +120,7 @@ namespace Proyecto_Final_Algoritmos
 			// Submenu de mostrar info relevante
 			Console.Clear();
 			Console.WriteLine("\n");
-			Console.WriteLine("Elige una opción:'");
+			Console.WriteLine("Elige una opción:");
 			Console.WriteLine("a) Listar eventos");
 			Console.WriteLine("b) Listar clientes");
 			Console.WriteLine("c) Listar empleados");
@@ -133,18 +133,22 @@ namespace Proyecto_Final_Algoritmos
 				case "a":
 					// Listar eventos
 					menu_eventos(salon);
+					Console.ReadKey(true);
 					break;
 				case "b":
 					// Listar clientes
 					menu_clientes(salon);
+					Console.ReadKey(true);
 					break;
 				case "c":
 					// Listar empleados
 					menu_empleados(salon);
+					Console.ReadKey(true);
 					break;
 				case "d":
 					// Listar eventos de un mes determinado
 					menu_eventos_mes(salon);
+					Console.ReadKey(true);
 					break;
 				case "e":
 					Console.WriteLine("Volviendo al menú principal...");
@@ -160,11 +164,9 @@ namespace Proyecto_Final_Algoritmos
 		public static void menu_eventos(Salon salon)
 		{
 			// Listar eventos
-			/*
-			foreach (Evento e in Calendario.ListaDeEventos) {
-				Console.WriteLine("| Evento a nombre de: " + e.Cliente.Name + " | DNI " + e.Cliente.Dni + " | Fecha de Reserva: " + e.Dia_reserva + "/" + e.Mes_reserva + " |");
-			}*/
-			Console.ReadKey(true);
+			foreach (Evento ev in salon.Calendario.ListaDeEventos) {
+				Console.WriteLine("| Evento a nombre de: {0} {1} | DNI: {2} | Fecha de reserva: {3}/{4} | Tipo de evento: {5} | Encargado {6} {7} | Costo total {8} | Seña {9} |", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Costo_total, ev.Senia);
+			}
 		}
 		
 		public static void menu_clientes(Salon salon)
@@ -173,7 +175,6 @@ namespace Proyecto_Final_Algoritmos
 			foreach (Cliente cliente in salon.Clientes) {
 				Console.WriteLine("Cliente: {0} {1} | Dni: {2}", cliente.Nombre, cliente.Apellido, cliente.Dni);
 			}
-			Console.ReadKey(true);
 		}
 		
 		public static void menu_empleados(Salon salon)
@@ -182,13 +183,21 @@ namespace Proyecto_Final_Algoritmos
 			foreach (Empleado empleado in salon.Empleados) {
 				Console.WriteLine("Empleado: {0} {1} | Legajo: {2} | Dni: {3} | Salario: {4} | Tarea a desempeñar: {5}", empleado.Nombre, empleado.Apellido, empleado.NroDeLegajo, empleado.Dni, empleado.calcularSalario(), empleado.TareaDesempeniar);
 			}
-			Console.ReadKey(true);
 		}
 		
-		public static void menu_eventos_mes(Salon salon)
+		public static void menu_eventos_mes(Salon salon, int mes)
 		{
 			// Listar eventos de un mes determinado
-			Console.ReadKey(true);
+			Console.WriteLine("Ingrese el mes (número de 1-12):");
+			int mes_seleccionado = int.Parse(Console.ReadLine());
+			
+			// Busco eventos en ese mes
+			ArrayList eventos_en_ese_mes = salon.Calendario.buscar_eventos_por_mes(mes_seleccionado);
+			
+			// Imprimo esos eventos
+			foreach (Evento ev in eventos_en_ese_mes) {
+				Console.WriteLine("| Evento a nombre de: {0} {1} | DNI: {2} | Fecha de reserva: {3}/{4} | Tipo de evento: {5} | Encargado {6} {7} | Costo total {8} | Seña {9} |", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Costo_total, ev.Senia);
+			}
 		}
 	}
 }
