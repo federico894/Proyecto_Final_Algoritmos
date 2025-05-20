@@ -7,32 +7,40 @@ namespace Proyecto_Final_Algoritmos
 	{
 		// Declaracion de variables para el constructor
 		private String nombre;
+		private String apellido;
 		private int dni;
 		
-		public Cliente(String nombre, int dni)
+		public Cliente(String nombre, String apellido, int dni)
 		{
 			// Creacion del objeto y sus atributos;
 			this.nombre = nombre;
+			this.apellido = apellido;
 			this.dni = dni;
 		}
 		
-    	// Creación de propiedad la cual utilizamos para asignarle valor a las variables privadas
-		public String Name {
+		// Creación de propiedad la cual utilizamos para asignarle valor a las variables privadas
+		public String Nombre {
 			get {
-    			return nombre; //get, nos devuelve el valor de la variable
-    		} 
+				return nombre; //get, nos devuelve el valor de la variable
+			} 
 			set {
-    			nombre = value; //determinamos el valor de la variable cuando instanciemos
-    		}
+				nombre = value; //determinamos el valor de la variable cuando instanciemos
+			}
 		}
     
 		public int Dni {
 			get {
-    			return dni;
-    		}
+				return dni;
+			}
 			set {
-    			dni = value;
-    		}
+				dni = value;
+			}
+		}
+    	
+		public String Apellido {
+			get {
+				return apellido;
+			}
 		}
 
 		/*
