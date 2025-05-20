@@ -6,6 +6,7 @@ namespace Proyecto_Final_Algoritmos
 	public class Salon
 	{
 		private ArrayList empleados;
+		private ArrayList clientes;
 		private String nombre;
 		private Calendario calendario;
 
@@ -13,6 +14,7 @@ namespace Proyecto_Final_Algoritmos
 		{
 			empleados = new ArrayList();
 			calendario = new Calendario();
+			clientes = new ArrayList();
 			this.nombre = nombre;
 		}
 		
@@ -50,6 +52,12 @@ namespace Proyecto_Final_Algoritmos
 		public Calendario Calendario{
 			get {
 				return calendario;
+			}
+		}
+		
+		public ArrayList Clientes{
+			get {
+				return clientes;
 			}
 		}
 	}

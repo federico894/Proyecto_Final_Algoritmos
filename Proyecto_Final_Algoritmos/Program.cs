@@ -16,10 +16,11 @@ namespace Proyecto_Final_Algoritmos
 		}
 		
 		// MENU PRINCIPAL
-		public static void mostrar_menu(Salon s){
+		public static void mostrar_menu(Salon salon){
 			bool salir = false;
 
 			while(!salir){
+				Console.WriteLine("\n\n\n");
 				Console.WriteLine("¡Bienvenid@ al administrador del salón {0}!", s.Nombre);
 				Console.WriteLine("-_-_-_-_-_-_-_-_-_-_-_-_-");
 				Console.WriteLine("Elige una opción:'");
@@ -55,13 +56,57 @@ namespace Proyecto_Final_Algoritmos
 						break;
 					case "7":
 						// Consultar información relevante
+						mostrar_info(salon);
 						break;
 					case "8":
 						salir = true;
 						Console.WriteLine("Saliendo...");
 						break;
-					
+					default:
+						Console.WriteLine("Opción incorrecta");
+						Console.ReadKey(true);
+						break;
 				}
+			}
+		}
+		
+		public static void mostrar_info(Salon salon){
+			// Submenu de mostrar info relevante
+
+			Console.WriteLine("\n\n");
+			Console.WriteLine("Elige una opción:'");
+			Console.WriteLine("a) Listar eventos");
+			Console.WriteLine("b) Listar clientes");
+			Console.WriteLine("c) Listar empleados");
+			Console.WriteLine("d) Listar eventos de un mes determinado");
+			Console.WriteLine("e) Salir");
+			
+			String eleccion = Console.ReadLine();
+				
+			switch(eleccion){
+				case "a":
+					// Listar eventos
+					break;
+				case "b":
+					// Listar clientes
+					foreach (Cliente cliente in salon.Clientes) {
+						Console.WriteLine("Cliente: {0} | Dni: {1}", cliente.Name, cliente.Dni);
+					}
+					break;
+				case "c":
+					// Listar empleados
+					break;
+				case "d":
+					// Listar eventos
+					break;
+				case "e":
+					Console.WriteLine("Volviendo al menú principal...");
+					Console.ReadKey(true);
+					break;
+				default:
+					Console.WriteLine("Opción incorrecta");
+					Console.ReadKey(true);
+					break;
 			}
 		}
 		
