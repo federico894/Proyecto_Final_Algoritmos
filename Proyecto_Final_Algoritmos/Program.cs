@@ -21,9 +21,9 @@ namespace Proyecto_Final_Algoritmos
 
 			while(!salir){
 				Console.WriteLine("\n\n\n");
-				Console.WriteLine("¡Bienvenid@ al administrador del salón {0}!", s.Nombre);
+				Console.WriteLine("¡Bienvenid@ al administrador del salón {0}!", salon.Nombre);
 				Console.WriteLine("-_-_-_-_-_-_-_-_-_-_-_-_-");
-				Console.WriteLine("Elige una opción:'");
+				Console.WriteLine("Elige una opción:");
 				Console.WriteLine("1) Agregar un servicio");
 				Console.WriteLine("2) Eliminar un servicio");
 				Console.WriteLine("3) Dar de 'alta' un empleado/encargado");
