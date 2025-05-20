@@ -40,9 +40,11 @@ namespace Proyecto_Final_Algoritmos
 				switch (eleccion) {
 					case "1":
 						// Agregar un servicio
+						salon.agregar_servicio();
 						break;
 					case "2":
 						// Eliminar un servicio
+						salon.eliminar_servicio();
 						break;
 					case "3":
 						// Dar de alta un empleado

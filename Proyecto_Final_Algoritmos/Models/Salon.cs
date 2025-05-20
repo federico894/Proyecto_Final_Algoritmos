@@ -7,6 +7,7 @@ namespace Proyecto_Final_Algoritmos
 	{
 		private ArrayList empleados;
 		private ArrayList clientes;
+		private ArrayList servicios;
 		private String nombre;
 		private Calendario calendario;
 
@@ -15,7 +16,21 @@ namespace Proyecto_Final_Algoritmos
 			empleados = new ArrayList();
 			calendario = new Calendario();
 			clientes = new ArrayList();
+			servicios = new ArrayList();
 			this.nombre = nombre;
+		}
+		
+		public void buscar_servicio(String nombre_serv){
+			foreach (Servicio s in servicios) {
+			}
+		}
+		
+		public void agregar_servicio(Servicio servicio){
+			servicios.Add(servicio);
+		}
+		
+		public void eliminar_servicio(Servicio servicio){
+			servicios.Remove(servicio);
 		}
 		
 		public void subir_empleado(Empleado empleado){
