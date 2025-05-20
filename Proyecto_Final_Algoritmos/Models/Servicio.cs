@@ -10,13 +10,23 @@ using System;
 
 namespace Proyecto_Final_Algoritmos
 {
-	/// <summary>
-	/// Description of Servicio.
-	/// </summary>
 	public class Servicio
 	{
-		public Servicio()
-		{
+		private string nombre_servicio;
+		private string descripcion_serv;
+		
+		public Servicio(string nombre_servicio, string descripcion_serv)
+		{ 	this.nombre_servicio = nombre_servicio;
+			this.descripcion_serv = descripcion_serv;
+		}
+			
+		public string nombre_serv{
+		get{return nombre_servicio;}
+		set{nombre_servicio= value;}
+		}
+		public string descripcion{
+		get{return descripcion_serv;}
+		set{descripcion_serv = value;}
 		}
 	}
 }
