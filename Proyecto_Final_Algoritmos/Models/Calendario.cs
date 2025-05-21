@@ -19,7 +19,7 @@ namespace Proyecto_Final_Algoritmos
 			inicializarMeses(); // Inicializamos el metodo para que el arraylist ya tenga la cant de meses y no este vacio
 		}
 
-		public void inicializarMeses()
+		private void inicializarMeses()
 		{
 			for (int i = 0; i < 12; i++) { // Bucle en cual en cada recorrido el valor de i aumenta y
 				// Ejecuta el case correspondiente el cual almacena la cant de dias que tiene ese mes
