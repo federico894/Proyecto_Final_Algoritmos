@@ -41,12 +41,29 @@ namespace Proyecto_Final_Algoritmos
 				switch (eleccion) {
 					case "1":
 						// Agregar un servicio
-						//salon.agregar_servicio();
+						Console.WriteLine("Ingrese nombre de servicio");
+						String nom_serv = Console.ReadLine();
+						
+						Console.WriteLine("Ingrese descripción del servicio");
+						String desc_serv = Console.ReadLine();
+						
+						salon.agregar_servicio(new Servicio(nom_serv, desc_serv));
 						break;
 					case "2":
 						// Eliminar un servicio
-						//salon.eliminar_servicio();
+						Console.WriteLine("Ingrese nombre de servicio a eliminar");
+						String nombre_serv_a_buscar = Console.ReadLine();
+						
+						Servicio servicio_buscado = salon.buscar_servicio(nombre_serv_a_buscar);
+						if (servicio_buscado != null){
+							salon.eliminar_servicio(servicio_buscado);
+							Console.WriteLine("Servicio '{0}' eliminado con exito", servicio_buscado.Nombre_servicio);
+						} else {
+							Console.WriteLine("No se encontró el servicio");
+						}
+						Console.ReadKey(true);
 						break;
+					
 					case "3":
 						// Dar de alta un empleado
 						Console.WriteLine("Ingrese nombre de empleado/encargado:");
@@ -85,7 +102,9 @@ namespace Proyecto_Final_Algoritmos
 						// Dar de baja un empleado
 						Console.WriteLine("Ingrese legajo de empleado/encargado:");
 						int leg = int.Parse(Console.ReadLine());
+						
 						Empleado emp = salon.buscar_empleado_por_legajo(leg);
+						
 						if (emp != null){
 							salon.bajar_empleado(emp);
 							Console.WriteLine("Empleado: {0} {1} ({2}) eliminado con exito", emp.Nombre, emp.Apellido, emp.NroDeLegajo);
@@ -124,8 +143,9 @@ namespace Proyecto_Final_Algoritmos
 			Console.WriteLine("a) Listar eventos");
 			Console.WriteLine("b) Listar clientes");
 			Console.WriteLine("c) Listar empleados");
-			Console.WriteLine("d) Listar eventos de un mes determinado");
-			Console.WriteLine("e) Salir");
+			Console.WriteLine("d) Listar servicios");
+			Console.WriteLine("e) Listar eventos de un mes determinado");
+			Console.WriteLine("f) Salir");
 			
 			String eleccion = Console.ReadLine();
 				
@@ -146,11 +166,18 @@ namespace Proyecto_Final_Algoritmos
 					Console.ReadKey(true);
 					break;
 				case "d":
-					// Listar eventos de un mes determinado
-					menu_eventos_mes(salon);
+					// Listar servicios
+					menu_servicios(salon);
 					Console.ReadKey(true);
 					break;
 				case "e":
+					// Listar eventos de un mes determinado
+					Console.WriteLine("Ingrese el mes");
+					int mes_seleccionado = int.Parse(Console.ReadLine());
+					menu_eventos_mes(salon, mes_seleccionado);
+					Console.ReadKey(true);
+					break;
+				case "f":
 					Console.WriteLine("Volviendo al menú principal...");
 					Console.ReadKey(true);
 					break;
@@ -182,6 +209,14 @@ namespace Proyecto_Final_Algoritmos
 			// Listar empleados
 			foreach (Empleado empleado in salon.Empleados) {
 				Console.WriteLine("Empleado: {0} {1} | Legajo: {2} | Dni: {3} | Salario: {4} | Tarea a desempeñar: {5}", empleado.Nombre, empleado.Apellido, empleado.NroDeLegajo, empleado.Dni, empleado.calcularSalario(), empleado.TareaDesempeniar);
+			}
+		}
+		
+		public static void menu_servicios(Salon salon)
+		{
+			// Listar clientes
+			foreach (Servicio servicio in salon.Servicios) {
+				Console.WriteLine("Servicio: {0} | Descripción: {1}", servicio.Nombre_servicio, servicio.Descripcion_serv);
 			}
 		}
 		

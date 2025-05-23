@@ -20,9 +20,13 @@ namespace Proyecto_Final_Algoritmos
 			this.nombre = nombre;
 		}
 		
-		public void buscar_servicio(String nombre_serv){
+		public Servicio buscar_servicio(String nombre_serv_a_buscar){
 			foreach (Servicio s in servicios) {
+				if (s.Nombre_servicio == nombre_serv_a_buscar){
+					return s;
+				}
 			}
+			return null;
 		}
 		
 		public void agregar_servicio(Servicio servicio){
@@ -82,6 +86,12 @@ namespace Proyecto_Final_Algoritmos
 		public ArrayList Clientes{
 			get {
 				return clientes;
+			}
+		}
+		
+		public ArrayList Servicios{
+			get {
+				return servicios;
 			}
 		}
 	}
