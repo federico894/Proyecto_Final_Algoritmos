@@ -32,9 +32,7 @@ namespace Proyecto_Final_Algoritmos
 			servicios.Add(s);//Agregamos el servicio al arraylist servicios
 		}
 		
-		public void eliminar_servicio(){
-			Console.WriteLine("Ingrese el nombre del servicio que desea eliminar: ")
-			string nombre = Console.ReadLine(); //Ingreso de nombre del servicio a eliminar
+		public void eliminar_servicio(string nombre){//Parametro nombre para luego pasarlo desde el main
 			bool encontrado = false;//Declaracion de booleano falso para luego verificar que se encontro el servicio
 			for (int i = 0; i < servicios.Count; i++)//for para recorrer el indice del arraylist servicios
 			{
@@ -42,7 +40,7 @@ namespace Proyecto_Final_Algoritmos
 				if (servicios[i].Nombre_servicio == nombre)
 				{//Si el nombre del servicio en el indice en el cual estamos parado es igual al nombre que ingresamos 
 					servicios.Remove(s);//entonces se remueve ese servicio completo porque se encontro
-					Console.WriteLine("¡Servicio eliminado con exito!")
+					Console.WriteLine("¡Servicio eliminado con exito!")//ESTOS CWL se pueden sacar y ya
 					encontrado = true;//ahora encontrado cambia su valor a true 
 					break;
 				}
