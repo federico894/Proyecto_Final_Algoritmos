@@ -9,50 +9,50 @@ namespace Proyecto_Final_Algoritmos
 		private int mes_reserva;
     	private int dia_reserva;
 		private String tipo_evento;
-		private ArrayList servicios;
+		private ArrayList servicios_items;
 		private Encargado encargado;
 		private int costo_total;
 		private int senia; // No Ñ :c
 
-		public Evento(Cliente cliente, int mes, int dia, String tipo, ArrayList servicios, Encargado encargado, int costo_total, int senia)
+		public Evento(Cliente cliente, int mes, int dia, String tipo, Encargado encargado, int costo_total, int senia)
 		{
 			// Constructor para instanciar la reserva
 			this.cliente = cliente;
 			this.tipo_evento = tipo;
-			this.servicios = servicios;
 			this.encargado = encargado;
 			this.costo_total = costo_total;
 			this.senia = senia;
 			this.dia_reserva = dia;
 			this.mes_reserva = mes;
+			servicios_items = new ArrayList();
 		}
 		
-		public void agregar_servicio(Servicio s)
+		public void agregar_servicio(ServicioItem s)
 		{
-			servicios.Add(s);//Agregamos el servicio al arraylist servicios
+			servicios_items.Add(s);//Agregamos el servicio al arraylist servicios
 		}
 		
 		public void eliminar_servicio(string nombre){//Parametro nombre para luego pasarlo desde el main
 			bool encontrado = false;//Declaracion de booleano falso para luego verificar que se encontro el servicio
-			for (int i = 0; i < servicios.Count; i++)//for para recorrer el indice del arraylist servicios
+			for (int i = 0; i < servicios_items.Count; i++)//for para recorrer el indice del arraylist servicios
 			{
-				Servicio s = (Servicio)servicios[i];//hacemos un casteo del objeto para que sea de tipo Servicios y asi poder acceder a sus propiedades
+				ServicioItem s = (ServicioItem)servicios_items[i];//hacemos un casteo del objeto para que sea de tipo Servicios y asi poder acceder a sus propiedades
 				if (s.Nombre_servicio == nombre)
 				{//Si el nombre del servicio en el indice en el cual estamos parado es igual al nombre que ingresamos 
-					servicios.Remove(s);//entonces se remueve ese servicio completo porque se encontro
+					servicios_items.Remove(s);//entonces se remueve ese servicio completo porque se encontro
 					Console.WriteLine("¡Servicio eliminado con exito!");//ESTOS CWL se pueden sacar y ya
 					encontrado = true;//ahora encontrado cambia su valor a true 
 					break;
 				}
 			}
-			if (encontrado != true) { // Si encontrado sigue siendo false entonces no se encontro el servicio a eliminar
+			if (!encontrado) { // Si encontrado sigue siendo false entonces no se encontro el servicio a eliminar
 				Console.WriteLine("No se encontro el servicio a eliminar.");
 			}
 		}
 		
 		public ArrayList Servicios{
 			get {
-				return servicios;
+				return servicios_items;
 			}
 		}
 		
