@@ -36,11 +36,11 @@ namespace Proyecto_Final_Algoritmos
 			bool encontrado = false;//Declaracion de booleano falso para luego verificar que se encontro el servicio
 			for (int i = 0; i < servicios.Count; i++)//for para recorrer el indice del arraylist servicios
 			{
-				Servicios s = (Servicios)servicios[i]//hacemos un casteo del objeto para que sea de tipo Servicios y asi poder acceder a sus propiedades
-				if (servicios[i].Nombre_servicio == nombre)
+				Servicio s = (Servicio)servicios[i];//hacemos un casteo del objeto para que sea de tipo Servicios y asi poder acceder a sus propiedades
+				if (s.Nombre_servicio == nombre)
 				{//Si el nombre del servicio en el indice en el cual estamos parado es igual al nombre que ingresamos 
 					servicios.Remove(s);//entonces se remueve ese servicio completo porque se encontro
-					Console.WriteLine("¡Servicio eliminado con exito!")//ESTOS CWL se pueden sacar y ya
+					Console.WriteLine("¡Servicio eliminado con exito!");//ESTOS CWL se pueden sacar y ya
 					encontrado = true;//ahora encontrado cambia su valor a true 
 					break;
 				}

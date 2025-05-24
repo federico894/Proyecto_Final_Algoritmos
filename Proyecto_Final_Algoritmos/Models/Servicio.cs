@@ -11,7 +11,7 @@ namespace Proyecto_Final_Algoritmos
 		private int cant_solicitada; //Se agrego atributo de cantidad solicitada del servicio
 		private int costo_unitario;//Se agrego costo para cada servicio
 
-		public Servicio(string nombre_servicio, string descripcion_serv, int cant_solicitada)
+		public Servicio(string nombre_servicio, string descripcion_serv, int cant_solicitada, int costo_unitario)
 		{
 			this.nombre_servicio = nombre_servicio;
 			this.descripcion_serv = descripcion_serv;
