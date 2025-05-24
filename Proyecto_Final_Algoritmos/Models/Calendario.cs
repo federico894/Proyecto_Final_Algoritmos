@@ -8,13 +8,11 @@ namespace Proyecto_Final_Algoritmos
 	{
 		// Arraylist meses el cual almacena atraves de un for 12 meses
 		private ArrayList mes;
-		private ArrayList dia;
 		private ArrayList listaDeEventos;
  
 		public Calendario() // No pasamos los parametros dia y mes debido a que en el metodo agendarTurno lo pasamos por consola con Console.Readline
 		{
 			mes = new ArrayList();
-			dia = new ArrayList();
 			listaDeEventos = new ArrayList();
 			inicializarMeses(); // Inicializamos el metodo para que el arraylist ya tenga la cant de meses y no este vacio
 		}
@@ -65,24 +63,20 @@ namespace Proyecto_Final_Algoritmos
 			}
 		}
 
-		public void agendar_turno(Cliente cliente)//Pasamos los datos del cliente al metodo
-		{   //cuando llamamos al metodo realizamos una entrada de datos con Console.readline
-			Console.WriteLine("Ingrese el numero del mes a reservar: ");
-			int mesElegido = int.Parse(Console.ReadLine());//Aca nos pide que ingresemos un mes (en valor numerico)
-			if (mesElegido < 1 || mesElegido > 12) {//Condicional por si ponemos un numero invalido
+		public void agendar_turno(Evento nuevoEvento)//Pasamos los datos del evento el cual tambien contiene los servicios
+		{ //ahora accedemos al atributo del mes sin tener que usar parametro en este metodo y sin console.readline
+			if (nuevoEvento.mes_salon < 1 || nuevoEvento.mes_salon > 12) {//Condicional por si ponemos un numero invalido
 				Console.WriteLine("Mes invalido");
 				return;
 			}
 			//ACA DEBERIA AGREGAR ALGO QUE FINALIZE EL METODO SI EL MES ES INVALIDO*
         
-			int diaMaximos = (int)mes[mesElegido - 1]; //Aca casteamos el mes, ya que es un arraylist lo pasamos a int
+			int diaMaximos = (int)mes[nuevoEvento.mes_salon - 1]; //Aca casteamos el mes, ya que es un arraylist lo pasamos a int
 			//y entre [] agregamos el dato que entramos con Console.readline, el cual va a hacer que nos posicionemos
 			//en el indice correcto al cual le pertenece ese mes (-1 ya que el mes que introducimos es 1 numero mas alto que el indice que empieza de 0)
 			
-			Console.WriteLine("Ingrese el numero del dia a reservar: ");
-			
-			int diaElegido = int.Parse(Console.ReadLine());
-			if (diaElegido < 1 || diaElegido > diaMaximos) {//Aca utilizamos el mes que casteamos a int,
+			//aca tambien accedemos al atributo dia 
+			if (nuevoEvento.dia_salon < 1 || nuevoEvento.dia_salon > diaMaximos) {//Aca utilizamos el mes que casteamos a int,
 				//para verificar si el dia que elegimos es mayor a la de ese mes entonces es un dato ingresado invalido
 				Console.WriteLine("Dia invalido");
 				return;
@@ -93,9 +87,7 @@ namespace Proyecto_Final_Algoritmos
 			//Evento nuevoEvento = new Evento(cliente, diaElegido, mesElegido);//instanciamos la clase reserva
         
 			//el objeto instanciado lo agregamos a la lista de reservas
-			//listaDeEventos.Add(nuevoEvento);
-
-			Console.WriteLine("Evento reservado con exito!...");
+			listaDeEventos.Add(nuevoEvento);//Se agrega a la lista los eventos con sus servicios y datos
 		}
 		
 		public ArrayList buscar_eventos_por_mes(int mes_seleccionado){
