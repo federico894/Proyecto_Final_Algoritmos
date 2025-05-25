@@ -3,6 +3,7 @@
 */
 using System;
 using System.Collections;
+using System.IO;
 
 namespace Proyecto_Final_Algoritmos
 {
@@ -23,9 +24,10 @@ namespace Proyecto_Final_Algoritmos
 
 			while (!salir) {
 				Console.Clear();
-				Console.WriteLine("\n");
-				Console.WriteLine("¡Bienvenid@ al administrador del salón {0}!", salon.Nombre);
-				Console.WriteLine("-_-_-_-_-_-_-_-_-_-_-_-_-");
+				mostrar_logo();
+				//Console.WriteLine("\n");
+				//Console.WriteLine("¡Bienvenid@ al administrador del salón {0}!", salon.Nombre);
+				//Console.WriteLine("-_-_-_-_-_-_-_-_-_-_-_-_-");
 				Console.WriteLine("Elige una opción:");
 				Console.WriteLine("1) Agregar un servicio");
 				Console.WriteLine("2) Eliminar un servicio");
@@ -299,6 +301,25 @@ namespace Proyecto_Final_Algoritmos
 			foreach (Evento ev in eventos_en_ese_mes) {
 				Console.WriteLine("| Evento a nombre de: {0} {1} | DNI: {2} | Fecha de reserva: {3}/{4} | Tipo de evento: {5} | Encargado {6} {7} | Costo total {8} | Seña {9} |", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Costo_total, ev.Senia);
 			}
+		}
+		
+		public static void mostrar_logo(){
+			String dir = @"..\..\Logos\Logo.txt"; // Directorio del logo
+			//Console.WriteLine("Directorio actual: {0}" Environment.CurrentDirectory);
+			
+			// Verifico si existe el logo
+	        if (File.Exists(dir))
+	        {
+	        	Console.WriteLine("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
+	            String contenido_del_arch = File.ReadAllText(dir);
+	            Console.WriteLine(contenido_del_arch);
+	            Console.WriteLine("-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-_-");
+	        	Console.WriteLine("\n");
+	        } else {
+	        	Console.WriteLine("*---------------------------*");
+	            Console.WriteLine("| No se pudo cargar el logo |");
+	            Console.WriteLine("*---------------------------*");
+	        }
 		}
 	}
 }
