@@ -115,6 +115,45 @@ namespace Proyecto_Final_Algoritmos
 						break;
 					case "5":
 						// Reservar el salón para un evento
+						
+						// Ingresar info del cliente
+						Console.WriteLine("Ingrese nombre del cliente:");
+						String cliente_nombre = Console.ReadLine();
+						
+						Console.WriteLine("Ingrese apellido del cliente:");
+						String cliente_apellido = Console.ReadLine();
+						
+						Console.WriteLine("Ingrese dni del cliente:");
+						int cliente_dni = int.Parse(Console.ReadLine());
+						
+						Cliente c = new Cliente(cliente_nombre, cliente_apellido, cliente_dni);
+						
+						// Ingresar fecha y tipo
+						Console.WriteLine("Ingrese mes a reservar para el evento:");
+						int mes_reserva = int.Parse(Console.ReadLine());
+						
+						Console.WriteLine("Ingrese dia a reservar para el evento:");
+						int dia_reserva = int.Parse(Console.ReadLine());
+						
+						Console.WriteLine("Ingrese tipo de evento:");
+						String tipo = Console.ReadLine();
+						
+						// Ingresar encargado
+						Console.WriteLine("Ingrese legado del encargado");
+						int legajo_enc_asignado = int.Parse(Console.ReadLine());
+						Encargado enc_asignado = (Encargado)salon.buscar_empleado_por_legajo(legajo_enc_asignado);
+						
+						// Ingresar costo y senia
+						Console.WriteLine("Ingrese costo del evento");
+						int costo = int.Parse(Console.ReadLine());
+						
+						Console.WriteLine("Ingrese senia del evento");
+						int senia = int.Parse(Console.ReadLine());
+						
+						// Pregunto por servicio(S)
+						
+						salon.reservar_salon(c,mes_reserva,dia_reserva,tipo,enc_asignado, costo, senia, lista_de_servicios);
+						
 						break;
 					case "6":
 						// Cancelar un evento
