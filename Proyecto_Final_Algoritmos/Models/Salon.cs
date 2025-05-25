@@ -22,7 +22,7 @@ namespace Proyecto_Final_Algoritmos
 		
 		public Servicio buscar_servicio(String nombre_serv_a_buscar){
 			foreach (Servicio s in servicios) {
-				if (s.Nombre_servicio == nombre_serv_a_buscar){
+				if (s.Nombre_servicio.ToLower() == nombre_serv_a_buscar.ToLower()){
 					return s;
 				}
 			}
@@ -54,7 +54,7 @@ namespace Proyecto_Final_Algoritmos
 			return null;
 		}
 
-		public void reservar_salon(Cliente cliente, int mes_salon, int dia_salon, String tipo, Encargado encargado, int costo_total, int senia, string nombre_servicio, string descripcion_serv, int cant_solicitada, int costo_unitario) {
+		public void reservar_salon(Cliente cliente, int mes_salon, int dia_salon, String tipo, Encargado encargado, int costo_total, int senia, ArrayList lista_de_servicios) {
 			//Se agregan parametros al metodo para luego asignarle los valores en el main
 			bool yareservado = false;//bool para hacer verificacion si esta reservado o no
 			foreach (Evento e in calendario.ListaDeEventos)//recorremos la lista de eventos la cual esta en la clase calendario
@@ -67,9 +67,8 @@ namespace Proyecto_Final_Algoritmos
 				}
 
 			}
-			if (yareservado != true) {// si el bool no cambia su valor en el if entonces se va a cumplir esta condicional ya que esa fecha no estaba reservada y no cambio el bool
-				ServicioItem nuevoServicio = new ServicioItem(nombre_servicio, descripcion_serv, cant_solicitada);//entonces se instancia el servicio el cual los datos los pasamos por parametros
-				Evento nuevoEvento = new Evento(cliente, mes_salon, dia_salon, tipo, encargado, costo_total, senia);//lo mismo con todos los demas datos del evento
+			if (!yareservado) {// si el bool no cambia su valor en el if entonces se va a cumplir esta condicional ya que esa fecha no estaba reservada y no cambio el bool
+				Evento nuevoEvento = new Evento(cliente, mes_salon, dia_salon, tipo, encargado, costo_total, senia, lista_de_servicios);//lo mismo con todos los demas datos del evento
 				calendario.agendar_turno(nuevoEvento);//una vez instanciado todo se pasa el evento al metodo de agendar turno de calendario
 													  //el cual realiza toda la comprobacion de que esta en el mes indicado con la cantidad de dias ideales, y si cumple todo se guarda en ListaDeEventos con todos los datos del evento y los servicios contratados
 				Console.WriteLine("Se ha realizado la reserva exitosamente!");

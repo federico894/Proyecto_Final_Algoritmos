@@ -14,7 +14,7 @@ namespace Proyecto_Final_Algoritmos
 		private int costo_total;
 		private int senia; // No Ñ :c
 
-		public Evento(Cliente cliente, int mes, int dia, String tipo, Encargado encargado, int costo_total, int senia)
+		public Evento(Cliente cliente, int mes, int dia, String tipo, Encargado encargado, int costo_total, int senia, ArrayList servicios_items)
 		{
 			// Constructor para instanciar la reserva
 			this.cliente = cliente;
@@ -24,9 +24,10 @@ namespace Proyecto_Final_Algoritmos
 			this.senia = senia;
 			this.dia_reserva = dia;
 			this.mes_reserva = mes;
-			servicios_items = new ArrayList();
+			this.servicios_items = servicios_items;
 		}
 		
+		/*
 		public void agregar_servicio(ServicioItem s)
 		{
 			servicios_items.Add(s);//Agregamos el servicio al arraylist servicios
@@ -48,7 +49,7 @@ namespace Proyecto_Final_Algoritmos
 			if (!encontrado) { // Si encontrado sigue siendo false entonces no se encontro el servicio a eliminar
 				Console.WriteLine("No se encontro el servicio a eliminar.");
 			}
-		}
+		}*/
 		
 		public ArrayList Servicios{
 			get {

@@ -65,18 +65,18 @@ namespace Proyecto_Final_Algoritmos
 
 		public void agendar_turno(Evento nuevoEvento)//Pasamos los datos del evento el cual tambien contiene los servicios
 		{ //ahora accedemos al atributo del mes sin tener que usar parametro en este metodo y sin console.readline
-			if (nuevoEvento.mes_salon < 1 || nuevoEvento.mes_salon > 12) {//Condicional por si ponemos un numero invalido
+			if (nuevoEvento.Mes_reserva < 1 || nuevoEvento.Mes_reserva > 12) {//Condicional por si ponemos un numero invalido
 				Console.WriteLine("Mes invalido");
 				return;
 			}
 			//ACA DEBERIA AGREGAR ALGO QUE FINALIZE EL METODO SI EL MES ES INVALIDO*
         
-			int diaMaximos = (int)mes[nuevoEvento.mes_salon - 1]; //Aca casteamos el mes, ya que es un arraylist lo pasamos a int
+			int diaMaximos = (int)mes[nuevoEvento.Mes_reserva - 1]; //Aca casteamos el mes, ya que es un arraylist lo pasamos a int
 			//y entre [] agregamos el dato que entramos con Console.readline, el cual va a hacer que nos posicionemos
 			//en el indice correcto al cual le pertenece ese mes (-1 ya que el mes que introducimos es 1 numero mas alto que el indice que empieza de 0)
 			
 			//aca tambien accedemos al atributo dia 
-			if (nuevoEvento.dia_salon < 1 || nuevoEvento.dia_salon > diaMaximos) {//Aca utilizamos el mes que casteamos a int,
+			if (nuevoEvento.Dia_reserva < 1 || nuevoEvento.Dia_reserva > diaMaximos) {//Aca utilizamos el mes que casteamos a int,
 				//para verificar si el dia que elegimos es mayor a la de ese mes entonces es un dato ingresado invalido
 				Console.WriteLine("Dia invalido");
 				return;
