@@ -154,24 +154,30 @@ namespace Proyecto_Final_Algoritmos
 						ArrayList lista_de_servicios = new ArrayList();
 						String salir_loop;
 						int i = 1;
-						while(salir_loop != 0){
-							Console.WriteLine("-- Agregando servicio n°{0} --",i);
+						
+						do{
+							Console.WriteLine("¿Desea agregar servicios? S/n");
+							salir_loop = Console.ReadLine().ToLower();
+							if (salir_loop != "n"){
+								Console.WriteLine("-- Agregando servicio n°{0} --",i);
 							
-							Console.WriteLine("Ingrese nombre del servicio:");
-							String servicio_a_agregar = Console.ReadLine();
-							
-							//                                      |||
-							// ACA SE DEBERIA LEVANTAR LA EXCEPCIÓN vvv
-							Servicio s = salon.buscar_servicio(servicio_a_agregar);
-							
-							Console.WriteLine("Ingrese cantidad de servicio:");
-							String cantidad = Console.ReadLine();
-							
-							Console.WriteLine("Ingrese costo unitario del servicio:");
-							String costo_unit = Console.ReadLine();
-							
-							lista_de_servicios.Add(new ServicioItem(s.Nombre_servicio, s.Descripcion_serv, cantidad, costo_unit));
+								Console.WriteLine("Ingrese nombre del servicio:");
+								String servicio_a_agregar = Console.ReadLine();
+								
+								//                                      |||
+								// ACA SE DEBERIA LEVANTAR LA EXCEPCIÓN vvv
+								Servicio s = salon.buscar_servicio(servicio_a_agregar);
+								
+								Console.WriteLine("Ingrese cantidad de servicio:");
+								int cantidad = int.Parse(Console.ReadLine());
+								
+								Console.WriteLine("Ingrese costo unitario del servicio:");
+								int costo_unit = int.Parse(Console.ReadLine());
+								
+								lista_de_servicios.Add(new ServicioItem(s.Nombre_servicio, s.Descripcion_serv, cantidad, costo_unit));
+							}
 						}
+						while (salir_loop != "n");
 						
 						salon.reservar_salon(c,mes_reserva,dia_reserva,tipo,enc_asignado, costo, senia, lista_de_servicios);
 						

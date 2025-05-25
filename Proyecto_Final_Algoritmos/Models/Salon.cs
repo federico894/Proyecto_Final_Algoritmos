@@ -62,7 +62,7 @@ namespace Proyecto_Final_Algoritmos
 				if (e.Mes_reserva == mes_salon && e.Dia_reserva == mes_salon)
 				{//si el mes reservado que se encuentra en la lista de reservas es igual al mes ingresado por parametro 
 					Console.WriteLine("Esta fecha ya esta reservada");
-					bool yareservado = true;//entonces la fecha ya se encuentra reservada, el bool cambia a verdadero
+					yareservado = true;//entonces la fecha ya se encuentra reservada, el bool cambia a verdadero
 					break;// y finaliza if
 				}
 
