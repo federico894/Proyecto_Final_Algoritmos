@@ -79,9 +79,11 @@ namespace Proyecto_Final_Algoritmos
 			
 			//Para usar este metodo hay que poner cada parametro igual
 		}
-		
-		public void cancelar_evento(){
-			// Comprobar fecha de cancelación
+
+		public void cancelar_evento(int posicion_guardada)//parametros los cuales pasamos en Program
+		{
+			//se elimina de la lista de eventos, pasamos como parametro la posicion guardada previamente en el foreach
+			calendario.ListaDeEventos.RemoveAt(posicion_guardada);
 		}
 		
 		public String Nombre{
