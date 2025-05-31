@@ -181,7 +181,7 @@ namespace Proyecto_Final_Algoritmos
 					int cliente_dni = int.Parse(Console.ReadLine());
 
 					Cliente c = new Cliente(cliente_nombre, cliente_apellido, cliente_dni);
-
+					
 					// Ingresar fecha y tipo
 					Console.Write("Ingrese mes a reservar para el evento: ");
 					int mes_reserva = int.Parse(Console.ReadLine());
@@ -424,8 +424,13 @@ namespace Proyecto_Final_Algoritmos
 			
 			foreach (Evento ev in salon.Calendario.ListaDeEventos) {
 				Console.WriteLine("----------------------------------------------");
-				Console.WriteLine("| Evento a nombre de: {0} {1}\n - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado {6} {7}\n| - Costo total {8}\n|  - Seña {9}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Costo_total, ev.Senia);
+				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7}\n| - Costo total: {8}\n|  - Seña: {9}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Costo_total, ev.Senia);
+				Console.WriteLine("| - Servicios contratados:");
+				foreach (ServicioItem s in ev.Servicios) {
+					Console.WriteLine("|  - {0}\n|   - Cantidad: {1}\n|   - Precio unitario: {2}", s.Nombre_servicio, s.Cant_solicitada, s.Costo_unitario);
+				}
 			}
+			
 			Console.WriteLine("----------------------------------------------");
 			Console.ReadKey(true);
 		}
@@ -480,7 +485,11 @@ namespace Proyecto_Final_Algoritmos
 			// Imprimo esos eventos
 			foreach (Evento ev in eventos_en_ese_mes) {
 				Console.WriteLine("----------------------------------------------");
-				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado {6} {7}\n| - Costo total {8}\n|  - Seña {9}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Costo_total, ev.Senia);
+				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7}\n| - Costo total: {8}\n|  - Seña: {9}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Costo_total, ev.Senia);
+				Console.WriteLine("| - Servicios contratados:");
+				foreach (ServicioItem s in ev.Servicios) {
+					Console.WriteLine("|  - {0}\n|   - Cantidad: {1}\n|   - Precio unitario: {2}", s.Nombre_servicio, s.Cant_solicitada, s.Costo_unitario);
+				}
 			}
 			Console.WriteLine("----------------------------------------------");
 			Console.ReadKey(true);

@@ -69,10 +69,14 @@ namespace Proyecto_Final_Algoritmos
 			}
 			if (!yareservado) {// si el bool no cambia su valor en el if entonces se va a cumplir esta condicional ya que esa fecha no estaba reservada y no cambio el bool
 				Evento nuevoEvento = new Evento(cliente, mes_salon, dia_salon, tipo, encargado, costo_total, senia, lista_de_servicios);//lo mismo con todos los demas datos del evento
-				calendario.agendar_turno(nuevoEvento);//una vez instanciado todo se pasa el evento al metodo de agendar turno de calendario
-													  //el cual realiza toda la comprobacion de que esta en el mes indicado con la cantidad de dias ideales, y si cumple todo se guarda en ListaDeEventos con todos los datos del evento y los servicios contratados
+				//una vez instanciado todo se pasa el evento al metodo de agendar turno de calendario
+				//el cual realiza toda la comprobacion de que esta en el mes indicado con la cantidad de dias ideales, y si cumple todo se guarda en ListaDeEventos con todos los datos del evento y los servicios contratados
+				calendario.agendar_turno(nuevoEvento);
 				Console.WriteLine("Se ha realizado la reserva exitosamente!");
 			}
+			
+			agregar_cliente(cliente);
+			
 			// Añadir un evento + servicios | ! No es un solo servicio el que se agrega (hay que usar un while, lo hago yo)
 			// Comprobar si ya está reservado y levantar excepción | ! Faltaria levantar la excepcion
 			// Asignar un encargado | ! El encargado se asigna con un random()
@@ -84,6 +88,10 @@ namespace Proyecto_Final_Algoritmos
 		{
 			//se elimina de la lista de eventos, pasamos como parametro la posicion guardada previamente en el foreach
 			calendario.ListaDeEventos.RemoveAt(posicion_guardada);
+		}
+		
+		public void agregar_cliente(Cliente c){
+			clientes.Add(c);
 		}
 		
 		public String Nombre{
