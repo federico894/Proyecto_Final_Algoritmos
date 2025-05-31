@@ -111,6 +111,7 @@ namespace Proyecto_Final_Algoritmos
 			}
 			else{ Console.WriteLine("No hay ninguna fecha reservada por el momento...");}
 		}
+		
 		public void buscar_eventos_disponibles()
 		{
 			ArrayList mesPorNum = new ArrayList();//lista para guardar el mes por su numero y no por la cant de dias
