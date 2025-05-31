@@ -235,8 +235,15 @@ namespace Proyecto_Final_Algoritmos
 					salon.reservar_salon(c, mes_reserva, dia_reserva, tipo, enc_asignado, costo, senia, lista_de_servicios);
 
 				} else if (tecla.Key == ConsoleKey.Enter && posicion == 5) {
-					Console.Clear();
-					salir = true;
+					Console.Clear();// Se limpia la consola al entrar a la opcion elegida
+					Console.Write("Ingrese el numero de mes del evento:  ");
+					int mes_c = int.Parse(Console.ReadLine());//variable para pasar por parametro luego
+					ArrayList eventoenMes = salon.Calendario.buscar_eventos_por_mes(mes_c);//arraylist el cual llama al metodo el cual guarda la lista de eventos en ese mes
+					salon.Calendario.mostrar_fechas_reservadas(eventoenMes);//usamos metodo para ver que fechas ya estan reservadas
+					Console.WriteLine(" ");//salto de linea en consola
+					Console.Write("Ingrese el dia del evento:  ");
+					int dia_c = int.Parse(Console.ReadLine());//Ingresamos el dia del mes el cual vamos a cancelar
+					salon.cancelar_evento(mes_c, dia_c, eventoenMes);//se pasan las variables por parametro al metodo cancelarevento de la clase salon y la lista de eventos
 				} else if (tecla.Key == ConsoleKey.Enter && posicion == 6) {
 					Console.Clear();
 					mostrar_info(salon);

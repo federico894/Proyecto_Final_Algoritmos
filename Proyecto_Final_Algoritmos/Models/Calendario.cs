@@ -99,30 +99,46 @@ namespace Proyecto_Final_Algoritmos
 			}
 			return eventos_en_ese_mes;
 		}
-
-
+		public void mostrar_fechas_reservadas(ArrayList eventoenMes)
+		{ //metodo para ver fechas reservadas
+			if (ListaDeEventos.Count != 0)
+			{
+				foreach (Evento item in eventoenMes)
+				{
+					Console.Write("Fechas reservada: ");
+					Console.Write(item.Dia_reserva + "/" + item.Mes_reserva + "  ");
+				}
+			}
+			else{ Console.WriteLine("No hay ninguna fecha reservada por el momento...");}
+		}
 		public void buscar_eventos_disponibles()
 		{
 			ArrayList mesPorNum = new ArrayList();//lista para guardar el mes por su numero y no por la cant de dias
-			for (int i = 0; i < mes.Count; i++) {//Bucle para llenar la lista con numeros del 1 al 12//es decir, los numeros de los meses
+			for (int i = 0; i < mes.Count; i++)
+			{//Bucle para llenar la lista con numeros del 1 al 12//es decir, los numeros de los meses
 				mesPorNum.Add(i + 1);
 			}
-			foreach (int nroMes in mesPorNum) {//foreach para recorrer la lista creada con la cant de meses
+			foreach (int nroMes in mesPorNum)
+			{//foreach para recorrer la lista creada con la cant de meses
 				int cantDias = (int)mes[nroMes - 1]; //casteo de el item que esta en el indice de mes a tipo int
-				//aca recorremos el arraylist de mes nroMes (-1 porque los indice comienzan desde 0)
-				//y obtenemos el valor el cual seria el total de dias el cual tiene ese nroMes (por ejemplo nroMes 2 nos paramos en el indice 1 el cual tiene 28 dias)
+													 //aca recorremos el arraylist de mes nroMes (-1 porque los indice comienzan desde 0)
+													 //y obtenemos el valor el cual seria el total de dias el cual tiene ese nroMes (por ejemplo nroMes 2 nos paramos en el indice 1 el cual tiene 28 dias)
 
-				for (int dia = 1; dia <= cantDias; dia++) {//realizamos un for para recorrer los dias que contiene totales de ese mes, por eso < cantDias
+				for (int dia = 1; dia <= cantDias; dia++)
+				{//realizamos un for para recorrer los dias que contiene totales de ese mes, por eso < cantDias
 					bool YaReservado = false;//variable tipo bool para cambiar su valor dentro del if
-					foreach (Evento e in listaDeEventos) {
-						if (e.Mes_reserva == nroMes && e.Dia_reserva == dia) { //Si el mes reservado es igual al numero del mes y el diareservado es igual
-							//a dia entonces cambiamos el valor de YaReservado a verdadero y frenamos el if
+					foreach (Evento e in listaDeEventos)
+					{
+						if (e.Mes_reserva == nroMes && e.Dia_reserva == dia)
+						{ //Si el mes reservado es igual al numero del mes y el diareservado es igual
+						  //a dia entonces cambiamos el valor de YaReservado a verdadero y frenamos el if
 							YaReservado = true;
 							break;
 						}
 					}
-					if (!YaReservado) {//En caso de que la condicion anterior no se cumpla entonces
-						//mostramos esos meses dia como fecha disponibles
+					if (!YaReservado)
+					{//En caso de que la condicion anterior no se cumpla entonces
+					 //mostramos esos meses dia como fecha disponibles
 						Console.WriteLine("Fechas disponibles: " + dia + "/" + nroMes);
 					}
 				}

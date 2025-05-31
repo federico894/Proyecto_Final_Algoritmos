@@ -79,9 +79,83 @@ namespace Proyecto_Final_Algoritmos
 			
 			//Para usar este metodo hay que poner cada parametro igual
 		}
-		
-		public void cancelar_evento(){
-			// Comprobar fecha de cancelación
+
+		public void cancelar_evento(int mes_c, int dia_c, ArrayList eventoenMes)//parametros los cuales pasamos en Program
+		{
+			if (calendario.ListaDeEventos.Count != 0)//si la lista de eventos no esta vacia entonces
+			{
+				int posicion_guardada = -1;//declaramos variable para guardar la posicion
+				int posicion_bucle = 0;//indice para saber en que indice estamos parados en el foreach
+				foreach (Evento e in calendario.ListaDeEventos)//recorremos la lista de eventos
+				{//accedemos a sus atributos de mes y dia para hacer la comparacion con los parametros ingresamos
+					if (mes_c == e.Mes_reserva && dia_c == e.Dia_reserva)//si el parametro mes es igual a mes y dia reservado
+					{
+						posicion_guardada = posicion_bucle;//se guarda la posicion la cual es el indice en el cual estamos parados
+						Console.WriteLine("El evento a cancelar de la fecha " + e.Dia_reserva + "/" + e.Mes_reserva + " De el cliente " + e.Cliente.Nombre + " " + e.Cliente.Apellido + " DNI: " + e.Cliente.Dni);
+						Console.WriteLine("¿Esta seguro desea cancelar el evento?");
+						break;
+					}
+					posicion_bucle++;//termina el recorrido pero antes sumamos para que ahora el indice cambie a 1
+				}
+				if (posicion_guardada != -1)//si la posicion guardada es != de -1 significa que la fecha se encontro y se guardo
+				{
+					Evento item = (Evento)eventoenMes[posicion_guardada];//casteamos el evento de esa posicion para luego acceder a sus atributos
+					ArrayList siNo = new ArrayList() { "SI", "NO" };//array con 2 opciones 
+					bool salir_eleccion = false;//bool para salir del while
+					int p_eleccion = 0;//variable para comparar en que posicion estamos parados de las opciones
+					while (!salir_eleccion)
+					{
+						Console.Clear();//Console.Clear para redibujar la consola cada que pulsemos una tecla
+						Console.Write("               ");
+						Console.WriteLine("El evento a cancelar de la fecha " + item.Dia_reserva + "/" + item.Mes_reserva + " De el cliente " + item.Cliente.Nombre + " " + item.Cliente.Apellido + " DNI: " + item.Cliente.Dni);
+						Console.Write("                                       ");
+						Console.WriteLine("¿Esta seguro desea cancelar el evento?");
+						Console.Write("                                                  ");
+						for (int i = 0; i < siNo.Count; i++)//for para recorrer la cantidad de opciones
+						{
+							if (i == p_eleccion)//si i es igual a la posicion en la que estamos parados 
+							{//entonces se le da color a esa eleccion
+								Console.ForegroundColor = ConsoleColor.White;
+								Console.BackgroundColor = ConsoleColor.Red;
+								Console.Write("   " + siNo[i] + "   ");
+								Console.ResetColor();//se resetea los colores antes de salir
+							}
+							else
+							{
+								Console.Write("   " + siNo[i] + "   ");//esta va a ser la opcion en la que no estamos parados por ende no tiene color
+							}
+							
+						}
+						Console.WriteLine(" ");
+						ConsoleKeyInfo tecla_pulsada = Console.ReadKey(true);//guardamos la tecla que pulsamos
+						if (tecla_pulsada.Key == ConsoleKey.RightArrow && p_eleccion < siNo.Count - 1)//si la tecla pulsada es la flecha derecha
+						{//entonces la posicion seleccionada aumenta su valor y pasa a la siguiente opcion
+							p_eleccion++;
+						}
+						else if (tecla_pulsada.Key == ConsoleKey.LeftArrow && p_eleccion > 0)
+						{	//si la tecla pulsada es flecha izquierda entonces se resta para volver a la posicion anterior
+							p_eleccion--;
+						}
+						else if (tecla_pulsada.Key == ConsoleKey.Enter && p_eleccion == 0)
+						{//si pulsamos enter y estamos en la posicion 0 entonces significa que apretamos Si, entonces se elimina de la lista de eventos
+							calendario.ListaDeEventos.RemoveAt(posicion_guardada);//se elimina de la lista de eventos, pasamos como parametro la posicion guardada previamente en el foreach
+							Console.WriteLine("Se ha cancelado el evento con exito!");
+							salir_eleccion = true;//bool cambia de valor para salir del while
+							break;
+						}
+						else if (tecla_pulsada.Key == ConsoleKey.Enter && p_eleccion == 1)//si la opcion que pulsamos enter es 1 entonces estamos diciendo que no queremos cancelar el evento
+						{
+							Console.WriteLine("Ok no cancelaremos el evento..");
+							salir_eleccion = true;//salimos del while cambiando el valor del bool
+							break;
+						}
+
+						}
+				}
+					Console.ReadKey(true);
+			}
+			else { Console.WriteLine("No tienes reservas para cancelar..."); }// si la lista esta vacia entonces se ejecuta todo lo anterior
+			Console.ReadKey(true);
 		}
 		
 		public String Nombre{
