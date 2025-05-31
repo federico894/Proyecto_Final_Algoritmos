@@ -1,6 +1,16 @@
 # Administrador de Salón de Fiestas
 Proyecto final para la materia Algoritmos y Programación, del segundo año de la carrera Ingeniería en Informática
 
+## ToDoS
+- Excepción que pide el ejercicio
+- UML
+- Comprobar Input
+- ~~Cancelar evento~~
+- Restricciones que pide la consigna
+- Completar propiedades
+- Cambiar salón a static
+- Generalizar el sistema de menú en una función
+
 ## Integrantes
 * Fernandez Gonzalo
 * Torres Federico
