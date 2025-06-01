@@ -123,14 +123,11 @@ namespace Proyecto_Final_Algoritmos
 					Console.Write("Ingrese apellido de empleado/encargado: ");
 					String apellido = Console.ReadLine();
 
-					Console.Write("Ingrese nro de legajo: ");
-					int legajo = int.Parse(Console.ReadLine());
+					int legajo = pedir_int("Ingrese nro de legajo: ");
 
-					Console.Write("Ingrese salario: (Decimales con coma): ");
-					double salario = double.Parse(Console.ReadLine());
+					double salario = pedir_double("Ingrese salario: (Decimales con coma): ");
 
-					Console.Write("Ingrese dni: ");
-					int dni = int.Parse(Console.ReadLine());
+					int dni = pedir_int("Ingrese dni: ");
 
 					Console.Write("Ingrese tarea a desempeñar: ");
 					String tarea = Console.ReadLine();
@@ -139,8 +136,7 @@ namespace Proyecto_Final_Algoritmos
 					String enc = Console.ReadLine();
 
 					if (enc == "s" || enc == "S") {
-						Console.Write("Ingrese el plus que cobra el encargado (Decimales con coma): ");
-						double plus = double.Parse(Console.ReadLine());
+						double plus = pedir_double("Ingrese el plus que cobra el encargado (Decimales con coma): ");
 
 						Encargado e = new Encargado(nombre, apellido, dni, legajo, salario, tarea, plus);
 						Salon.subir_empleado(e);
@@ -152,8 +148,7 @@ namespace Proyecto_Final_Algoritmos
 					Console.Clear();
 					// Dar de baja un empleado
 					
-					Console.Write("Ingrese legajo de empleado/encargado: ");
-					int leg = int.Parse(Console.ReadLine());
+					int leg = pedir_int("Ingrese legajo de empleado/encargado: ");
 
 					Empleado emp = Salon.buscar_empleado_por_legajo(leg);
 
@@ -175,32 +170,26 @@ namespace Proyecto_Final_Algoritmos
 					Console.Write("Ingrese apellido del cliente: ");
 					String cliente_apellido = Console.ReadLine();
 
-					Console.Write("Ingrese dni del cliente: ");
-					int cliente_dni = int.Parse(Console.ReadLine());
+					int cliente_dni = pedir_int("Ingrese dni del cliente: ");
 
 					Cliente c = new Cliente(cliente_nombre, cliente_apellido, cliente_dni);
 					
 					// Ingresar fecha y tipo
-					Console.Write("Ingrese mes a reservar para el evento: ");
-					int mes_reserva = int.Parse(Console.ReadLine());
+					int mes_reserva = pedir_int("Ingrese mes a reservar para el evento: ");
 
-					Console.Write("Ingrese dia a reservar para el evento: ");
-					int dia_reserva = int.Parse(Console.ReadLine());
+					int dia_reserva = pedir_int("Ingrese dia a reservar para el evento: ");
 
 					Console.Write("Ingrese tipo de evento: ");
 					String tipo = Console.ReadLine();
 
 					// Ingresar encargado
-					Console.Write("Ingrese legado del encargado: ");
-					int legajo_enc_asignado = int.Parse(Console.ReadLine());
+					int legajo_enc_asignado = pedir_int("Ingrese legado del encargado: ");
 					Encargado enc_asignado = (Encargado)Salon.buscar_empleado_por_legajo(legajo_enc_asignado);
 
 					// Ingresar costo y senia
-					Console.Write("Ingrese costo del evento: ");
-					int costo = int.Parse(Console.ReadLine());
+					double costo = pedir_double("Ingrese costo del evento: ");
 
-					Console.Write("Ingrese seña del evento: ");
-					int senia = int.Parse(Console.ReadLine());
+					double senia = pedir_double("Ingrese seña del evento: ");
 
 					// Pregunto por servicio(S)
 					ArrayList lista_de_servicios = new ArrayList();
@@ -220,11 +209,9 @@ namespace Proyecto_Final_Algoritmos
 							// ACA SE DEBERIA LEVANTAR LA EXCEPCIÓN vvv
 							Servicio s = Salon.buscar_servicio(servicio_a_agregar);
 
-							Console.Write("Ingrese cantidad de servicio: ");
-							int cantidad = int.Parse(Console.ReadLine());
-
-							Console.Write("Ingrese costo unitario del servicio: ");
-							int costo_unit = int.Parse(Console.ReadLine());
+							int cantidad = pedir_int("Ingrese cantidad de servicio: ");
+							
+							double costo_unit = pedir_double("Ingrese costo unitario del servicio: ");
 
 							lista_de_servicios.Add(new ServicioItem(s.Nombre_servicio, s.Descripcion_serv, cantidad, costo_unit));
 						}
@@ -235,10 +222,9 @@ namespace Proyecto_Final_Algoritmos
 				} else if (tecla.Key == ConsoleKey.Enter && posicion == 5) {
 					// Se limpia la consola al entrar a la opcion elegida
 					Console.Clear();
-					Console.Write("Ingrese el numero de mes del evento: ");
 					
 					//variable para pasar por parametro luego
-					int mes_c = int.Parse(Console.ReadLine());
+					int mes_c = pedir_int("Ingrese el numero de mes del evento: ");
 					
 					//arraylist el cual llama al metodo el cual guarda la lista de eventos en ese mes
 					ArrayList eventoenMes = Salon.Calendario.buscar_eventos_por_mes(mes_c);
@@ -249,10 +235,8 @@ namespace Proyecto_Final_Algoritmos
 					//salto de linea en consola
 					Console.Write("\n");
 					
-					Console.Write("Ingrese el dia del evento:  ");
-					
 					//Ingresamos el dia del mes el cual vamos a cancelar
-					int dia_c = int.Parse(Console.ReadLine());
+					int dia_c = pedir_int("Ingrese el dia del evento: ");
 					
 					//si la lista de eventos no esta vacia entonces
 					if (Salon.Calendario.ListaDeEventos.Count != 0)
@@ -432,8 +416,7 @@ namespace Proyecto_Final_Algoritmos
 				} else if (tecla_info.Key == ConsoleKey.Enter && posicion_info == 3) {
 					menu_servicios();
 				} else if (tecla_info.Key == ConsoleKey.Enter && posicion_info == 4) {
-					Console.Write("\nIngrese el mes (número de 1-12): ");
-					int mes_seleccionado = int.Parse(Console.ReadLine());
+					int mes_seleccionado = pedir_int("\nIngrese el mes (número de 1-12): ");
 					menu_eventos_mes(mes_seleccionado);
 				} else if (tecla_info.Key == ConsoleKey.Enter && posicion_info == 5) {
 					salir_info = true;
@@ -519,6 +502,40 @@ namespace Proyecto_Final_Algoritmos
 			}
 			Console.WriteLine("----------------------------------------------");
 			Console.ReadKey(true);
+		}
+		
+		public static int pedir_int(String mensaje){
+			Console.Write(mensaje);
+			String valor_str = Console.ReadLine();
+			int valor;
+			
+			// Si no es un entero
+			if(!int.TryParse(valor_str, out valor)){
+				Console.WriteLine("\nIngrese un valor válido por favor\n");
+				
+				// usamos recursion hasta que el usuario se digne a entrar un valor correcto
+				valor = pedir_int(mensaje);
+			}else{
+				return valor;
+			}
+			return valor;
+		}
+		
+		public static double pedir_double(String mensaje){
+			Console.Write(mensaje);
+			String valor_str = Console.ReadLine();
+			double valor;
+			
+			// Si no es un entero
+			if(!double.TryParse(valor_str, out valor)){
+				Console.WriteLine("\nIngrese un valor válido por favor\n");
+				
+				// usamos recursion hasta que el usuario se digne a entrar un valor correcto
+				valor = pedir_int(mensaje);
+			}else{
+				return valor;
+			}
+			return valor;
 		}
 		
 		public static void mostrar_logo()

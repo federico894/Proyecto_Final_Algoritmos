@@ -11,10 +11,10 @@ namespace Proyecto_Final_Algoritmos
 		private String tipo_evento;
 		private ArrayList servicios_items;
 		private Encargado encargado;
-		private int costo_total;
-		private int senia; // No Ñ :c
+		private double costo_total;
+		private double senia;
 
-		public Evento(Cliente cliente, int mes, int dia, String tipo, Encargado encargado, int costo_total, int senia, ArrayList servicios_items)
+		public Evento(Cliente cliente, int mes, int dia, String tipo, Encargado encargado, double costo_total, double senia, ArrayList servicios_items)
 		{
 			// Constructor para instanciar la reserva
 			this.cliente = cliente;
@@ -87,13 +87,13 @@ namespace Proyecto_Final_Algoritmos
 			}
 		}
 		
-		public int Costo_total{
+		public double Costo_total{
 			get {
 				return costo_total;
 			}
 		}
 		
-		public int Senia{
+		public double Senia{
 			get {
 				return senia;
 			}

@@ -55,7 +55,7 @@ namespace Proyecto_Final_Algoritmos
 			return null;
 		}
 
-		public static void reservar_salon(Cliente cliente, int mes_salon, int dia_salon, String tipo, Encargado encargado, int costo_total, int senia, ArrayList lista_de_servicios) {
+		public static void reservar_salon(Cliente cliente, int mes_salon, int dia_salon, String tipo, Encargado encargado, double costo_total, double senia, ArrayList lista_de_servicios) {
 			//Se agregan parametros al metodo para luego asignarle los valores en el main
 			
 			//bool para hacer verificacion si esta reservado o no
