@@ -84,11 +84,8 @@ namespace Proyecto_Final_Algoritmos
 			
 			agregar_cliente(cliente);
 			
-			// Añadir un evento + servicios | ! No es un solo servicio el que se agrega (hay que usar un while, lo hago yo)
-			// Comprobar si ya está reservado y levantar excepción | ! Faltaria levantar la excepcion
-			// Asignar un encargado | ! El encargado se asigna con un random()
-			
-			//Para usar este metodo hay que poner cada parametro igual
+			// COSITAS QUE FALTAN HACER
+			// ! Comprobar si ya está reservado y levantar excepción | ! Faltaria levantar la excepcion
 		}
 
 		public void cancelar_evento(int posicion_guardada)//parametros los cuales pasamos en Program

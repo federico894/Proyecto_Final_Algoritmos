@@ -7,7 +7,7 @@ Proyecto final para la materia Algoritmos y Programación, del segundo año de l
 - Comprobar Input
 - ~~Cancelar evento~~
 - Restricciones que pide la consigna
-- Completar propiedades
+- ~~Completar propiedades~~
 - Cambiar salón a static
 - Generalizar el sistema de menú en una función
 

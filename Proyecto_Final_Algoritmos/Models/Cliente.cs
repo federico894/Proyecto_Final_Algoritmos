@@ -43,23 +43,9 @@ namespace Proyecto_Final_Algoritmos
 			get {
 				return apellido;
 			}
-		}
-
-		/*
-		// Lista la cual almacenara cada cliente
-		public ArrayList listClientes = new ArrayList();
-		
-		public void NewReserva(Reserva reserva)
-		{
-			listClientes.Add(reserva);
-		}
-
-		public void MostrarDatosReserva()
-		{
-			foreach (Reserva r in listClientes) {
-				Console.WriteLine("| Reserva a nombre de: " + NameReserva + " | DNI " + DniReserva + " | Fecha de Reserva: " + r.diaReservado + "/" + r.mesReservado + " |");
+			set{
+				apellido = value;
 			}
-		}*/
-
+		}
 	}
 }

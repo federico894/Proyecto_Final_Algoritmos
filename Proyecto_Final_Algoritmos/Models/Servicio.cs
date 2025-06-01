@@ -1,29 +1,36 @@
-﻿
-using System;
+﻿using System;
 
 namespace Proyecto_Final_Algoritmos
 {
 
 	public class Servicio
 	{
-		private string nombre_servicio;
-		private string descripcion_serv;
+		private String nombre_servicio;
+		private String descripcion_serv;
 
-		public Servicio(string nombre_servicio, string descripcion_serv)
+		public Servicio(String nombre_servicio, String descripcion_serv)
 		{
 			this.nombre_servicio = nombre_servicio;
 			this.descripcion_serv = descripcion_serv;
 		}
 
-		public string Nombre_servicio
+		public String Nombre_servicio
 		{
-			get { return nombre_servicio; }
-			set { nombre_servicio = value; }
+			get {
+				return nombre_servicio;
+			}
+			set {
+				nombre_servicio = value;
+			}
 		}
-		public string Descripcion_serv
+		public String Descripcion_serv
 		{
-			get { return descripcion_serv; }
-			set { descripcion_serv = value; }
+			get {
+				return descripcion_serv;
+			}
+			set {
+				descripcion_serv = value;
+			}
 		}
 	}
 }

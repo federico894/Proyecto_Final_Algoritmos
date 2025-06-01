@@ -7,13 +7,13 @@ namespace Proyecto_Final_Algoritmos
 	public class Calendario
 	{
 		// Arraylist meses el cual almacena atraves de un for 12 meses
-		private ArrayList mes;
+		private ArrayList meses;
 		private ArrayList listaDeEventos;
  
 		// No pasamos los parametros dia y mes debido a que en el metodo agendarTurno lo pasamos por consola con Console.Readline
 		public Calendario()
 		{
-			mes = new ArrayList();
+			meses = new ArrayList();
 			listaDeEventos = new ArrayList();
 			
 			// Inicializamos el metodo para que el arraylist ya tenga la cant de meses y no este vacio
@@ -28,41 +28,41 @@ namespace Proyecto_Final_Algoritmos
 				switch (i) {
 					case 0:
 						// Por ejemplo aca case 0 seria mes 1 entonces Add(31) dias a enero
-						mes.Add(31);
+						meses.Add(31);
 						break;
 					case 1:
 						// ! Agrega solo el numero pero no es que agrega esa cant de objetos
-						mes.Add(28);
+						meses.Add(28);
 						break;
 					case 2:
-						mes.Add(31);
+						meses.Add(31);
 						break;
 					case 3:
-						mes.Add(30);
+						meses.Add(30);
 						break;
 					case 4:
-						mes.Add(31);
+						meses.Add(31);
 						break;
 					case 5:
-						mes.Add(30);
+						meses.Add(30);
 						break;
 					case 6:
-						mes.Add(31);
+						meses.Add(31);
 						break;
 					case 7:
-						mes.Add(31);
+						meses.Add(31);
 						break;
 					case 8:
-						mes.Add(30);
+						meses.Add(30);
 						break;
 					case 9:
-						mes.Add(31);
+						meses.Add(31);
 						break;
 					case 10:
-						mes.Add(30);
+						meses.Add(30);
 						break;
 					case 11:
-						mes.Add(31);
+						meses.Add(31);
 						break;
 
 				}
@@ -81,10 +81,11 @@ namespace Proyecto_Final_Algoritmos
 			//Aca casteamos el mes, ya que es un arraylist lo pasamos a int
 			//y entre [] agregamos el dato que entramos con Console.readline, el cual va a hacer que nos posicionemos
 			//en el indice correcto al cual le pertenece ese mes (-1 ya que el mes que introducimos es 1 numero mas alto que el indice que empieza de 0)
-			int diaMaximos = (int)mes[nuevoEvento.Mes_reserva - 1];
+			int diaMaximos = (int)meses[nuevoEvento.Mes_reserva - 1];
 			
-			//aca tambien accedemos al atributo dia 
-			if (nuevoEvento.Dia_reserva < 1 || nuevoEvento.Dia_reserva > diaMaximos) {//Aca utilizamos el mes que casteamos a int,
+			//aca tambien accedemos al atributo dia
+			if (nuevoEvento.Dia_reserva < 1 || nuevoEvento.Dia_reserva > diaMaximos) {
+				//Aca utilizamos el mes que casteamos a int,
 				//para verificar si el dia que elegimos es mayor a la de ese mes entonces es un dato ingresado invalido
 				Console.WriteLine("Dia invalido");
 				return;
@@ -129,7 +130,7 @@ namespace Proyecto_Final_Algoritmos
 			ArrayList mesPorNum = new ArrayList();
 			
 			//Bucle para llenar la lista con numeros del 1 al 12//es decir, los numeros de los meses
-			for (int i = 0; i < mes.Count; i++)
+			for (int i = 0; i < meses.Count; i++)
 			{
 				mesPorNum.Add(i + 1);
 			}
@@ -137,10 +138,10 @@ namespace Proyecto_Final_Algoritmos
 			//foreach para recorrer la lista creada con la cant de meses
 			foreach (int nroMes in mesPorNum)
 			{
-				
-				int cantDias = (int)mes[nroMes - 1]; //casteo de el item que esta en el indice de mes a tipo int
-													 //aca recorremos el arraylist de mes nroMes (-1 porque los indice comienzan desde 0)
-													 //y obtenemos el valor el cual seria el total de dias el cual tiene ese nroMes (por ejemplo nroMes 2 nos paramos en el indice 1 el cual tiene 28 dias)
+				//casteo de el item que esta en el indice de mes a tipo int
+				//aca recorremos el arraylist de mes nroMes (-1 porque los indice comienzan desde 0)
+				//y obtenemos el valor el cual seria el total de dias el cual tiene ese nroMes (por ejemplo nroMes 2 nos paramos en el indice 1 el cual tiene 28 dias)
+				int cantDias = (int)meses[nroMes - 1];
 				
 				//realizamos un for para recorrer los dias que contiene totales de ese mes, por eso < cantDias
 				for (int dia = 1; dia <= cantDias; dia++)
@@ -171,6 +172,12 @@ namespace Proyecto_Final_Algoritmos
 		public ArrayList ListaDeEventos {
 			get {
 				return listaDeEventos;
+			}
+		}
+		
+		public ArrayList Meses{
+			get{
+				return meses;
 			}
 		}
 
