@@ -9,7 +9,6 @@ Proyecto final para la materia Algoritmos y Programación, del segundo año de l
 - Restricciones que pide la consigna
 - ~~Completar propiedades~~
 - ~~Cambiar salón a static~~
-- Generalizar el sistema de menú en una función
 
 ## Integrantes
 * Fernandez Gonzalo
