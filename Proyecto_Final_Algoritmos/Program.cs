@@ -272,8 +272,7 @@ namespace Proyecto_Final_Algoritmos
 							{
 								//se guarda la posicion la cual es el indice en el cual estamos parados
 								posicion_guardada = posicion_bucle;
-								Console.WriteLine("El evento a cancelar de la fecha " + e.Dia_reserva + "/" + e.Mes_reserva + " De el cliente " + e.Cliente.Nombre + " " + e.Cliente.Apellido + " DNI: " + e.Cliente.Dni);
-								Console.WriteLine("¿Esta seguro desea cancelar el evento?");
+								Console.WriteLine("¿Esta seguro que desea cancelar el evento de la fecha {0}/{1} a nombre de {2} {3} ({4})?" + e.Dia_reserva, e.Mes_reserva, e.Cliente.Nombre, e.Cliente.Apellido, e.Cliente.Dni);
 								break;
 							}
 							//termina el recorrido pero antes sumamos para que ahora el indice cambie a 1
@@ -299,7 +298,7 @@ namespace Proyecto_Final_Algoritmos
 								//Console.Clear para redibujar la consola cada que pulsemos una tecla
 								Console.Clear();
 								Console.Write("               ");
-								Console.WriteLine("El evento a cancelar de la fecha " + item.Dia_reserva + "/" + item.Mes_reserva + " De el cliente " + item.Cliente.Nombre + " " + item.Cliente.Apellido + " DNI: " + item.Cliente.Dni);
+								Console.WriteLine("Evento a cancelar de la fecha " + item.Dia_reserva + "/" + item.Mes_reserva + " a nombre de " + item.Cliente.Nombre + " " + item.Cliente.Apellido + " (" + item.Cliente.Dni + ")");
 								Console.Write("                                       ");
 								Console.WriteLine("¿Esta seguro desea cancelar el evento?");
 								Console.Write("                                                  ");
