@@ -12,13 +12,11 @@ namespace Proyecto_Final_Algoritmos
 		public static void Main(string[] args)
 		{
 			// Preparación del salón
-			Salon salon = new Salon("Las Luces Verdes");
-			
-			mostrar_menu(salon);
+			mostrar_menu();
 		}
 		
 		// MENU PRINCIPAL
-		public static void mostrar_menu(Salon salon)
+		public static void mostrar_menu()
 		{
 			String[] opciones = {
 				"Agregar un servicio",
@@ -97,7 +95,7 @@ namespace Proyecto_Final_Algoritmos
 					Console.Write("Ingrese descripción del servicio: ");
 					String desc_serv = Console.ReadLine();
 						
-					salon.agregar_servicio(new Servicio(nom_serv, desc_serv));
+					Salon.agregar_servicio(new Servicio(nom_serv, desc_serv));
 				
 				} else if (tecla.Key == ConsoleKey.Enter && posicion == 1) {
 					// Eliminar un servicio
@@ -106,9 +104,9 @@ namespace Proyecto_Final_Algoritmos
 					Console.Write("Ingrese nombre de servicio a eliminar: ");
 					String nombre_serv_a_buscar = Console.ReadLine();
 
-					Servicio servicio_buscado = salon.buscar_servicio(nombre_serv_a_buscar);
+					Servicio servicio_buscado = Salon.buscar_servicio(nombre_serv_a_buscar);
 					if (servicio_buscado != null) {
-						salon.eliminar_servicio(servicio_buscado);
+						Salon.eliminar_servicio(servicio_buscado);
 						Console.WriteLine("Servicio '{0}' eliminado con exito", servicio_buscado.Nombre_servicio);
 					} else {
 						Console.WriteLine("No se encontró el servicio");
@@ -145,10 +143,10 @@ namespace Proyecto_Final_Algoritmos
 						double plus = double.Parse(Console.ReadLine());
 
 						Encargado e = new Encargado(nombre, apellido, dni, legajo, salario, tarea, plus);
-						salon.subir_empleado(e);
+						Salon.subir_empleado(e);
 					} else {
 						Empleado e = new Empleado(nombre, apellido, dni, legajo, salario, tarea);
-						salon.subir_empleado(e);
+						Salon.subir_empleado(e);
 					}
 				} else if (tecla.Key == ConsoleKey.Enter && posicion == 3) {
 					Console.Clear();
@@ -157,10 +155,10 @@ namespace Proyecto_Final_Algoritmos
 					Console.Write("Ingrese legajo de empleado/encargado: ");
 					int leg = int.Parse(Console.ReadLine());
 
-					Empleado emp = salon.buscar_empleado_por_legajo(leg);
+					Empleado emp = Salon.buscar_empleado_por_legajo(leg);
 
 					if (emp != null) {
-						salon.bajar_empleado(emp);
+						Salon.bajar_empleado(emp);
 						Console.WriteLine("Empleado: {0} {1} ({2}) eliminado con exito", emp.Nombre, emp.Apellido, emp.NroDeLegajo);
 					} else {
 						Console.WriteLine("No se encontró el empleado");
@@ -195,7 +193,7 @@ namespace Proyecto_Final_Algoritmos
 					// Ingresar encargado
 					Console.Write("Ingrese legado del encargado: ");
 					int legajo_enc_asignado = int.Parse(Console.ReadLine());
-					Encargado enc_asignado = (Encargado)salon.buscar_empleado_por_legajo(legajo_enc_asignado);
+					Encargado enc_asignado = (Encargado)Salon.buscar_empleado_por_legajo(legajo_enc_asignado);
 
 					// Ingresar costo y senia
 					Console.Write("Ingrese costo del evento: ");
@@ -220,7 +218,7 @@ namespace Proyecto_Final_Algoritmos
 
 							//                                      |||
 							// ACA SE DEBERIA LEVANTAR LA EXCEPCIÓN vvv
-							Servicio s = salon.buscar_servicio(servicio_a_agregar);
+							Servicio s = Salon.buscar_servicio(servicio_a_agregar);
 
 							Console.Write("Ingrese cantidad de servicio: ");
 							int cantidad = int.Parse(Console.ReadLine());
@@ -232,7 +230,7 @@ namespace Proyecto_Final_Algoritmos
 						}
 					} while (salir_loop != "n");
 
-					salon.reservar_salon(c, mes_reserva, dia_reserva, tipo, enc_asignado, costo, senia, lista_de_servicios);
+					Salon.reservar_salon(c, mes_reserva, dia_reserva, tipo, enc_asignado, costo, senia, lista_de_servicios);
 
 				} else if (tecla.Key == ConsoleKey.Enter && posicion == 5) {
 					// Se limpia la consola al entrar a la opcion elegida
@@ -243,10 +241,10 @@ namespace Proyecto_Final_Algoritmos
 					int mes_c = int.Parse(Console.ReadLine());
 					
 					//arraylist el cual llama al metodo el cual guarda la lista de eventos en ese mes
-					ArrayList eventoenMes = salon.Calendario.buscar_eventos_por_mes(mes_c);
+					ArrayList eventoenMes = Salon.Calendario.buscar_eventos_por_mes(mes_c);
 					
 					//usamos metodo para ver que fechas ya estan reservadas
-					salon.Calendario.mostrar_fechas_reservadas(eventoenMes);
+					Salon.Calendario.mostrar_fechas_reservadas(eventoenMes);
 					
 					//salto de linea en consola
 					Console.Write("\n");
@@ -257,7 +255,7 @@ namespace Proyecto_Final_Algoritmos
 					int dia_c = int.Parse(Console.ReadLine());
 					
 					//si la lista de eventos no esta vacia entonces
-					if (salon.Calendario.ListaDeEventos.Count != 0)
+					if (Salon.Calendario.ListaDeEventos.Count != 0)
 					{
 						//declaramos variable para guardar la posicion
 						int posicion_guardada = -1;
@@ -266,7 +264,7 @@ namespace Proyecto_Final_Algoritmos
 						int posicion_bucle = 0;
 						
 						//recorremos la lista de eventos
-						foreach (Evento e in salon.Calendario.ListaDeEventos)
+						foreach (Evento e in Salon.Calendario.ListaDeEventos)
 						{
 							//accedemos a sus atributos de mes y dia para hacer la comparacion con los parametros ingresamos
 							//si el parametro mes es igual a mes y dia reservado
@@ -346,7 +344,7 @@ namespace Proyecto_Final_Algoritmos
 								else if (tecla_pulsada.Key == ConsoleKey.Enter && p_eleccion == 0)
 								{
 									//si pulsamos enter y estamos en la posicion 0 entonces significa que apretamos Si, entonces se elimina de la lista de eventos
-									salon.cancelar_evento(posicion_guardada);
+									Salon.cancelar_evento(posicion_guardada);
 									Console.WriteLine("Se ha cancelado el evento con exito!");
 									
 									//bool cambia de valor para salir del while
@@ -374,7 +372,7 @@ namespace Proyecto_Final_Algoritmos
 				
 				} else if (tecla.Key == ConsoleKey.Enter && posicion == 6) {
 					Console.Clear();
-					mostrar_info(salon);
+					mostrar_info();
 				
 				} else if (tecla.Key == ConsoleKey.Enter && posicion == 7) { //ultima opcion la cual es salir, y si presionamos Enter finaliza el while
 					salir = true;
@@ -385,7 +383,7 @@ namespace Proyecto_Final_Algoritmos
 			}
 		}
 		
-		public static void mostrar_info(Salon salon)
+		public static void mostrar_info()
 		{
 			// Submenu de mostrar info relevante
 			String[] opciones_info = {
@@ -427,17 +425,17 @@ namespace Proyecto_Final_Algoritmos
 				} else if (tecla_info.Key == ConsoleKey.UpArrow && posicion_info > 0) {
 					posicion_info--;
 				} else if (tecla_info.Key == ConsoleKey.Enter && posicion_info == 0) {
-					menu_eventos(salon);
+					menu_eventos();
 				} else if (tecla_info.Key == ConsoleKey.Enter && posicion_info == 1) {
-					menu_clientes(salon);
+					menu_clientes();
 				} else if (tecla_info.Key == ConsoleKey.Enter && posicion_info == 2) {
-					menu_empleados(salon);
+					menu_empleados();
 				} else if (tecla_info.Key == ConsoleKey.Enter && posicion_info == 3) {
-					menu_servicios(salon);
+					menu_servicios();
 				} else if (tecla_info.Key == ConsoleKey.Enter && posicion_info == 4) {
 					Console.Write("\nIngrese el mes (número de 1-12): ");
 					int mes_seleccionado = int.Parse(Console.ReadLine());
-					menu_eventos_mes(salon, mes_seleccionado);
+					menu_eventos_mes(mes_seleccionado);
 				} else if (tecla_info.Key == ConsoleKey.Enter && posicion_info == 5) {
 					salir_info = true;
 				} else {
@@ -446,12 +444,12 @@ namespace Proyecto_Final_Algoritmos
 			}
 		}
 		
-		public static void menu_eventos(Salon salon)
+		public static void menu_eventos()
 		{
 			// Listar eventos
 			Console.Clear();
 			
-			foreach (Evento ev in salon.Calendario.ListaDeEventos) {
+			foreach (Evento ev in Salon.Calendario.ListaDeEventos) {
 				Console.WriteLine("----------------------------------------------");
 				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7}\n| - Costo total: {8}\n|  - Seña: {9}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Costo_total, ev.Senia);
 				Console.WriteLine("| - Servicios contratados:");
@@ -464,12 +462,12 @@ namespace Proyecto_Final_Algoritmos
 			Console.ReadKey(true);
 		}
 		
-		public static void menu_clientes(Salon salon)
+		public static void menu_clientes()
 		{
 			// Listar clientes
 			Console.Clear();
 			
-			foreach (Cliente cliente in salon.Clientes) {
+			foreach (Cliente cliente in Salon.Clientes) {
 				Console.WriteLine("----------------------------------------------");
 				Console.WriteLine("| Cliente: {0} {1}\n| - Dni: {2}", cliente.Nombre, cliente.Apellido, cliente.Dni);
 			}
@@ -477,12 +475,12 @@ namespace Proyecto_Final_Algoritmos
 			Console.ReadKey(true);
 		}
 		
-		public static void menu_empleados(Salon salon)
+		public static void menu_empleados()
 		{
 			// Listar empleados
 			Console.Clear();
 			
-			foreach (Empleado empleado in salon.Empleados) {
+			foreach (Empleado empleado in Salon.Empleados) {
 				Console.WriteLine("----------------------------------------------");
 				Console.WriteLine("| Empleado: {0} {1}\n| - Legajo: {2}\n| - DNI: {3}\n| - Salario: {4}\n| - Tarea a desempeñar: {5}", empleado.Nombre, empleado.Apellido, empleado.NroDeLegajo, empleado.Dni, empleado.calcularSalario(), empleado.TareaDesempeniar);
 			}
@@ -490,12 +488,12 @@ namespace Proyecto_Final_Algoritmos
 			Console.ReadKey(true);
 		}
 		
-		public static void menu_servicios(Salon salon)
+		public static void menu_servicios()
 		{
 			// Listar clientes
 			Console.Clear();
 			
-			foreach (Servicio servicio in salon.Servicios) {
+			foreach (Servicio servicio in Salon.Servicios) {
 				Console.WriteLine("----------------------------------------------");
 				Console.WriteLine("| Servicio: {0}\n| - Descripción: {1}", servicio.Nombre_servicio, servicio.Descripcion_serv);
 			}
@@ -503,13 +501,13 @@ namespace Proyecto_Final_Algoritmos
 			Console.ReadKey(true);
 		}
 		
-		public static void menu_eventos_mes(Salon salon, int mes_seleccionado)
+		public static void menu_eventos_mes(int mes_seleccionado)
 		{
 			// Listar eventos de un mes determinado
 			Console.Clear();
 			
 			// Busco eventos en ese mes
-			ArrayList eventos_en_ese_mes = salon.Calendario.buscar_eventos_por_mes(mes_seleccionado);
+			ArrayList eventos_en_ese_mes = Salon.Calendario.buscar_eventos_por_mes(mes_seleccionado);
 			
 			// Imprimo esos eventos
 			foreach (Evento ev in eventos_en_ese_mes) {
