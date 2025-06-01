@@ -4,7 +4,7 @@ Proyecto final para la materia Algoritmos y Programación, del segundo año de l
 ## ToDoS
 - Excepción que pide el ejercicio
 - UML
-- Comprobar Input
+- ~~Comprobar Input~~
 - ~~Cancelar evento~~
 - Restricciones que pide la consigna
 - ~~Completar propiedades~~
