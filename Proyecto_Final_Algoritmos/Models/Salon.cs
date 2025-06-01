@@ -27,6 +27,8 @@ namespace Proyecto_Final_Algoritmos
 					return s;
 				}
 			}
+			
+			// No se encontró
 			return null;
 		}
 		
@@ -52,6 +54,8 @@ namespace Proyecto_Final_Algoritmos
 					return empleado;
 				}
 			}
+			
+			// No se encontró
 			return null;
 		}
 

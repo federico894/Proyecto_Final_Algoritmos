@@ -183,9 +183,8 @@ namespace Proyecto_Final_Algoritmos
 					String tipo = Console.ReadLine();
 
 					// Ingresar encargado
-					int legajo_enc_asignado = pedir_int("Ingrese legado del encargado: ");
-					Encargado enc_asignado = (Encargado)Salon.buscar_empleado_por_legajo(legajo_enc_asignado);
-
+					Encargado enc_asignado = pedir_encargado("Ingrese legado del encargado: ");
+					
 					// Ingresar costo y senia
 					double costo = pedir_double("Ingrese costo del evento: ");
 
@@ -433,7 +432,7 @@ namespace Proyecto_Final_Algoritmos
 			
 			foreach (Evento ev in Salon.Calendario.ListaDeEventos) {
 				Console.WriteLine("----------------------------------------------");
-				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7}\n| - Costo total: {8}\n|  - Seña: {9}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Costo_total, ev.Senia);
+				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7} ({8})\n| - Costo total: {9}\n|  - Seña: {10}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Encargado.NroDeLegajo, ev.Costo_total, ev.Senia);
 				Console.WriteLine("| - Servicios contratados:");
 				foreach (ServicioItem s in ev.Servicios) {
 					Console.WriteLine("|  - {0}\n|   - Cantidad: {1}\n|   - Precio unitario: {2}", s.Nombre_servicio, s.Cant_solicitada, s.Costo_unitario);
@@ -494,7 +493,7 @@ namespace Proyecto_Final_Algoritmos
 			// Imprimo esos eventos
 			foreach (Evento ev in eventos_en_ese_mes) {
 				Console.WriteLine("----------------------------------------------");
-				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7}\n| - Costo total: {8}\n|  - Seña: {9}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Costo_total, ev.Senia);
+				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7} ({8})\n| - Costo total: {9}\n|  - Seña: {10}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Encargado.NroDeLegajo, ev.Costo_total, ev.Senia);
 				Console.WriteLine("| - Servicios contratados:");
 				foreach (ServicioItem s in ev.Servicios) {
 					Console.WriteLine("|  - {0}\n|   - Cantidad: {1}\n|   - Precio unitario: {2}", s.Nombre_servicio, s.Cant_solicitada, s.Costo_unitario);
@@ -532,6 +531,22 @@ namespace Proyecto_Final_Algoritmos
 				
 				// usamos recursion hasta que el usuario se digne a entrar un valor correcto
 				valor = pedir_int(mensaje);
+			}else{
+				return valor;
+			}
+			return valor;
+		}
+		
+		public static Encargado pedir_encargado(String mensaje){
+			int legajo_asignado_str = pedir_int(mensaje);
+			Encargado valor = (Encargado)Salon.buscar_empleado_por_legajo(legajo_asignado_str);
+			
+			// Si no es un entero
+			if(valor == null){
+				Console.WriteLine("\nNo se encontró el encargado, intentelo nuevamente\n");
+				
+				// usamos recursion hasta que el usuario se digne a entrar un valor correcto
+				valor = pedir_encargado(mensaje);
 			}else{
 				return valor;
 			}
