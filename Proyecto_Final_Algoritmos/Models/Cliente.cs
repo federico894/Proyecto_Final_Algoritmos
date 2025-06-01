@@ -21,10 +21,12 @@ namespace Proyecto_Final_Algoritmos
 		// Creación de propiedad la cual utilizamos para asignarle valor a las variables privadas
 		public String Nombre {
 			get {
-				return nombre; //get, nos devuelve el valor de la variable
+				//get, nos devuelve el valor de la variable
+				return nombre;
 			} 
 			set {
-				nombre = value; //determinamos el valor de la variable cuando instanciemos
+				//determinamos el valor de la variable cuando instanciemos
+				nombre = value;
 			}
 		}
     

@@ -235,14 +235,21 @@ namespace Proyecto_Final_Algoritmos
 					salon.reservar_salon(c, mes_reserva, dia_reserva, tipo, enc_asignado, costo, senia, lista_de_servicios);
 
 				} else if (tecla.Key == ConsoleKey.Enter && posicion == 5) {
-					Console.Clear();// Se limpia la consola al entrar a la opcion elegida
-					Console.Write("Ingrese el numero de mes del evento:  ");
-					int mes_c = int.Parse(Console.ReadLine());//variable para pasar por parametro luego
+					// Se limpia la consola al entrar a la opcion elegida
+					Console.Clear();
+					Console.Write("Ingrese el numero de mes del evento: ");
 					
-					ArrayList eventoenMes = salon.Calendario.buscar_eventos_por_mes(mes_c);//arraylist el cual llama al metodo el cual guarda la lista de eventos en ese mes
-					salon.Calendario.mostrar_fechas_reservadas(eventoenMes);//usamos metodo para ver que fechas ya estan reservadas
+					//variable para pasar por parametro luego
+					int mes_c = int.Parse(Console.ReadLine());
 					
-					Console.WriteLine(" ");//salto de linea en consola
+					//arraylist el cual llama al metodo el cual guarda la lista de eventos en ese mes
+					ArrayList eventoenMes = salon.Calendario.buscar_eventos_por_mes(mes_c);
+					
+					//usamos metodo para ver que fechas ya estan reservadas
+					salon.Calendario.mostrar_fechas_reservadas(eventoenMes);
+					
+					//salto de linea en consola
+					Console.Write("\n");
 					
 					Console.Write("Ingrese el dia del evento:  ");
 					
@@ -265,22 +272,34 @@ namespace Proyecto_Final_Algoritmos
 							//si el parametro mes es igual a mes y dia reservado
 							if (mes_c == e.Mes_reserva && dia_c == e.Dia_reserva)
 							{
-								posicion_guardada = posicion_bucle;//se guarda la posicion la cual es el indice en el cual estamos parados
+								//se guarda la posicion la cual es el indice en el cual estamos parados
+								posicion_guardada = posicion_bucle;
 								Console.WriteLine("El evento a cancelar de la fecha " + e.Dia_reserva + "/" + e.Mes_reserva + " De el cliente " + e.Cliente.Nombre + " " + e.Cliente.Apellido + " DNI: " + e.Cliente.Dni);
 								Console.WriteLine("¿Esta seguro desea cancelar el evento?");
 								break;
 							}
-							posicion_bucle++; //termina el recorrido pero antes sumamos para que ahora el indice cambie a 1
+							//termina el recorrido pero antes sumamos para que ahora el indice cambie a 1
+							posicion_bucle++;
 						}
-						if (posicion_guardada != -1)//si la posicion guardada es != de -1 significa que la fecha se encontro y se guardo
+						
+						//si la posicion guardada es != de -1 significa que la fecha se encontro y se guardo
+						if (posicion_guardada != -1)
 						{
-							Evento item = (Evento)eventoenMes[posicion_guardada];//casteamos el evento de esa posicion para luego acceder a sus atributos
-							String[] siNo = { "Si", "No" };//array con 2 opciones
-							bool salir_eleccion = false;//bool para salir del while
-							int p_eleccion = 0;//variable para comparar en que posicion estamos parados de las opciones
+							//casteamos el evento de esa posicion para luego acceder a sus atributos
+							Evento item = (Evento)eventoenMes[posicion_guardada];
+							
+							//array con 2 opciones
+							String[] siNo = { "Si", "No" };
+							
+							//bool para salir del while
+							bool salir_eleccion = false;
+							
+							//variable para comparar en que posicion estamos parados de las opciones
+							int p_eleccion = 0;
 							while (!salir_eleccion)
 							{
-								Console.Clear();//Console.Clear para redibujar la consola cada que pulsemos una tecla
+								//Console.Clear para redibujar la consola cada que pulsemos una tecla
+								Console.Clear();
 								Console.Write("               ");
 								Console.WriteLine("El evento a cancelar de la fecha " + item.Dia_reserva + "/" + item.Mes_reserva + " De el cliente " + item.Cliente.Nombre + " " + item.Cliente.Apellido + " DNI: " + item.Cliente.Dni);
 								Console.Write("                                       ");
@@ -297,24 +316,30 @@ namespace Proyecto_Final_Algoritmos
 										Console.ForegroundColor = ConsoleColor.White;
 										Console.BackgroundColor = ConsoleColor.Red;
 										Console.Write("   " + siNo[i] + "   ");
-										Console.ResetColor();//se resetea los colores antes de salir
+										
+										//se resetea los colores antes de salir
+										Console.ResetColor();
 									}
 									else
 									{
-										Console.Write("   " + siNo[i] + "   ");//esta va a ser la opcion en la que no estamos parados por ende no tiene color
+										//esta va a ser la opcion en la que no estamos parados por ende no tiene color
+										Console.Write("   " + siNo[i] + "   ");
 									}
-								
 								}
-								Console.WriteLine(" ");
-								ConsoleKeyInfo tecla_pulsada = Console.ReadKey(true);//guardamos la tecla que pulsamos
+								Console.Write("\n");
+								
+								//guardamos la tecla que pulsamos
+								ConsoleKeyInfo tecla_pulsada = Console.ReadKey(true);
 								
 								if (tecla_pulsada.Key == ConsoleKey.RightArrow && p_eleccion < siNo.Length - 1)//si la tecla pulsada es la flecha derecha
-								{//entonces la posicion seleccionada aumenta su valor y pasa a la siguiente opcion
+								{
+									//entonces la posicion seleccionada aumenta su valor y pasa a la siguiente opcion
 									p_eleccion++;
 								}
 								
 								else if (tecla_pulsada.Key == ConsoleKey.LeftArrow && p_eleccion > 0)
-								{	//si la tecla pulsada es flecha izquierda entonces se resta para volver a la posicion anterior
+								{	
+									//si la tecla pulsada es flecha izquierda entonces se resta para volver a la posicion anterior
 									p_eleccion--;
 								}
 								
@@ -323,14 +348,18 @@ namespace Proyecto_Final_Algoritmos
 									//si pulsamos enter y estamos en la posicion 0 entonces significa que apretamos Si, entonces se elimina de la lista de eventos
 									salon.cancelar_evento(posicion_guardada);
 									Console.WriteLine("Se ha cancelado el evento con exito!");
-									salir_eleccion = true;//bool cambia de valor para salir del while
+									
+									//bool cambia de valor para salir del while
+									salir_eleccion = true;
 									break;
 								}
 							
-								else if (tecla_pulsada.Key == ConsoleKey.Enter && p_eleccion == 1)//si la opcion que pulsamos enter es 1 entonces estamos diciendo que no queremos cancelar el evento
+								//si la opcion que pulsamos enter es 1 entonces estamos diciendo que no queremos cancelar el evento
+								else if (tecla_pulsada.Key == ConsoleKey.Enter && p_eleccion == 1)
 								{
 									Console.WriteLine("No se cancelará el evento, volviendo...");
-									salir_eleccion = true;//salimos del while cambiando el valor del bool
+									//salimos del while cambiando el valor del bool
+									salir_eleccion = true;
 									break;
 								}
 							}

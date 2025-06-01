@@ -56,14 +56,21 @@ namespace Proyecto_Final_Algoritmos
 
 		public void reservar_salon(Cliente cliente, int mes_salon, int dia_salon, String tipo, Encargado encargado, int costo_total, int senia, ArrayList lista_de_servicios) {
 			//Se agregan parametros al metodo para luego asignarle los valores en el main
-			bool yareservado = false;//bool para hacer verificacion si esta reservado o no
-			foreach (Evento e in calendario.ListaDeEventos)//recorremos la lista de eventos la cual esta en la clase calendario
+			
+			//bool para hacer verificacion si esta reservado o no
+			bool yareservado = false;
+			
+			//recorremos la lista de eventos la cual esta en la clase calendario
+			foreach (Evento e in calendario.ListaDeEventos)
 			{
 				if (e.Mes_reserva == mes_salon && e.Dia_reserva == mes_salon)
-				{//si el mes reservado que se encuentra en la lista de reservas es igual al mes ingresado por parametro 
+				{
+					//si el mes reservado que se encuentra en la lista de reservas es igual al mes ingresado por parametro
 					Console.WriteLine("Esta fecha ya esta reservada");
-					yareservado = true;//entonces la fecha ya se encuentra reservada, el bool cambia a verdadero
-					break;// y finaliza if
+					//entonces la fecha ya se encuentra reservada, el bool cambia a verdadero
+					yareservado = true;
+					// y finaliza if
+					break;
 				}
 
 			}
