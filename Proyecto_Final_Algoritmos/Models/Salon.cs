@@ -3,72 +3,89 @@ using System.Collections;
 
 namespace Proyecto_Final_Algoritmos
 {
-	public class Salon
+	public static class Salon
 	{
-		private ArrayList empleados;
-		private ArrayList clientes;
-		private ArrayList servicios;
-		private String nombre;
-		private Calendario calendario;
+		private static ArrayList empleados;
+		private static ArrayList clientes;
+		private static ArrayList servicios;
+		private static Calendario calendario;
+		
+		// Nombre genérico por defecto
+		private static String nombre = "Salon de fiestas";
 
-		public Salon(String nombre)
+		static Salon()
 		{
 			empleados = new ArrayList();
 			calendario = new Calendario();
 			clientes = new ArrayList();
 			servicios = new ArrayList();
-			this.nombre = nombre;
 		}
 		
-		public Servicio buscar_servicio(String nombre_serv_a_buscar){
+		public static Servicio buscar_servicio(String nombre_serv_a_buscar){
 			foreach (Servicio s in servicios) {
 				if (s.Nombre_servicio.ToLower() == nombre_serv_a_buscar.ToLower()){
 					return s;
 				}
 			}
+			
+			// No se encontró
 			return null;
 		}
 		
-		public void agregar_servicio(Servicio servicio){
+		public static void agregar_servicio(Servicio servicio){
 			servicios.Add(servicio);
 		}
 		
-		public void eliminar_servicio(Servicio servicio){
+		public static void eliminar_servicio(Servicio servicio){
 			servicios.Remove(servicio);
 		}
 		
-		public void subir_empleado(Empleado empleado){
+		public static void subir_empleado(Empleado empleado){
 			empleados.Add(empleado);
 		}
 		
-		public void bajar_empleado(Empleado empleado){
+		public static void bajar_empleado(Empleado empleado){
 			empleados.Remove(empleado);
 		}
 		
-		public Empleado buscar_empleado_por_legajo(int legajo){
+		public static Empleado buscar_empleado_por_legajo(int legajo){
 			foreach (Empleado empleado in empleados) {
 				if(empleado.NroDeLegajo == legajo){
 					return empleado;
 				}
 			}
+			
+			// No se encontró
 			return null;
 		}
 
-		public void reservar_salon(Cliente cliente, int mes_salon, int dia_salon, String tipo, Encargado encargado, int costo_total, int senia, ArrayList lista_de_servicios) {
+		public static void reservar_salon(Cliente cliente, int mes_salon, int dia_salon, String tipo, Encargado encargado, double costo_total, double senia, ArrayList lista_de_servicios) {
 			//Se agregan parametros al metodo para luego asignarle los valores en el main
-			bool yareservado = false;//bool para hacer verificacion si esta reservado o no
-			foreach (Evento e in calendario.ListaDeEventos)//recorremos la lista de eventos la cual esta en la clase calendario
+			
+			//bool para hacer verificacion si esta reservado o no
+			bool yareservado = false;
+			
+			//recorremos la lista de eventos la cual esta en la clase calendario
+			foreach (Evento e in calendario.ListaDeEventos)
 			{
 				if (e.Mes_reserva == mes_salon && e.Dia_reserva == mes_salon)
-				{//si el mes reservado que se encuentra en la lista de reservas es igual al mes ingresado por parametro 
+				{
+					//si el mes reservado que se encuentra en la lista de reservas es igual al mes ingresado por parametro
 					Console.WriteLine("Esta fecha ya esta reservada");
-					yareservado = true;//entonces la fecha ya se encuentra reservada, el bool cambia a verdadero
-					break;// y finaliza if
+					//entonces la fecha ya se encuentra reservada, el bool cambia a verdadero
+					yareservado = true;
+					// y finaliza if
+					break;
 				}
 
 			}
-			if (!yareservado) {// si el bool no cambia su valor en el if entonces se va a cumplir esta condicional ya que esa fecha no estaba reservada y no cambio el bool
-				Evento nuevoEvento = new Evento(cliente, mes_salon, dia_salon, tipo, encargado, costo_total, senia, lista_de_servicios);//lo mismo con todos los demas datos del evento
+			
+			// si el bool no cambia su valor en el if entonces se va a cumplir esta condicional ya que esa fecha no estaba reservada y no cambio el bool
+			if (!yareservado) {
+				
+				//lo mismo con todos los demas datos del evento
+				Evento nuevoEvento = new Evento(cliente, mes_salon, dia_salon, tipo, encargado, costo_total, senia, lista_de_servicios);
+				
 				//una vez instanciado todo se pasa el evento al metodo de agendar turno de calendario
 				//el cual realiza toda la comprobacion de que esta en el mes indicado con la cantidad de dias ideales, y si cumple todo se guarda en ListaDeEventos con todos los datos del evento y los servicios contratados
 				calendario.agendar_turno(nuevoEvento);
@@ -77,48 +94,48 @@ namespace Proyecto_Final_Algoritmos
 			
 			agregar_cliente(cliente);
 			
-			// Añadir un evento + servicios | ! No es un solo servicio el que se agrega (hay que usar un while, lo hago yo)
-			// Comprobar si ya está reservado y levantar excepción | ! Faltaria levantar la excepcion
-			// Asignar un encargado | ! El encargado se asigna con un random()
-			
-			//Para usar este metodo hay que poner cada parametro igual
+			// COSITAS QUE FALTAN HACER
+			// ! Comprobar si ya está reservado y levantar excepción | ! Faltaria levantar la excepcion
 		}
 
-		public void cancelar_evento(int posicion_guardada)//parametros los cuales pasamos en Program
+		public static void cancelar_evento(int posicion_guardada) // Parametros los cuales pasamos en Program
 		{
 			//se elimina de la lista de eventos, pasamos como parametro la posicion guardada previamente en el foreach
 			calendario.ListaDeEventos.RemoveAt(posicion_guardada);
 		}
 		
-		public void agregar_cliente(Cliente c){
+		public static void agregar_cliente(Cliente c){
 			clientes.Add(c);
 		}
 		
-		public String Nombre{
+		public static String Nombre{
 			get {
 				return nombre;
 			}
+			set{
+				nombre = value;
+			}
 		}
 		
-		public ArrayList Empleados{
+		public static ArrayList Empleados{
 			get {
 				return empleados;
 			}
 		}
 		
-		public Calendario Calendario{
+		public static Calendario Calendario{
 			get {
 				return calendario;
 			}
 		}
 		
-		public ArrayList Clientes{
+		public static ArrayList Clientes{
 			get {
 				return clientes;
 			}
 		}
 		
-		public ArrayList Servicios{
+		public static ArrayList Servicios{
 			get {
 				return servicios;
 			}

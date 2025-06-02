@@ -4,12 +4,13 @@ Proyecto final para la materia Algoritmos y Programación, del segundo año de l
 ## ToDoS
 - Excepción que pide el ejercicio
 - UML
-- Comprobar Input
+- ~~Comprobar Input~~
 - ~~Cancelar evento~~
-- Restricciones que pide la consigna
-- Completar propiedades
-- Cambiar salón a static
-- Generalizar el sistema de menú en una función
+- Restricciones que pide la consigna:
+  * _e )En caso de que ya tenga una reserva previa se levanta una excepción indicando lo ocurrido. Al confirmar la reserva se le asigna un encargado al evento._
+  * _f) Cancelar un evento. En caso que el cliente solicite la cancelación con más de un mes de anticipación a la fecha del servicio, no se le reintegra la seña. En otro caso, el cliente debe abonar el servicio completo._
+- ~~Completar propiedades~~
+- ~~Cambiar salón a static~~
 
 ## Integrantes
 * Fernandez Gonzalo

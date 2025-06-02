@@ -21,10 +21,12 @@ namespace Proyecto_Final_Algoritmos
 		// Creación de propiedad la cual utilizamos para asignarle valor a las variables privadas
 		public String Nombre {
 			get {
-				return nombre; //get, nos devuelve el valor de la variable
+				//get, nos devuelve el valor de la variable
+				return nombre;
 			} 
 			set {
-				nombre = value; //determinamos el valor de la variable cuando instanciemos
+				//determinamos el valor de la variable cuando instanciemos
+				nombre = value;
 			}
 		}
     
@@ -41,23 +43,9 @@ namespace Proyecto_Final_Algoritmos
 			get {
 				return apellido;
 			}
-		}
-
-		/*
-		// Lista la cual almacenara cada cliente
-		public ArrayList listClientes = new ArrayList();
-		
-		public void NewReserva(Reserva reserva)
-		{
-			listClientes.Add(reserva);
-		}
-
-		public void MostrarDatosReserva()
-		{
-			foreach (Reserva r in listClientes) {
-				Console.WriteLine("| Reserva a nombre de: " + NameReserva + " | DNI " + DniReserva + " | Fecha de Reserva: " + r.diaReservado + "/" + r.mesReservado + " |");
+			set{
+				apellido = value;
 			}
-		}*/
-
+		}
 	}
 }

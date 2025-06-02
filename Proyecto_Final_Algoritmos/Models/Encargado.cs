@@ -16,5 +16,11 @@ namespace Proyecto_Final_Algoritmos
 		public override double calcularSalario(){
 			return salario + plus;
 		}
+		
+		public double Plus{
+			get {
+				return plus;
+			}
+		}
 	}
 }

@@ -12,13 +12,11 @@ namespace Proyecto_Final_Algoritmos
 		public static void Main(string[] args)
 		{
 			// Preparación del salón
-			Salon salon = new Salon("Las Luces Verdes");
-			
-			mostrar_menu(salon);
+			mostrar_menu();
 		}
 		
 		// MENU PRINCIPAL
-		public static void mostrar_menu(Salon salon)
+		public static void mostrar_menu()
 		{
 			String[] opciones = {
 				"Agregar un servicio",
@@ -97,7 +95,7 @@ namespace Proyecto_Final_Algoritmos
 					Console.Write("Ingrese descripción del servicio: ");
 					String desc_serv = Console.ReadLine();
 						
-					salon.agregar_servicio(new Servicio(nom_serv, desc_serv));
+					Salon.agregar_servicio(new Servicio(nom_serv, desc_serv));
 				
 				} else if (tecla.Key == ConsoleKey.Enter && posicion == 1) {
 					// Eliminar un servicio
@@ -106,9 +104,9 @@ namespace Proyecto_Final_Algoritmos
 					Console.Write("Ingrese nombre de servicio a eliminar: ");
 					String nombre_serv_a_buscar = Console.ReadLine();
 
-					Servicio servicio_buscado = salon.buscar_servicio(nombre_serv_a_buscar);
+					Servicio servicio_buscado = Salon.buscar_servicio(nombre_serv_a_buscar);
 					if (servicio_buscado != null) {
-						salon.eliminar_servicio(servicio_buscado);
+						Salon.eliminar_servicio(servicio_buscado);
 						Console.WriteLine("Servicio '{0}' eliminado con exito", servicio_buscado.Nombre_servicio);
 					} else {
 						Console.WriteLine("No se encontró el servicio");
@@ -125,14 +123,11 @@ namespace Proyecto_Final_Algoritmos
 					Console.Write("Ingrese apellido de empleado/encargado: ");
 					String apellido = Console.ReadLine();
 
-					Console.Write("Ingrese nro de legajo: ");
-					int legajo = int.Parse(Console.ReadLine());
+					int legajo = pedir_int("Ingrese nro de legajo: ");
 
-					Console.Write("Ingrese salario: (Decimales con coma): ");
-					double salario = double.Parse(Console.ReadLine());
+					double salario = pedir_double("Ingrese salario: (Decimales con coma): ");
 
-					Console.Write("Ingrese dni: ");
-					int dni = int.Parse(Console.ReadLine());
+					int dni = pedir_int("Ingrese dni: ");
 
 					Console.Write("Ingrese tarea a desempeñar: ");
 					String tarea = Console.ReadLine();
@@ -141,26 +136,24 @@ namespace Proyecto_Final_Algoritmos
 					String enc = Console.ReadLine();
 
 					if (enc == "s" || enc == "S") {
-						Console.Write("Ingrese el plus que cobra el encargado (Decimales con coma): ");
-						double plus = double.Parse(Console.ReadLine());
+						double plus = pedir_double("Ingrese el plus que cobra el encargado (Decimales con coma): ");
 
 						Encargado e = new Encargado(nombre, apellido, dni, legajo, salario, tarea, plus);
-						salon.subir_empleado(e);
+						Salon.subir_empleado(e);
 					} else {
 						Empleado e = new Empleado(nombre, apellido, dni, legajo, salario, tarea);
-						salon.subir_empleado(e);
+						Salon.subir_empleado(e);
 					}
 				} else if (tecla.Key == ConsoleKey.Enter && posicion == 3) {
 					Console.Clear();
 					// Dar de baja un empleado
 					
-					Console.Write("Ingrese legajo de empleado/encargado: ");
-					int leg = int.Parse(Console.ReadLine());
+					int leg = pedir_int("Ingrese legajo de empleado/encargado: ");
 
-					Empleado emp = salon.buscar_empleado_por_legajo(leg);
+					Empleado emp = Salon.buscar_empleado_por_legajo(leg);
 
 					if (emp != null) {
-						salon.bajar_empleado(emp);
+						Salon.bajar_empleado(emp);
 						Console.WriteLine("Empleado: {0} {1} ({2}) eliminado con exito", emp.Nombre, emp.Apellido, emp.NroDeLegajo);
 					} else {
 						Console.WriteLine("No se encontró el empleado");
@@ -177,32 +170,25 @@ namespace Proyecto_Final_Algoritmos
 					Console.Write("Ingrese apellido del cliente: ");
 					String cliente_apellido = Console.ReadLine();
 
-					Console.Write("Ingrese dni del cliente: ");
-					int cliente_dni = int.Parse(Console.ReadLine());
+					int cliente_dni = pedir_int("Ingrese dni del cliente: ");
 
 					Cliente c = new Cliente(cliente_nombre, cliente_apellido, cliente_dni);
 					
 					// Ingresar fecha y tipo
-					Console.Write("Ingrese mes a reservar para el evento: ");
-					int mes_reserva = int.Parse(Console.ReadLine());
+					int mes_reserva = pedir_int("Ingrese mes a reservar para el evento: ");
 
-					Console.Write("Ingrese dia a reservar para el evento: ");
-					int dia_reserva = int.Parse(Console.ReadLine());
+					int dia_reserva = pedir_int("Ingrese dia a reservar para el evento: ");
 
 					Console.Write("Ingrese tipo de evento: ");
 					String tipo = Console.ReadLine();
 
 					// Ingresar encargado
-					Console.Write("Ingrese legado del encargado: ");
-					int legajo_enc_asignado = int.Parse(Console.ReadLine());
-					Encargado enc_asignado = (Encargado)salon.buscar_empleado_por_legajo(legajo_enc_asignado);
-
+					Encargado enc_asignado = pedir_encargado("Ingrese legado del encargado: ");
+					
 					// Ingresar costo y senia
-					Console.Write("Ingrese costo del evento: ");
-					int costo = int.Parse(Console.ReadLine());
+					double costo = pedir_double("Ingrese costo del evento: ");
 
-					Console.Write("Ingrese seña del evento: ");
-					int senia = int.Parse(Console.ReadLine());
+					double senia = pedir_double("Ingrese seña del evento: ");
 
 					// Pregunto por servicio(S)
 					ArrayList lista_de_servicios = new ArrayList();
@@ -220,37 +206,39 @@ namespace Proyecto_Final_Algoritmos
 
 							//                                      |||
 							// ACA SE DEBERIA LEVANTAR LA EXCEPCIÓN vvv
-							Servicio s = salon.buscar_servicio(servicio_a_agregar);
+							Servicio s = Salon.buscar_servicio(servicio_a_agregar);
 
-							Console.Write("Ingrese cantidad de servicio: ");
-							int cantidad = int.Parse(Console.ReadLine());
-
-							Console.Write("Ingrese costo unitario del servicio: ");
-							int costo_unit = int.Parse(Console.ReadLine());
+							int cantidad = pedir_int("Ingrese cantidad de servicio: ");
+							
+							double costo_unit = pedir_double("Ingrese costo unitario del servicio: ");
 
 							lista_de_servicios.Add(new ServicioItem(s.Nombre_servicio, s.Descripcion_serv, cantidad, costo_unit));
 						}
 					} while (salir_loop != "n");
 
-					salon.reservar_salon(c, mes_reserva, dia_reserva, tipo, enc_asignado, costo, senia, lista_de_servicios);
+					Salon.reservar_salon(c, mes_reserva, dia_reserva, tipo, enc_asignado, costo, senia, lista_de_servicios);
 
 				} else if (tecla.Key == ConsoleKey.Enter && posicion == 5) {
-					Console.Clear();// Se limpia la consola al entrar a la opcion elegida
-					Console.Write("Ingrese el numero de mes del evento:  ");
-					int mes_c = int.Parse(Console.ReadLine());//variable para pasar por parametro luego
+					// Se limpia la consola al entrar a la opcion elegida
+					Console.Clear();
 					
-					ArrayList eventoenMes = salon.Calendario.buscar_eventos_por_mes(mes_c);//arraylist el cual llama al metodo el cual guarda la lista de eventos en ese mes
-					salon.Calendario.mostrar_fechas_reservadas(eventoenMes);//usamos metodo para ver que fechas ya estan reservadas
+					//variable para pasar por parametro luego
+					int mes_c = pedir_int("Ingrese el numero de mes del evento: ");
 					
-					Console.WriteLine(" ");//salto de linea en consola
+					//arraylist el cual llama al metodo el cual guarda la lista de eventos en ese mes
+					ArrayList eventoenMes = Salon.Calendario.buscar_eventos_por_mes(mes_c);
 					
-					Console.Write("Ingrese el dia del evento:  ");
+					//usamos metodo para ver que fechas ya estan reservadas
+					Salon.Calendario.mostrar_fechas_reservadas(eventoenMes);
+					
+					//salto de linea en consola
+					Console.Write("\n");
 					
 					//Ingresamos el dia del mes el cual vamos a cancelar
-					int dia_c = int.Parse(Console.ReadLine());
+					int dia_c = pedir_int("Ingrese el dia del evento: ");
 					
 					//si la lista de eventos no esta vacia entonces
-					if (salon.Calendario.ListaDeEventos.Count != 0)
+					if (Salon.Calendario.ListaDeEventos.Count != 0)
 					{
 						//declaramos variable para guardar la posicion
 						int posicion_guardada = -1;
@@ -259,30 +247,41 @@ namespace Proyecto_Final_Algoritmos
 						int posicion_bucle = 0;
 						
 						//recorremos la lista de eventos
-						foreach (Evento e in salon.Calendario.ListaDeEventos)
+						foreach (Evento e in Salon.Calendario.ListaDeEventos)
 						{
 							//accedemos a sus atributos de mes y dia para hacer la comparacion con los parametros ingresamos
 							//si el parametro mes es igual a mes y dia reservado
 							if (mes_c == e.Mes_reserva && dia_c == e.Dia_reserva)
 							{
-								posicion_guardada = posicion_bucle;//se guarda la posicion la cual es el indice en el cual estamos parados
-								Console.WriteLine("El evento a cancelar de la fecha " + e.Dia_reserva + "/" + e.Mes_reserva + " De el cliente " + e.Cliente.Nombre + " " + e.Cliente.Apellido + " DNI: " + e.Cliente.Dni);
-								Console.WriteLine("¿Esta seguro desea cancelar el evento?");
+								//se guarda la posicion la cual es el indice en el cual estamos parados
+								posicion_guardada = posicion_bucle;
+								Console.WriteLine("¿Esta seguro que desea cancelar el evento de la fecha {0}/{1} a nombre de {2} {3} ({4})?" + e.Dia_reserva, e.Mes_reserva, e.Cliente.Nombre, e.Cliente.Apellido, e.Cliente.Dni);
 								break;
 							}
-							posicion_bucle++; //termina el recorrido pero antes sumamos para que ahora el indice cambie a 1
+							//termina el recorrido pero antes sumamos para que ahora el indice cambie a 1
+							posicion_bucle++;
 						}
-						if (posicion_guardada != -1)//si la posicion guardada es != de -1 significa que la fecha se encontro y se guardo
+						
+						//si la posicion guardada es != de -1 significa que la fecha se encontro y se guardo
+						if (posicion_guardada != -1)
 						{
-							Evento item = (Evento)eventoenMes[posicion_guardada];//casteamos el evento de esa posicion para luego acceder a sus atributos
-							String[] siNo = { "Si", "No" };//array con 2 opciones
-							bool salir_eleccion = false;//bool para salir del while
-							int p_eleccion = 0;//variable para comparar en que posicion estamos parados de las opciones
+							//casteamos el evento de esa posicion para luego acceder a sus atributos
+							Evento item = (Evento)eventoenMes[posicion_guardada];
+							
+							//array con 2 opciones
+							String[] siNo = { "Si", "No" };
+							
+							//bool para salir del while
+							bool salir_eleccion = false;
+							
+							//variable para comparar en que posicion estamos parados de las opciones
+							int p_eleccion = 0;
 							while (!salir_eleccion)
 							{
-								Console.Clear();//Console.Clear para redibujar la consola cada que pulsemos una tecla
+								//Console.Clear para redibujar la consola cada que pulsemos una tecla
+								Console.Clear();
 								Console.Write("               ");
-								Console.WriteLine("El evento a cancelar de la fecha " + item.Dia_reserva + "/" + item.Mes_reserva + " De el cliente " + item.Cliente.Nombre + " " + item.Cliente.Apellido + " DNI: " + item.Cliente.Dni);
+								Console.WriteLine("Evento a cancelar de la fecha " + item.Dia_reserva + "/" + item.Mes_reserva + " a nombre de " + item.Cliente.Nombre + " " + item.Cliente.Apellido + " (" + item.Cliente.Dni + ")");
 								Console.Write("                                       ");
 								Console.WriteLine("¿Esta seguro desea cancelar el evento?");
 								Console.Write("                                                  ");
@@ -297,40 +296,50 @@ namespace Proyecto_Final_Algoritmos
 										Console.ForegroundColor = ConsoleColor.White;
 										Console.BackgroundColor = ConsoleColor.Red;
 										Console.Write("   " + siNo[i] + "   ");
-										Console.ResetColor();//se resetea los colores antes de salir
+										
+										//se resetea los colores antes de salir
+										Console.ResetColor();
 									}
 									else
 									{
-										Console.Write("   " + siNo[i] + "   ");//esta va a ser la opcion en la que no estamos parados por ende no tiene color
+										//esta va a ser la opcion en la que no estamos parados por ende no tiene color
+										Console.Write("   " + siNo[i] + "   ");
 									}
-								
 								}
-								Console.WriteLine(" ");
-								ConsoleKeyInfo tecla_pulsada = Console.ReadKey(true);//guardamos la tecla que pulsamos
+								Console.Write("\n");
+								
+								//guardamos la tecla que pulsamos
+								ConsoleKeyInfo tecla_pulsada = Console.ReadKey(true);
 								
 								if (tecla_pulsada.Key == ConsoleKey.RightArrow && p_eleccion < siNo.Length - 1)//si la tecla pulsada es la flecha derecha
-								{//entonces la posicion seleccionada aumenta su valor y pasa a la siguiente opcion
+								{
+									//entonces la posicion seleccionada aumenta su valor y pasa a la siguiente opcion
 									p_eleccion++;
 								}
 								
 								else if (tecla_pulsada.Key == ConsoleKey.LeftArrow && p_eleccion > 0)
-								{	//si la tecla pulsada es flecha izquierda entonces se resta para volver a la posicion anterior
+								{	
+									//si la tecla pulsada es flecha izquierda entonces se resta para volver a la posicion anterior
 									p_eleccion--;
 								}
 								
 								else if (tecla_pulsada.Key == ConsoleKey.Enter && p_eleccion == 0)
 								{
 									//si pulsamos enter y estamos en la posicion 0 entonces significa que apretamos Si, entonces se elimina de la lista de eventos
-									salon.cancelar_evento(posicion_guardada);
+									Salon.cancelar_evento(posicion_guardada);
 									Console.WriteLine("Se ha cancelado el evento con exito!");
-									salir_eleccion = true;//bool cambia de valor para salir del while
+									
+									//bool cambia de valor para salir del while
+									salir_eleccion = true;
 									break;
 								}
 							
-								else if (tecla_pulsada.Key == ConsoleKey.Enter && p_eleccion == 1)//si la opcion que pulsamos enter es 1 entonces estamos diciendo que no queremos cancelar el evento
+								//si la opcion que pulsamos enter es 1 entonces estamos diciendo que no queremos cancelar el evento
+								else if (tecla_pulsada.Key == ConsoleKey.Enter && p_eleccion == 1)
 								{
 									Console.WriteLine("No se cancelará el evento, volviendo...");
-									salir_eleccion = true;//salimos del while cambiando el valor del bool
+									//salimos del while cambiando el valor del bool
+									salir_eleccion = true;
 									break;
 								}
 							}
@@ -345,7 +354,7 @@ namespace Proyecto_Final_Algoritmos
 				
 				} else if (tecla.Key == ConsoleKey.Enter && posicion == 6) {
 					Console.Clear();
-					mostrar_info(salon);
+					mostrar_info();
 				
 				} else if (tecla.Key == ConsoleKey.Enter && posicion == 7) { //ultima opcion la cual es salir, y si presionamos Enter finaliza el while
 					salir = true;
@@ -356,7 +365,7 @@ namespace Proyecto_Final_Algoritmos
 			}
 		}
 		
-		public static void mostrar_info(Salon salon)
+		public static void mostrar_info()
 		{
 			// Submenu de mostrar info relevante
 			String[] opciones_info = {
@@ -398,17 +407,16 @@ namespace Proyecto_Final_Algoritmos
 				} else if (tecla_info.Key == ConsoleKey.UpArrow && posicion_info > 0) {
 					posicion_info--;
 				} else if (tecla_info.Key == ConsoleKey.Enter && posicion_info == 0) {
-					menu_eventos(salon);
+					menu_eventos();
 				} else if (tecla_info.Key == ConsoleKey.Enter && posicion_info == 1) {
-					menu_clientes(salon);
+					menu_clientes();
 				} else if (tecla_info.Key == ConsoleKey.Enter && posicion_info == 2) {
-					menu_empleados(salon);
+					menu_empleados();
 				} else if (tecla_info.Key == ConsoleKey.Enter && posicion_info == 3) {
-					menu_servicios(salon);
+					menu_servicios();
 				} else if (tecla_info.Key == ConsoleKey.Enter && posicion_info == 4) {
-					Console.Write("\nIngrese el mes (número de 1-12): ");
-					int mes_seleccionado = int.Parse(Console.ReadLine());
-					menu_eventos_mes(salon, mes_seleccionado);
+					int mes_seleccionado = pedir_int("\nIngrese el mes (número de 1-12): ");
+					menu_eventos_mes(mes_seleccionado);
 				} else if (tecla_info.Key == ConsoleKey.Enter && posicion_info == 5) {
 					salir_info = true;
 				} else {
@@ -417,14 +425,14 @@ namespace Proyecto_Final_Algoritmos
 			}
 		}
 		
-		public static void menu_eventos(Salon salon)
+		public static void menu_eventos()
 		{
 			// Listar eventos
 			Console.Clear();
 			
-			foreach (Evento ev in salon.Calendario.ListaDeEventos) {
+			foreach (Evento ev in Salon.Calendario.ListaDeEventos) {
 				Console.WriteLine("----------------------------------------------");
-				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7}\n| - Costo total: {8}\n|  - Seña: {9}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Costo_total, ev.Senia);
+				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7} ({8})\n| - Costo total: {9}\n|  - Seña: {10}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Encargado.NroDeLegajo, ev.Costo_total, ev.Senia);
 				Console.WriteLine("| - Servicios contratados:");
 				foreach (ServicioItem s in ev.Servicios) {
 					Console.WriteLine("|  - {0}\n|   - Cantidad: {1}\n|   - Precio unitario: {2}", s.Nombre_servicio, s.Cant_solicitada, s.Costo_unitario);
@@ -435,12 +443,12 @@ namespace Proyecto_Final_Algoritmos
 			Console.ReadKey(true);
 		}
 		
-		public static void menu_clientes(Salon salon)
+		public static void menu_clientes()
 		{
 			// Listar clientes
 			Console.Clear();
 			
-			foreach (Cliente cliente in salon.Clientes) {
+			foreach (Cliente cliente in Salon.Clientes) {
 				Console.WriteLine("----------------------------------------------");
 				Console.WriteLine("| Cliente: {0} {1}\n| - Dni: {2}", cliente.Nombre, cliente.Apellido, cliente.Dni);
 			}
@@ -448,12 +456,12 @@ namespace Proyecto_Final_Algoritmos
 			Console.ReadKey(true);
 		}
 		
-		public static void menu_empleados(Salon salon)
+		public static void menu_empleados()
 		{
 			// Listar empleados
 			Console.Clear();
 			
-			foreach (Empleado empleado in salon.Empleados) {
+			foreach (Empleado empleado in Salon.Empleados) {
 				Console.WriteLine("----------------------------------------------");
 				Console.WriteLine("| Empleado: {0} {1}\n| - Legajo: {2}\n| - DNI: {3}\n| - Salario: {4}\n| - Tarea a desempeñar: {5}", empleado.Nombre, empleado.Apellido, empleado.NroDeLegajo, empleado.Dni, empleado.calcularSalario(), empleado.TareaDesempeniar);
 			}
@@ -461,12 +469,12 @@ namespace Proyecto_Final_Algoritmos
 			Console.ReadKey(true);
 		}
 		
-		public static void menu_servicios(Salon salon)
+		public static void menu_servicios()
 		{
 			// Listar clientes
 			Console.Clear();
 			
-			foreach (Servicio servicio in salon.Servicios) {
+			foreach (Servicio servicio in Salon.Servicios) {
 				Console.WriteLine("----------------------------------------------");
 				Console.WriteLine("| Servicio: {0}\n| - Descripción: {1}", servicio.Nombre_servicio, servicio.Descripcion_serv);
 			}
@@ -474,18 +482,18 @@ namespace Proyecto_Final_Algoritmos
 			Console.ReadKey(true);
 		}
 		
-		public static void menu_eventos_mes(Salon salon, int mes_seleccionado)
+		public static void menu_eventos_mes(int mes_seleccionado)
 		{
 			// Listar eventos de un mes determinado
 			Console.Clear();
 			
 			// Busco eventos en ese mes
-			ArrayList eventos_en_ese_mes = salon.Calendario.buscar_eventos_por_mes(mes_seleccionado);
+			ArrayList eventos_en_ese_mes = Salon.Calendario.buscar_eventos_por_mes(mes_seleccionado);
 			
 			// Imprimo esos eventos
 			foreach (Evento ev in eventos_en_ese_mes) {
 				Console.WriteLine("----------------------------------------------");
-				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7}\n| - Costo total: {8}\n|  - Seña: {9}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Costo_total, ev.Senia);
+				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7} ({8})\n| - Costo total: {9}\n|  - Seña: {10}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Encargado.NroDeLegajo, ev.Costo_total, ev.Senia);
 				Console.WriteLine("| - Servicios contratados:");
 				foreach (ServicioItem s in ev.Servicios) {
 					Console.WriteLine("|  - {0}\n|   - Cantidad: {1}\n|   - Precio unitario: {2}", s.Nombre_servicio, s.Cant_solicitada, s.Costo_unitario);
@@ -493,6 +501,56 @@ namespace Proyecto_Final_Algoritmos
 			}
 			Console.WriteLine("----------------------------------------------");
 			Console.ReadKey(true);
+		}
+		
+		public static int pedir_int(String mensaje){
+			Console.Write(mensaje);
+			String valor_str = Console.ReadLine();
+			int valor;
+			
+			// Si no es un entero
+			if(!int.TryParse(valor_str, out valor)){
+				Console.WriteLine("\nIngrese un valor válido por favor\n");
+				
+				// usamos recursion hasta que el usuario se digne a entrar un valor correcto
+				valor = pedir_int(mensaje);
+			}else{
+				return valor;
+			}
+			return valor;
+		}
+		
+		public static double pedir_double(String mensaje){
+			Console.Write(mensaje);
+			String valor_str = Console.ReadLine();
+			double valor;
+			
+			// Si no es un entero
+			if(!double.TryParse(valor_str, out valor)){
+				Console.WriteLine("\nIngrese un valor válido por favor\n");
+				
+				// usamos recursion hasta que el usuario se digne a entrar un valor correcto
+				valor = pedir_int(mensaje);
+			}else{
+				return valor;
+			}
+			return valor;
+		}
+		
+		public static Encargado pedir_encargado(String mensaje){
+			int legajo_asignado_str = pedir_int(mensaje);
+			Encargado valor = (Encargado)Salon.buscar_empleado_por_legajo(legajo_asignado_str);
+			
+			// Si no es un entero
+			if(valor == null){
+				Console.WriteLine("\nNo se encontró el encargado, intentelo nuevamente\n");
+				
+				// usamos recursion hasta que el usuario se digne a entrar un valor correcto
+				valor = pedir_encargado(mensaje);
+			}else{
+				return valor;
+			}
+			return valor;
 		}
 		
 		public static void mostrar_logo()
