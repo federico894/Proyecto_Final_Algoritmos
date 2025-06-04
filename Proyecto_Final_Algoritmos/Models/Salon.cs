@@ -68,13 +68,15 @@ namespace Proyecto_Final_Algoritmos
 			//recorremos la lista de eventos la cual esta en la clase calendario
 			foreach (Evento e in calendario.ListaDeEventos)
 			{
-				if (e.Mes_reserva == mes_salon && e.Dia_reserva == mes_salon)
+				if (e.Mes_reserva == mes_salon && e.Dia_reserva == dia_salon)
 				{
 					//si el mes reservado que se encuentra en la lista de reservas es igual al mes ingresado por parametro
-					Console.WriteLine("Esta fecha ya esta reservada");
+					Console.Write("\n");
+					Console.WriteLine("No se realizo la reserva debido a que esta fecha ya estaba reservada");//Siento que esto ya lo habia hecho pero no me acuerdo si lo subi, pero capaz lo sacaste para hacerlo tipo exepcion y lo volvi a poner, si es asi avisame
 					//entonces la fecha ya se encuentra reservada, el bool cambia a verdadero
 					yareservado = true;
 					// y finaliza if
+					Console.ReadKey(true);
 					break;
 				}
 
