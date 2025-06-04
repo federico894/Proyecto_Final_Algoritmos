@@ -244,6 +244,9 @@ namespace Proyecto_Final_Algoritmos
 							double costo_unit = pedir_double("Ingrese costo unitario del servicio: $");
 
 							lista_de_servicios.Add(new ServicioItem(s.Nombre_servicio, s.Descripcion_serv, cantidad, costo_unit));
+							Console.Write("\n");
+							Console.WriteLine("Servicio agregado con exito!");
+							Console.ReadKey(true);
 						}
 						else if (teclaq.Key == ConsoleKey.Enter && p_eleccion == 0 && Salon.Servicios.Count == 0)
 						{
@@ -254,7 +257,9 @@ namespace Proyecto_Final_Algoritmos
 							break;
 						}
 						else if (teclaq.Key == ConsoleKey.Enter && p_eleccion == 1)
-						{
+						{	Console.Write("\n");
+							Console.WriteLine("Reserva realizada con exito!");
+						 	Console.ReadKey(true);
 							salir_loop = true;
 							break;
 						}
