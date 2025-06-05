@@ -88,6 +88,7 @@ namespace Proyecto_Final_Algoritmos
 				
 				// Apartir de aca entran todos los else if los cuales seran cuando presionemos enter en alguna opcion//entonces compara en que posicion pulsamos Enter y genera la accion de esa opcion elegida
 				else if (tecla.Key == ConsoleKey.Enter && posicion == 0) {
+					Console.Clear();
 					// Agregar un servicio
 					Console.Write("Ingrese nombre de servicio: ");
 					String nom_serv = Console.ReadLine();
@@ -125,7 +126,7 @@ namespace Proyecto_Final_Algoritmos
 
 					int legajo = pedir_int("Ingrese nro de legajo: ");
 
-					double salario = pedir_double("Ingrese salario: (Decimales con coma): ");
+					double salario = pedir_double("Ingrese salario: (Decimales con coma): $");
 
 					int dni = pedir_int("Ingrese dni: ");
 
@@ -136,7 +137,7 @@ namespace Proyecto_Final_Algoritmos
 					String enc = Console.ReadLine();
 
 					if (enc == "s" || enc == "S") {
-						double plus = pedir_double("Ingrese el plus que cobra el encargado (Decimales con coma): ");
+						double plus = pedir_double("Ingrese el plus que cobra el encargado (Decimales con coma): $");
 
 						Encargado e = new Encargado(nombre, apellido, dni, legajo, salario, tarea, plus);
 						Salon.subir_empleado(e);
@@ -186,22 +187,52 @@ namespace Proyecto_Final_Algoritmos
 					Encargado enc_asignado = pedir_encargado("Ingrese legado del encargado: ");
 					
 					// Ingresar costo y senia
-					double costo = pedir_double("Ingrese costo del evento: ");
+					double costo = pedir_double("Ingrese costo del evento: $");
 
-					double senia = pedir_double("Ingrese seña del evento: ");
+					double senia = pedir_double("Ingrese seña del evento: $");
 
 					// Pregunto por servicio(S)
 					ArrayList lista_de_servicios = new ArrayList();
-					String salir_loop;
-					int i = 1;
-
-					do {
-						Console.Write("¿Desea agregar servicios? S/n ");
-						salir_loop = Console.ReadLine().ToLower();
-						if (salir_loop != "n") {
-							Console.WriteLine("-- Agregando servicio n°{0} --", i);
-
-							Console.Write("Ingrese nombre del servicio: ");
+					bool salir_loop = false;
+					//int i = 1;
+					int p_eleccion= 0;
+					string[] siOno = { "Si", "No" };
+					while (salir_loop != true)
+					{
+						Console.Clear();
+						Console.Write("¿Desea agregar servicios?");
+						for (int i = 0; i < siOno.Length; i++)
+						{
+							if (i == p_eleccion)
+							{
+								Console.Write("  ");
+								Console.ForegroundColor = ConsoleColor.White;
+								Console.BackgroundColor = ConsoleColor.Green;
+								Console.Write(" " + siOno[i] + " ");
+								Console.ResetColor();
+							}
+							else { Console.Write("  "); Console.Write(" " + siOno[i] + " "); }
+						}
+						ConsoleKeyInfo teclaq = Console.ReadKey(true);
+						if (teclaq.Key == ConsoleKey.RightArrow && p_eleccion < siOno.Length - 1)
+						{
+							p_eleccion++;
+						}
+						else if (teclaq.Key == ConsoleKey.LeftArrow && p_eleccion > 0)
+						{
+							p_eleccion--;
+						}
+						else if (teclaq.Key == ConsoleKey.Enter && p_eleccion == 0 && Salon.Servicios.Count != 0)
+						{
+							Console.Clear();
+							Console.WriteLine("Servicios Disponibles:");
+							foreach (Servicio servicio in Salon.Servicios)
+							{
+								Console.WriteLine("----------------------------------------------");
+								Console.WriteLine(" | " + servicio.Nombre_servicio + " | ");
+							}
+							Console.WriteLine("----------------------------------------------");
+							Console.Write("¿Cual servicio desea agregar?:  ");
 							String servicio_a_agregar = Console.ReadLine();
 
 							//                                      |||
@@ -209,12 +240,31 @@ namespace Proyecto_Final_Algoritmos
 							Servicio s = Salon.buscar_servicio(servicio_a_agregar);
 
 							int cantidad = pedir_int("Ingrese cantidad de servicio: ");
-							
-							double costo_unit = pedir_double("Ingrese costo unitario del servicio: ");
+
+							double costo_unit = pedir_double("Ingrese costo unitario del servicio: $");
 
 							lista_de_servicios.Add(new ServicioItem(s.Nombre_servicio, s.Descripcion_serv, cantidad, costo_unit));
+							Console.Write("\n");
+							Console.WriteLine("Servicio agregado con exito!");
+							Console.ReadKey(true);
 						}
-					} while (salir_loop != "n");
+						else if (teclaq.Key == ConsoleKey.Enter && p_eleccion == 0 && Salon.Servicios.Count == 0)
+						{
+							Console.Write("\n");
+							Console.WriteLine("No hay servicios disponibles en este momento");
+							salir_loop = true;
+							Console.ReadKey(true);
+							break;
+						}
+						else if (teclaq.Key == ConsoleKey.Enter && p_eleccion == 1)
+						{	Console.Write("\n");
+							Console.WriteLine("Reserva realizada con exito!");
+						 	Console.ReadKey(true);
+							salir_loop = true;
+							break;
+						}
+						
+					} 
 
 					Salon.reservar_salon(c, mes_reserva, dia_reserva, tipo, enc_asignado, costo, senia, lista_de_servicios);
 
@@ -227,19 +277,15 @@ namespace Proyecto_Final_Algoritmos
 					
 					//arraylist el cual llama al metodo el cual guarda la lista de eventos en ese mes
 					ArrayList eventoenMes = Salon.Calendario.buscar_eventos_por_mes(mes_c);
-					
-					//usamos metodo para ver que fechas ya estan reservadas
-					Salon.Calendario.mostrar_fechas_reservadas(eventoenMes);
-					
-					//salto de linea en consola
-					Console.Write("\n");
-					
+					int dia_c;
 					//Ingresamos el dia del mes el cual vamos a cancelar
-					int dia_c = pedir_int("Ingrese el dia del evento: ");
 					
 					//si la lista de eventos no esta vacia entonces
-					if (Salon.Calendario.ListaDeEventos.Count != 0)
-					{
+					if (Salon.Calendario.ListaDeEventos.Count != 0 && eventoenMes.Count != 0)
+					{	
+						//usamos metodo para ver que fechas ya estan reservadas
+						Salon.Calendario.mostrar_fechas_reservadas(eventoenMes);
+						dia_c = pedir_int("Ingrese el dia del evento: ");
 						//declaramos variable para guardar la posicion
 						int posicion_guardada = -1;
 						
@@ -255,7 +301,11 @@ namespace Proyecto_Final_Algoritmos
 							{
 								//se guarda la posicion la cual es el indice en el cual estamos parados
 								posicion_guardada = posicion_bucle;
-								Console.WriteLine("¿Esta seguro que desea cancelar el evento de la fecha {0}/{1} a nombre de {2} {3} ({4})?" + e.Dia_reserva, e.Mes_reserva, e.Cliente.Nombre, e.Cliente.Apellido, e.Cliente.Dni);
+								break;
+							}
+							else if (mes_c == e.Mes_reserva && dia_c != e.Dia_reserva)
+							{
+								Console.WriteLine("No existe la fecha ingresada...");
 								break;
 							}
 							//termina el recorrido pero antes sumamos para que ahora el indice cambie a 1
@@ -432,10 +482,10 @@ namespace Proyecto_Final_Algoritmos
 			
 			foreach (Evento ev in Salon.Calendario.ListaDeEventos) {
 				Console.WriteLine("----------------------------------------------");
-				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7} ({8})\n| - Costo total: {9}\n|  - Seña: {10}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Encargado.NroDeLegajo, ev.Costo_total, ev.Senia);
+				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7} ({8})\n| - Costo total: ${9}\n| - Seña: ${10}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Encargado.NroDeLegajo, ev.Costo_total, ev.Senia);
 				Console.WriteLine("| - Servicios contratados:");
 				foreach (ServicioItem s in ev.Servicios) {
-					Console.WriteLine("|  - {0}\n|   - Cantidad: {1}\n|   - Precio unitario: {2}", s.Nombre_servicio, s.Cant_solicitada, s.Costo_unitario);
+					Console.WriteLine("| - {0}\n| - Cantidad: {1}\n| - Precio unitario: ${2}", s.Nombre_servicio, s.Cant_solicitada, s.Costo_unitario);
 				}
 			}
 			
@@ -463,7 +513,7 @@ namespace Proyecto_Final_Algoritmos
 			
 			foreach (Empleado empleado in Salon.Empleados) {
 				Console.WriteLine("----------------------------------------------");
-				Console.WriteLine("| Empleado: {0} {1}\n| - Legajo: {2}\n| - DNI: {3}\n| - Salario: {4}\n| - Tarea a desempeñar: {5}", empleado.Nombre, empleado.Apellido, empleado.NroDeLegajo, empleado.Dni, empleado.calcularSalario(), empleado.TareaDesempeniar);
+				Console.WriteLine("| Empleado: {0} {1}\n| - Legajo: {2}\n| - DNI: {3}\n| - Salario: ${4}\n| - Tarea a desempeñar: {5}", empleado.Nombre, empleado.Apellido, empleado.NroDeLegajo, empleado.Dni, empleado.calcularSalario(), empleado.TareaDesempeniar);
 			}
 			Console.WriteLine("----------------------------------------------");
 			Console.ReadKey(true);
@@ -493,10 +543,10 @@ namespace Proyecto_Final_Algoritmos
 			// Imprimo esos eventos
 			foreach (Evento ev in eventos_en_ese_mes) {
 				Console.WriteLine("----------------------------------------------");
-				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7} ({8})\n| - Costo total: {9}\n|  - Seña: {10}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Encargado.NroDeLegajo, ev.Costo_total, ev.Senia);
+				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7} ({8})\n| - Costo total: ${9}\n| - Seña: ${10}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Encargado.NroDeLegajo, ev.Costo_total, ev.Senia);
 				Console.WriteLine("| - Servicios contratados:");
 				foreach (ServicioItem s in ev.Servicios) {
-					Console.WriteLine("|  - {0}\n|   - Cantidad: {1}\n|   - Precio unitario: {2}", s.Nombre_servicio, s.Cant_solicitada, s.Costo_unitario);
+					Console.WriteLine("| - {0}\n| - Cantidad: {1}\n| - Precio unitario: ${2}", s.Nombre_servicio, s.Cant_solicitada, s.Costo_unitario);
 				}
 			}
 			Console.WriteLine("----------------------------------------------");

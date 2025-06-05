@@ -119,9 +119,6 @@ namespace Proyecto_Final_Algoritmos
 					Console.Write(item.Dia_reserva + "/" + item.Mes_reserva + "  ");
 				}
 			}
-			else {
-				Console.WriteLine("No hay ninguna fecha reservada por el momento...");
-			}
 		}
 		
 		public void buscar_eventos_disponibles()
