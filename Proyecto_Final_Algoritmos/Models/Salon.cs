@@ -70,14 +70,15 @@ namespace Proyecto_Final_Algoritmos
 			{
 				if (e.Mes_reserva == mes_salon && e.Dia_reserva == dia_salon)
 				{
+					throw new ReservaExistenteException();
+					/*
 					//si el mes reservado que se encuentra en la lista de reservas es igual al mes ingresado por parametro
 					Console.Write("\n");
 					Console.WriteLine("No se realizo la reserva debido a que esta fecha ya estaba reservada");//Siento que esto ya lo habia hecho pero no me acuerdo si lo subi, pero capaz lo sacaste para hacerlo tipo exepcion y lo volvi a poner, si es asi avisame
 					//entonces la fecha ya se encuentra reservada, el bool cambia a verdadero
 					yareservado = true;
 					// y finaliza if
-					Console.ReadKey(true);
-					break;
+					break;*/
 				}
 
 			}
@@ -91,12 +92,12 @@ namespace Proyecto_Final_Algoritmos
 				//una vez instanciado todo se pasa el evento al metodo de agendar turno de calendario
 				//el cual realiza toda la comprobacion de que esta en el mes indicado con la cantidad de dias ideales, y si cumple todo se guarda en ListaDeEventos con todos los datos del evento y los servicios contratados
 				calendario.agendar_turno(nuevoEvento);
-				Console.WriteLine("Se ha realizado la reserva exitosamente!");
+				//Console.WriteLine("Se ha realizado la reserva exitosamente!");
 			}
 			
 			agregar_cliente(cliente);
 			
-			// COSITAS QUE FALTAN HACER
+			// FALTA HACER
 			// ! Comprobar si ya está reservado y levantar excepción | ! Faltaria levantar la excepcion
 		}
 

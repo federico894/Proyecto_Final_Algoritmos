@@ -234,8 +234,6 @@ namespace Proyecto_Final_Algoritmos
 							Console.Write("¿Cual servicio desea agregar?:  ");
 							String servicio_a_agregar = Console.ReadLine();
 
-							//                                      |||
-							// ACA SE DEBERIA LEVANTAR LA EXCEPCIÓN vvv
 							Servicio s = Salon.buscar_servicio(servicio_a_agregar);
 
 							int cantidad = pedir_int("Ingrese cantidad de servicio: ");
@@ -255,16 +253,24 @@ namespace Proyecto_Final_Algoritmos
 						}
 						else if (teclaq.Key == ConsoleKey.Enter && p_eleccion == 1)
 						{
-							Console.WriteLine("\nReserva realizada con exito!");
-						 	Console.ReadKey(true);
+							//Console.WriteLine("\nReserva realizada con exito!");
+						 	//Console.ReadKey(true);
 							salir_loop = true;
 							break;
 						}
 						
-					} 
-
-					Salon.reservar_salon(c, mes_reserva, dia_reserva, tipo, enc_asignado, costo, senia, lista_de_servicios);
-
+					}
+					
+					try {
+						Salon.reservar_salon(c, mes_reserva, dia_reserva, tipo, enc_asignado, costo, senia, lista_de_servicios);
+						Console.WriteLine("\nReserva realizada con exito!");
+						Console.ReadKey(true);
+					}
+					catch (ReservaExistenteException ex) {
+						Console.WriteLine("\nError: {0}", ex.Message);
+						Console.ReadKey(true);
+					}
+						
 				} else if (tecla.Key == ConsoleKey.Enter && posicion == 5) {
 					// Se limpia la consola al entrar a la opcion elegida
 					Console.Clear();
