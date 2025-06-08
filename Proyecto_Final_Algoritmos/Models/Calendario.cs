@@ -123,6 +123,18 @@ namespace Proyecto_Final_Algoritmos
 			}
 		}
 		
+		public bool ya_reservado(Evento nuevoEvento){
+			//recorremos la lista de eventos la cual esta en la clase calendario
+			foreach (Evento e in ListaDeEventos)
+			{
+				if (e.Mes_reserva == nuevoEvento.Mes_reserva && e.Dia_reserva == nuevoEvento.Dia_reserva)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+		
 		public bool cancela_con_antelacion(int diaEvento, int mesEvento)
 		{
 			int dias = calcular_diferencias_dias(diaEvento, mesEvento);

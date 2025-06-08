@@ -62,14 +62,8 @@ namespace Proyecto_Final_Algoritmos
 		public static void reservar_salon(Evento nuevoEvento) {
 			//Se agregan parametros al metodo para luego asignarle los valores en el main
 			
-			//recorremos la lista de eventos la cual esta en la clase calendario
-			foreach (Evento e in calendario.ListaDeEventos)
-			{
-				if (e.Mes_reserva == nuevoEvento.Mes_reserva && e.Dia_reserva == nuevoEvento.Dia_reserva)
-				{
-					throw new ReservaExistenteException();
-				}
-
+			if(calendario.ya_reservado(nuevoEvento)){
+				throw new ReservaExistenteException();
 			}
 			
 			//metodo de agendar turno de calendario el cual realiza toda la comprobacion de que esta en el mes indicado con la cantidad de 
