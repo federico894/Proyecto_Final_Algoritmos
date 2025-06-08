@@ -7,7 +7,7 @@ namespace Proyecto_Final_Algoritmos
 	{
 		private Cliente cliente;
 		private int mes_reserva;
-    	private int dia_reserva;
+		private int dia_reserva;
 		private String tipo_evento;
 		private ArrayList servicios_items;
 		private Encargado encargado;

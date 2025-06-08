@@ -165,15 +165,29 @@ namespace Proyecto_Final_Algoritmos
 					// Reservar el salón para un evento
 
 					// Ingresar info del cliente
-					Console.Write("Ingrese nombre del cliente: ");
-					String cliente_nombre = Console.ReadLine();
-
-					Console.Write("Ingrese apellido del cliente: ");
-					String cliente_apellido = Console.ReadLine();
-
+					String cliente_nombre, cliente_apellido;
+					Cliente cliente_del_evento;
+					
 					int cliente_dni = pedir_int("Ingrese dni del cliente: ");
-
-					Cliente c = new Cliente(cliente_nombre, cliente_apellido, cliente_dni);
+					Cliente client_busq = Salon.buscar_cliente(cliente_dni);
+					if(client_busq == null){
+						// No se encontró un cliente en el programa
+						Console.Write("Ingrese nombre del cliente: ");
+						cliente_nombre = Console.ReadLine();
+	
+						Console.Write("Ingrese apellido del cliente: ");
+						cliente_apellido = Console.ReadLine();
+						
+						cliente_del_evento = new Cliente(cliente_nombre, cliente_apellido, cliente_dni);
+						
+						Salon.agregar_cliente(cliente_del_evento);
+					} else {
+						// Se encontró un cliente con ese dni
+						Console.WriteLine("Se encontró el cliente {0} {1}", client_busq.Nombre, client_busq.Apellido);
+						cliente_apellido = client_busq.Apellido;
+						cliente_nombre = client_busq.Nombre;
+						cliente_del_evento = client_busq;
+					}
 					
 					// Ingresar fecha y tipo
 					int mes_reserva = pedir_int("Ingrese mes a reservar para el evento: ");
@@ -262,7 +276,7 @@ namespace Proyecto_Final_Algoritmos
 					}
 					
 					try {
-						Salon.reservar_salon(c, mes_reserva, dia_reserva, tipo, enc_asignado, costo, senia, lista_de_servicios);
+						Salon.reservar_salon(cliente_del_evento, mes_reserva, dia_reserva, tipo, enc_asignado, costo, senia, lista_de_servicios);
 						Console.WriteLine("\nReserva realizada con exito!");
 						Console.ReadKey(true);
 					}
@@ -378,9 +392,9 @@ namespace Proyecto_Final_Algoritmos
 								
 								else if (tecla_pulsada.Key == ConsoleKey.Enter && p_eleccion == 0)
 								{
-									//si pulsamos enter y estamos en la posicion 0 entonces significa que apretamos Si, entonces se elimina de la lista de eventos
-									Salon.cancelar_evento(posicion_guardada);
-									Console.WriteLine("Se ha cancelado el evento con exito!");
+									//si pulsamos enter y estamos en la posicion 0 entonces significa que apretamos Si, entonces se cancela el evento
+									Salon.cancelar_evento(item, posicion_guardada);
+									Console.WriteLine("\nSe ha cancelado el evento con exito!");
 									
 									//bool cambia de valor para salir del while
 									salir_eleccion = true;
@@ -503,7 +517,7 @@ namespace Proyecto_Final_Algoritmos
 			
 			foreach (Cliente cliente in Salon.Clientes) {
 				Console.WriteLine("----------------------------------------------");
-				Console.WriteLine("| Cliente: {0} {1}\n| - Dni: {2}", cliente.Nombre, cliente.Apellido, cliente.Dni);
+				Console.WriteLine("| Cliente: {0} {1}\n| - Dni: {2}\n| - Dinero que debe: ${3}", cliente.Nombre, cliente.Apellido, cliente.Dni, cliente.Dinero_que_debe);
 			}
 			Console.WriteLine("----------------------------------------------");
 			Console.ReadKey(true);

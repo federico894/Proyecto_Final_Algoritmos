@@ -9,6 +9,7 @@ namespace Proyecto_Final_Algoritmos
 		private String nombre;
 		private String apellido;
 		private int dni;
+		private double dinero_que_debe;
 		
 		public Cliente(String nombre, String apellido, int dni)
 		{
@@ -45,6 +46,15 @@ namespace Proyecto_Final_Algoritmos
 			}
 			set{
 				apellido = value;
+			}
+		}
+		
+		public double Dinero_que_debe {
+			get {
+				return dinero_que_debe;
+			}
+			set{
+				dinero_que_debe = value;
 			}
 		}
 	}
