@@ -617,7 +617,17 @@ namespace Proyecto_Final_Algoritmos
 		
 		public static Encargado pedir_encargado(String mensaje){
 			int legajo_asignado_str = pedir_int(mensaje);
-			Encargado valor = (Encargado)Salon.buscar_empleado_por_legajo(legajo_asignado_str);
+			Encargado valor;
+			try{
+				valor = (Encargado)Salon.buscar_empleado_por_legajo(legajo_asignado_str);
+			}catch(InvalidCastException ex){
+				Console.WriteLine("Ha ingresado un empleado que no es un Encargado!");
+				Console.ReadKey(true);
+				
+				// usamos recursion hasta que el usuario se digne a entrar un valor correcto
+				valor = pedir_encargado(mensaje);
+			}
+			
 			
 			// Si no es un entero
 			if(valor == null){
