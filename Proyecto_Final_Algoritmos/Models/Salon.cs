@@ -87,7 +87,11 @@ namespace Proyecto_Final_Algoritmos
 			if (!yareservado) {
 				
 				//lo mismo con todos los demas datos del evento
-				Evento nuevoEvento = new Evento(cliente, mes_salon, dia_salon, tipo, encargado, costo_total, senia, lista_de_servicios);
+				Evento nuevoEvento = new Evento(cliente, mes_salon, dia_salon, tipo, encargado, costo_total, senia);
+				
+				foreach (ServicioItem s in lista_de_servicios) {
+					nuevoEvento.agregar_servicio(s);
+				}
 				
 				//una vez instanciado todo se pasa el evento al metodo de agendar turno de calendario
 				//el cual realiza toda la comprobacion de que esta en el mes indicado con la cantidad de dias ideales, y si cumple todo se guarda en ListaDeEventos con todos los datos del evento y los servicios contratados
