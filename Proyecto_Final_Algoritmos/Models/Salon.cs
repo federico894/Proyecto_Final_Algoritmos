@@ -79,12 +79,7 @@ namespace Proyecto_Final_Algoritmos
 
 		public static void cancelar_evento(Evento evento, int posicion_guardada) // Parametros los cuales pasamos en Program
 		{
-			int diff = evento.Mes_reserva - DateTime.Now.Month;
-			if (diff >= 1 || diff < 0){
-				// se reintegra todo menos la seña
-				evento.Cliente.Dinero_que_debe -= (evento.Costo_total - evento.Senia);
-			}
-
+			calendario.Comparar_fechas(evento);
 			//se elimina de la lista de eventos, pasamos como parametro la posicion guardada previamente en el foreach
 			calendario.ListaDeEventos.RemoveAt(posicion_guardada);
 		}
