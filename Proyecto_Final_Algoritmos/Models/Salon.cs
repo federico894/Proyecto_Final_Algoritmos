@@ -59,7 +59,7 @@ namespace Proyecto_Final_Algoritmos
 			return null;
 		}
 
-		public static void reservar_salon(Cliente cliente, int mes_salon, int dia_salon, String tipo, Encargado encargado, double costo_total, double senia, ArrayList lista_de_servicios) {
+		public static void reservar_salon(Cliente cliente, int mes_salon, int dia_salon, String tipo, Encargado encargado, double senia, ArrayList lista_de_servicios) {
 			//Se agregan parametros al metodo para luego asignarle los valores en el main
 			
 			//bool para hacer verificacion si esta reservado o no
@@ -87,20 +87,22 @@ namespace Proyecto_Final_Algoritmos
 			if (!yareservado) {
 				
 				//lo mismo con todos los demas datos del evento
-				Evento nuevoEvento = new Evento(cliente, mes_salon, dia_salon, tipo, encargado, costo_total, senia);
+				Evento nuevoEvento = new Evento(cliente, mes_salon, dia_salon, tipo, encargado, senia);
 				
 				foreach (ServicioItem s in lista_de_servicios) {
 					nuevoEvento.agregar_servicio(s);
 				}
+				
+				nuevoEvento.calcularCostoTotal();
+				
+				// Manejamos lo respecto al cliente
+				cliente.Dinero_que_debe = nuevoEvento.Costo_total - senia;
 				
 				//una vez instanciado todo se pasa el evento al metodo de agendar turno de calendario
 				//el cual realiza toda la comprobacion de que esta en el mes indicado con la cantidad de dias ideales, y si cumple todo se guarda en ListaDeEventos con todos los datos del evento y los servicios contratados
 				calendario.agendar_turno(nuevoEvento);
 				//Console.WriteLine("Se ha realizado la reserva exitosamente!");
 			}
-			
-			// Manejamos lo respecto al cliente
-			cliente.Dinero_que_debe = costo_total - senia;
 		}
 
 		public static void cancelar_evento(Evento evento, int posicion_guardada) // Parametros los cuales pasamos en Program

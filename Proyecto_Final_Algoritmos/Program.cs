@@ -200,9 +200,7 @@ namespace Proyecto_Final_Algoritmos
 					// Ingresar encargado
 					Encargado enc_asignado = pedir_encargado("Ingrese legado del encargado: ");
 					
-					// Ingresar costo y senia
-					double costo = pedir_double("Ingrese costo del evento: $");
-
+					// Ingresar senia
 					double senia = pedir_double("Ingrese seña del evento: $");
 
 					// Pregunto por servicio(S)
@@ -276,7 +274,7 @@ namespace Proyecto_Final_Algoritmos
 					}
 					
 					try {
-						Salon.reservar_salon(cliente_del_evento, mes_reserva, dia_reserva, tipo, enc_asignado, costo, senia, lista_de_servicios);
+						Salon.reservar_salon(cliente_del_evento, mes_reserva, dia_reserva, tipo, enc_asignado, senia, lista_de_servicios);
 						Console.WriteLine("\nReserva realizada con exito!");
 						Console.ReadKey(true);
 					}

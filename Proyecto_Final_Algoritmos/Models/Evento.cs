@@ -14,13 +14,13 @@ namespace Proyecto_Final_Algoritmos
 		private double costo_total;
 		private double senia;
 
-		public Evento(Cliente cliente, int mes, int dia, String tipo, Encargado encargado, double costo_total, double senia)
+		public Evento(Cliente cliente, int mes, int dia, String tipo, Encargado encargado, double senia)
 		{
 			// Constructor para instanciar la reserva
 			this.cliente = cliente;
 			this.tipo_evento = tipo;
 			this.encargado = encargado;
-			this.costo_total = costo_total;
+			this.costo_total = 0;
 			this.senia = senia;
 			this.dia_reserva = dia;
 			this.mes_reserva = mes;
@@ -31,6 +31,14 @@ namespace Proyecto_Final_Algoritmos
 		public void agregar_servicio(ServicioItem s)
 		{
 			servicios_items.Add(s);//Agregamos el servicio al arraylist servicios
+		}
+		
+		public void calcularCostoTotal(){
+			double total = 0;
+			foreach (ServicioItem s in servicios_items) {
+				total = total + (s.Cant_solicitada * s.Costo_unitario);
+			}
+			costo_total = total;
 		}
 		
 		/*
