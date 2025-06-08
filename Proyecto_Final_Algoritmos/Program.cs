@@ -503,7 +503,7 @@ namespace Proyecto_Final_Algoritmos
 			
 			foreach (Cliente cliente in Salon.Clientes) {
 				Console.WriteLine("----------------------------------------------");
-				Console.WriteLine("| Cliente: {0} {1}\n| - Dni: {2}", cliente.Nombre, cliente.Apellido, cliente.Dni);
+				Console.WriteLine("| Cliente: {0} {1}\n| - Dni: {2}\n| - Dinero que debe: ${3}", cliente.Nombre, cliente.Apellido, cliente.Dni, cliente.Dinero_que_debe);
 			}
 			Console.WriteLine("----------------------------------------------");
 			Console.ReadKey(true);

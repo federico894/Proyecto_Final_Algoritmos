@@ -95,10 +95,9 @@ namespace Proyecto_Final_Algoritmos
 				//Console.WriteLine("Se ha realizado la reserva exitosamente!");
 			}
 			
+			// Manejamos lo respecto al cliente
 			agregar_cliente(cliente);
-			
-			// FALTA HACER
-			// ! Comprobar si ya está reservado y levantar excepción | ! Faltaria levantar la excepcion
+			cliente.Dinero_que_debe = costo_total - senia;			
 		}
 
 		public static void cancelar_evento(int posicion_guardada) // Parametros los cuales pasamos en Program
