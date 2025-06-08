@@ -200,13 +200,13 @@ namespace Proyecto_Final_Algoritmos
 					// Ingresar encargado
 					Encargado enc_asignado = pedir_encargado("Ingrese legado del encargado: ");
 					
-					// Ingresar costo y senia
-					double costo = pedir_double("Ingrese costo del evento: $");
-
+					// Ingresar senia
 					double senia = pedir_double("Ingrese seña del evento: $");
+					
+					// Se crea el evento sin servicios
+					Evento nuevoEvento = new Evento(cliente_del_evento, mes_reserva, dia_reserva, tipo, enc_asignado, senia);
 
 					// Pregunto por servicio(S)
-					ArrayList lista_de_servicios = new ArrayList();
 					bool salir_loop = false;
 					int p_eleccion= 0;
 					String[] siOno = { "Si", "No" };
@@ -248,13 +248,15 @@ namespace Proyecto_Final_Algoritmos
 							Console.Write("¿Cual servicio desea agregar?:  ");
 							String servicio_a_agregar = Console.ReadLine();
 
-							Servicio s = Salon.buscar_servicio(servicio_a_agregar);
+							Servicio servicio_encontrado = Salon.buscar_servicio(servicio_a_agregar);
 
 							int cantidad = pedir_int("Ingrese cantidad de servicio: ");
 
 							double costo_unit = pedir_double("Ingrese costo unitario del servicio: $");
-
-							lista_de_servicios.Add(new ServicioItem(s.Nombre_servicio, s.Descripcion_serv, cantidad, costo_unit));
+							
+							// Agregar los servicios
+							nuevoEvento.agregar_servicio(new ServicioItem(servicio_encontrado, cantidad, costo_unit));
+							
 							Console.WriteLine("\nServicio agregado con exito!");
 							Console.ReadKey(true);
 						}
@@ -274,9 +276,18 @@ namespace Proyecto_Final_Algoritmos
 						}
 						
 					}
+
+					// Calculamos el costo total del evento a partir de los servicios contratados
+					nuevoEvento.calcularCostoTotal();
 					
 					try {
-						Salon.reservar_salon(cliente_del_evento, mes_reserva, dia_reserva, tipo, enc_asignado, costo, senia, lista_de_servicios);
+						// Reservamos en calendario
+						Salon.reservar_salon(nuevoEvento);
+						
+						// Le restamos el dinero al cliente
+						cliente_del_evento.Dinero_que_debe += nuevoEvento.Costo_total - senia;
+						
+						// Fin
 						Console.WriteLine("\nReserva realizada con exito!");
 						Console.ReadKey(true);
 					}
@@ -502,7 +513,7 @@ namespace Proyecto_Final_Algoritmos
 				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7} ({8})\n| - Costo total: ${9}\n| - Seña: ${10}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Encargado.NroDeLegajo, ev.Costo_total, ev.Senia);
 				Console.WriteLine("| - Servicios contratados:");
 				foreach (ServicioItem s in ev.Servicios) {
-					Console.WriteLine("|  - {0}\n|   - Cantidad: {1}\n|   - Precio unitario: ${2}", s.Nombre_servicio, s.Cant_solicitada, s.Costo_unitario);
+					Console.WriteLine("|  - {0}\n|   - Cantidad: {1}\n|   - Precio unitario: ${2}", s.Servicio_asociado.Nombre_servicio, s.Cant_solicitada, s.Costo_unitario);
 				}
 			}
 			
@@ -563,7 +574,7 @@ namespace Proyecto_Final_Algoritmos
 				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7} ({8})\n| - Costo total: ${9}\n| - Seña: ${10}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Encargado.NroDeLegajo, ev.Costo_total, ev.Senia);
 				Console.WriteLine("| - Servicios contratados:");
 				foreach (ServicioItem s in ev.Servicios) {
-					Console.WriteLine("|  - {0}\n|   - Cantidad: {1}\n|   - Precio unitario: ${2}", s.Nombre_servicio, s.Cant_solicitada, s.Costo_unitario);
+					Console.WriteLine("|  - {0}\n|   - Cantidad: {1}\n|   - Precio unitario: ${2}", s.Servicio_asociado.Nombre_servicio, s.Cant_solicitada, s.Costo_unitario);
 				}
 			}
 			Console.WriteLine("----------------------------------------------");
@@ -606,7 +617,17 @@ namespace Proyecto_Final_Algoritmos
 		
 		public static Encargado pedir_encargado(String mensaje){
 			int legajo_asignado_str = pedir_int(mensaje);
-			Encargado valor = (Encargado)Salon.buscar_empleado_por_legajo(legajo_asignado_str);
+			Encargado valor;
+			try{
+				valor = (Encargado)Salon.buscar_empleado_por_legajo(legajo_asignado_str);
+			}catch(InvalidCastException ex){
+				Console.WriteLine("Ha ingresado un empleado que no es un Encargado!");
+				Console.ReadKey(true);
+				
+				// usamos recursion hasta que el usuario se digne a entrar un valor correcto
+				valor = pedir_encargado(mensaje);
+			}
+			
 			
 			// Si no es un entero
 			if(valor == null){

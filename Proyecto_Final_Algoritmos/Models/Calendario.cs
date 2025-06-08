@@ -9,7 +9,7 @@ namespace Proyecto_Final_Algoritmos
 		// Arraylist meses el cual almacena atraves de un for 12 meses
 		private ArrayList meses;
 		private ArrayList listaDeEventos;
-                private int mes_actual;
+		private int mes_actual;
 		private int dia_actual;
 		
 		// No pasamos los parametros dia y mes debido a que en el metodo agendarTurno lo pasamos por consola con Console.Readline
@@ -123,53 +123,57 @@ namespace Proyecto_Final_Algoritmos
 			}
 		}
 		
-		public void buscar_eventos_disponibles()
-		{
-			//lista para guardar el mes por su numero y no por la cant de dias
-			ArrayList mesPorNum = new ArrayList();
-			
-			//Bucle para llenar la lista con numeros del 1 al 12//es decir, los numeros de los meses
-			for (int i = 0; i < meses.Count; i++)
+		public bool ya_reservado(Evento nuevoEvento){
+			//recorremos la lista de eventos la cual esta en la clase calendario
+			foreach (Evento e in ListaDeEventos)
 			{
-				mesPorNum.Add(i + 1);
-			}
-			
-			//foreach para recorrer la lista creada con la cant de meses
-			foreach (int nroMes in mesPorNum)
-			{
-				//casteo de el item que esta en el indice de mes a tipo int
-				//aca recorremos el arraylist de mes nroMes (-1 porque los indice comienzan desde 0)
-				//y obtenemos el valor el cual seria el total de dias el cual tiene ese nroMes (por ejemplo nroMes 2 nos paramos en el indice 1 el cual tiene 28 dias)
-				int cantDias = (int)meses[nroMes - 1];
-				
-				//realizamos un for para recorrer los dias que contiene totales de ese mes, por eso < cantDias
-				for (int dia = 1; dia <= cantDias; dia++)
+				if (e.Mes_reserva == nuevoEvento.Mes_reserva && e.Dia_reserva == nuevoEvento.Dia_reserva)
 				{
-					//variable tipo bool para cambiar su valor dentro del if
-					bool YaReservado = false;
-					foreach (Evento e in listaDeEventos)
-					{
-						//Si el mes reservado es igual al numero del mes y el diareservado es igual
-						if (e.Mes_reserva == nroMes && e.Dia_reserva == dia)
-						{
-						  	//a dia entonces cambiamos el valor de YaReservado a verdadero y frenamos el if
-							YaReservado = true;
-							break;
-						}
-					}
-					
-					//En caso de que la condicion anterior no se cumpla entonces
-					if (!YaReservado)
-					{
-					 	//mostramos esos meses dia como fecha disponibles
-						Console.WriteLine("Fechas disponibles: " + dia + "/" + nroMes);
-					}
+					return true;
 				}
 			}
+			return false;
+		}
+		
+		public bool cancela_con_antelacion(int diaEvento, int mesEvento)
+		{
+			int dias = calcular_diferencias_dias(diaEvento, mesEvento);
+			if (dias > 30)// aca hacemos la comparacion para combrobar si ya paso mas de un mes
+			{
+				return true;
+			}
+			return false;
+		}
+
+		private int calcular_diferencias_dias(int diaEvento, int mesEvento)
+		{
+			int diaActual = DateTime.Now.Day;//obtenemos el dia actual de nuestro sistema y lo guardamos en una variable
+			int mesActual = DateTime.Now.Month;//lo mismo pero ahora obtenemos el dia actual
+			int diferenciaDias = 0; // variable para almacenar cuantos dias de diferencias hay
+			if (mesEvento == mesActual)
+			{//si el evento ocurre en el mismo mes del sistema entonces solo se resta el dia del evento - el dia actual para obtener la diferencia
+				diferenciaDias = diaEvento - diaActual;
+			}
+			else//si el evento no ocurre en el mes actual
+			{
+				int cant_dias_mes_actual = (int)meses[mesActual - 1];// casteamos y accedemos a un valor de el arraylist meses para obtener la cant del dia de ese mes
+				diferenciaDias += cant_dias_mes_actual - diaActual;//calculamos cuandos dias quedan desde el dia actual hasta el fin del mes
+				//ejemp si diaEnMesActual tiene 30 dias y le restamos el dia actual queda la diferencia de dias
+				for (int m = mesActual + 1; m < mesEvento; m++)//inicializamos bucle para sumar los dias completos de los meses que allan intermedios por eso mesActual + 1, sin incluir mes actual y mes del evento
+				{
+					int diasEnMes = (int)meses[m - 1];//nos devuelve la cant de dias del mes intermedio
+					diferenciaDias += diasEnMes;// los sumamos a la diferencia
+				}
+				diferenciaDias += diaEvento;//se suman el dia del evento 
+				//esto nos deja el total de dias que faltan desde el dia actual hasta el dia del evento
+			}
+			return diferenciaDias;
 		}
     
-		public ArrayList ListaDeEventos {
-			get {
+		public ArrayList ListaDeEventos
+		{
+			get
+			{
 				return listaDeEventos;
 			}
 		}

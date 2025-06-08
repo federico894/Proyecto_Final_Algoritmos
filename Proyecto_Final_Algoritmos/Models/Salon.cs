@@ -59,54 +59,23 @@ namespace Proyecto_Final_Algoritmos
 			return null;
 		}
 
-		public static void reservar_salon(Cliente cliente, int mes_salon, int dia_salon, String tipo, Encargado encargado, double costo_total, double senia, ArrayList lista_de_servicios) {
+		public static void reservar_salon(Evento nuevoEvento) {
 			//Se agregan parametros al metodo para luego asignarle los valores en el main
 			
-			//bool para hacer verificacion si esta reservado o no
-			bool yareservado = false;
-			
-			//recorremos la lista de eventos la cual esta en la clase calendario
-			foreach (Evento e in calendario.ListaDeEventos)
-			{
-				if (e.Mes_reserva == mes_salon && e.Dia_reserva == dia_salon)
-				{
-					throw new ReservaExistenteException();
-					/*
-					//si el mes reservado que se encuentra en la lista de reservas es igual al mes ingresado por parametro
-					Console.Write("\n");
-					Console.WriteLine("No se realizo la reserva debido a que esta fecha ya estaba reservada");//Siento que esto ya lo habia hecho pero no me acuerdo si lo subi, pero capaz lo sacaste para hacerlo tipo exepcion y lo volvi a poner, si es asi avisame
-					//entonces la fecha ya se encuentra reservada, el bool cambia a verdadero
-					yareservado = true;
-					// y finaliza if
-					break;*/
-				}
-
+			if(calendario.ya_reservado(nuevoEvento)){
+				throw new ReservaExistenteException();
 			}
 			
-			// si el bool no cambia su valor en el if entonces se va a cumplir esta condicional ya que esa fecha no estaba reservada y no cambio el bool
-			if (!yareservado) {
-				
-				//lo mismo con todos los demas datos del evento
-				Evento nuevoEvento = new Evento(cliente, mes_salon, dia_salon, tipo, encargado, costo_total, senia, lista_de_servicios);
-				
-				//una vez instanciado todo se pasa el evento al metodo de agendar turno de calendario
-				//el cual realiza toda la comprobacion de que esta en el mes indicado con la cantidad de dias ideales, y si cumple todo se guarda en ListaDeEventos con todos los datos del evento y los servicios contratados
-				calendario.agendar_turno(nuevoEvento);
-				//Console.WriteLine("Se ha realizado la reserva exitosamente!");
-			}
-			
-			// Manejamos lo respecto al cliente
-			cliente.Dinero_que_debe = costo_total - senia;
+			//metodo de agendar turno de calendario el cual realiza toda la comprobacion de que esta en el mes indicado con la cantidad de 
+			//dias ideales, y si cumple todo se guarda en ListaDeEventos con todos los datos del evento y los servicios contratados
+			calendario.agendar_turno(nuevoEvento);
 		}
 
 		public static void cancelar_evento(Evento evento, int posicion_guardada) // Parametros los cuales pasamos en Program
 		{
-			int diff = evento.Mes_reserva - DateTime.Now.Month;
-			if (diff >= 1 || diff < 0){
-				// se reintegra todo menos la seña
+			if(calendario.cancela_con_antelacion(evento.Dia_reserva, evento.Mes_reserva)){
 				evento.Cliente.Dinero_que_debe -= (evento.Costo_total - evento.Senia);
 			}
-
 			//se elimina de la lista de eventos, pasamos como parametro la posicion guardada previamente en el foreach
 			calendario.ListaDeEventos.RemoveAt(posicion_guardada);
 		}
