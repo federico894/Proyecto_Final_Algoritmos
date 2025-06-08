@@ -202,9 +202,11 @@ namespace Proyecto_Final_Algoritmos
 					
 					// Ingresar senia
 					double senia = pedir_double("Ingrese seña del evento: $");
+					
+					// Se crea el evento sin servicios
+					Evento nuevoEvento = new Evento(cliente_del_evento, mes_reserva, dia_reserva, tipo, enc_asignado, senia);
 
 					// Pregunto por servicio(S)
-					ArrayList lista_de_servicios = new ArrayList();
 					bool salir_loop = false;
 					int p_eleccion= 0;
 					String[] siOno = { "Si", "No" };
@@ -251,8 +253,10 @@ namespace Proyecto_Final_Algoritmos
 							int cantidad = pedir_int("Ingrese cantidad de servicio: ");
 
 							double costo_unit = pedir_double("Ingrese costo unitario del servicio: $");
-
-							lista_de_servicios.Add(new ServicioItem(servicio_encontrado, cantidad, costo_unit));
+							
+							// Agregar los servicios
+							nuevoEvento.agregar_servicio(new ServicioItem(servicio_encontrado, cantidad, costo_unit));
+							
 							Console.WriteLine("\nServicio agregado con exito!");
 							Console.ReadKey(true);
 						}
@@ -272,9 +276,18 @@ namespace Proyecto_Final_Algoritmos
 						}
 						
 					}
+
+					// Calculamos el costo total del evento a partir de los servicios contratados
+					nuevoEvento.calcularCostoTotal();
 					
 					try {
-						Salon.reservar_salon(cliente_del_evento, mes_reserva, dia_reserva, tipo, enc_asignado, senia, lista_de_servicios);
+						// Reservamos en calendario
+						Salon.reservar_salon(nuevoEvento);
+						
+						// Le restamos el dinero al cliente
+						cliente_del_evento.Dinero_que_debe += nuevoEvento.Costo_total - senia;
+						
+						// Fin
 						Console.WriteLine("\nReserva realizada con exito!");
 						Console.ReadKey(true);
 					}
