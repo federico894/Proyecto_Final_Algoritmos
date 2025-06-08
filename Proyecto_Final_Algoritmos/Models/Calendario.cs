@@ -9,7 +9,7 @@ namespace Proyecto_Final_Algoritmos
 		// Arraylist meses el cual almacena atraves de un for 12 meses
 		private ArrayList meses;
 		private ArrayList listaDeEventos;
-                private int mes_actual;
+		private int mes_actual;
 		private int dia_actual;
 		
 		// No pasamos los parametros dia y mes debido a que en el metodo agendarTurno lo pasamos por consola con Console.Readline
@@ -123,21 +123,20 @@ namespace Proyecto_Final_Algoritmos
 			}
 		}
 		
-		public void Comparar_fechas(Evento evento)
+		public bool cancela_con_antelacion(int diaEvento, int mesEvento)
 		{
-			int dias = Calcular_diferencias_dias(evento);
+			int dias = calcular_diferencias_dias(diaEvento, mesEvento);
 			if (dias > 30)// aca hacemos la comparacion para combrobar si ya paso mas de un mes
 			{
-				evento.Cliente.Dinero_que_debe -= (evento.Costo_total - evento.Senia);
+				return true;
 			}
+			return false;
 		}
 
-		public int Calcular_diferencias_dias(Evento evento)
+		private int calcular_diferencias_dias(int diaEvento, int mesEvento)
 		{
 			int diaActual = DateTime.Now.Day;//obtenemos el dia actual de nuestro sistema y lo guardamos en una variable
 			int mesActual = DateTime.Now.Month;//lo mismo pero ahora obtenemos el dia actual
-			int diaEvento = evento.Dia_reserva;//dia del evento que fue reservado
-			int mesEvento = evento.Mes_reserva;//mes del evento que fue reservado
 			int diferenciaDias = 0; // variable para almacenar cuantos dias de diferencias hay
 			if (mesEvento == mesActual)
 			{//si el evento ocurre en el mismo mes del sistema entonces solo se resta el dia del evento - el dia actual para obtener la diferencia
