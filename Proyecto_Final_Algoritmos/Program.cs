@@ -509,12 +509,7 @@ namespace Proyecto_Final_Algoritmos
 			Console.Clear();
 			
 			foreach (Evento ev in Salon.Calendario.ListaDeEventos) {
-				Console.WriteLine("----------------------------------------------");
-				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7} ({8})\n| - Costo total: ${9}\n| - Seña: ${10}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Encargado.NroDeLegajo, ev.Costo_total, ev.Senia);
-				Console.WriteLine("| - Servicios contratados:");
-				foreach (ServicioItem s in ev.Servicios) {
-					Console.WriteLine("|  - {0}\n|   - Cantidad: {1}\n|   - Precio unitario: ${2}", s.Servicio_asociado.Nombre_servicio, s.Cant_solicitada, s.Costo_unitario);
-				}
+				ev.mostrar_info();
 			}
 			
 			Console.WriteLine("----------------------------------------------");
@@ -527,8 +522,7 @@ namespace Proyecto_Final_Algoritmos
 			Console.Clear();
 			
 			foreach (Cliente cliente in Salon.Clientes) {
-				Console.WriteLine("----------------------------------------------");
-				Console.WriteLine("| Cliente: {0} {1}\n| - Dni: {2}\n| - Dinero que debe: ${3}", cliente.Nombre, cliente.Apellido, cliente.Dni, cliente.Dinero_que_debe);
+				cliente.mostrar_info();
 			}
 			Console.WriteLine("----------------------------------------------");
 			Console.ReadKey(true);
@@ -540,8 +534,7 @@ namespace Proyecto_Final_Algoritmos
 			Console.Clear();
 			
 			foreach (Empleado empleado in Salon.Empleados) {
-				Console.WriteLine("----------------------------------------------");
-				Console.WriteLine("| Empleado: {0} {1}\n| - Legajo: {2}\n| - DNI: {3}\n| - Salario: ${4}\n| - Tarea a desempeñar: {5}", empleado.Nombre, empleado.Apellido, empleado.NroDeLegajo, empleado.Dni, empleado.calcularSalario(), empleado.TareaDesempeniar);
+				empleado.mostrar_info();
 			}
 			Console.WriteLine("----------------------------------------------");
 			Console.ReadKey(true);
@@ -553,8 +546,7 @@ namespace Proyecto_Final_Algoritmos
 			Console.Clear();
 			
 			foreach (Servicio servicio in Salon.Servicios) {
-				Console.WriteLine("----------------------------------------------");
-				Console.WriteLine("| Servicio: {0}\n| - Descripción: {1}", servicio.Nombre_servicio, servicio.Descripcion_serv);
+				servicio.mostrar_info();
 			}
 			Console.WriteLine("----------------------------------------------");
 			Console.ReadKey(true);
@@ -570,12 +562,7 @@ namespace Proyecto_Final_Algoritmos
 			
 			// Imprimo esos eventos
 			foreach (Evento ev in eventos_en_ese_mes) {
-				Console.WriteLine("----------------------------------------------");
-				Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7} ({8})\n| - Costo total: ${9}\n| - Seña: ${10}", ev.Cliente.Nombre, ev.Cliente.Apellido, ev.Cliente.Dni, ev.Dia_reserva, ev.Mes_reserva, ev.Tipo_evento, ev.Encargado.Nombre, ev.Encargado.Apellido, ev.Encargado.NroDeLegajo, ev.Costo_total, ev.Senia);
-				Console.WriteLine("| - Servicios contratados:");
-				foreach (ServicioItem s in ev.Servicios) {
-					Console.WriteLine("|  - {0}\n|   - Cantidad: {1}\n|   - Precio unitario: ${2}", s.Servicio_asociado.Nombre_servicio, s.Cant_solicitada, s.Costo_unitario);
-				}
+				ev.mostrar_info();
 			}
 			Console.WriteLine("----------------------------------------------");
 			Console.ReadKey(true);

@@ -33,15 +33,9 @@ namespace Proyecto_Final_Algoritmos
 		public int NroDeLegajo {get{return nro_legajo;}}
 		public string TareaDesempeniar {get{return tareaDesempeniar;}}
 		
-		public void MostrarInformación(){
-			Console.WriteLine("Nombre: {0} {1}", Nombre, Apellido);
-			
-			Console.WriteLine("Nombre: " + Nombre + " " + Apellido);
-			Console.WriteLine("Cargo: " + TareaDesempeniar + " ");
-			Console.WriteLine("Dni: " + Dni + " ");
-			Console.WriteLine("NroDeLegajo: " + NroDeLegajo + " ");
-			Console.WriteLine("Sueldo: " + calcularSalario() + " ");
-			Console.WriteLine("TareaDesempeniar: " + TareaDesempeniar + " ");
+		public void mostrar_info(){
+			Console.WriteLine("----------------------------------------------");
+			Console.WriteLine("| Empleado: {0} {1}\n| - Legajo: {2}\n| - DNI: {3}\n| - Salario: ${4}\n| - Tarea a desempeñar: {5}", nombre, apellido, nro_legajo, dni, calcularSalario(), tareaDesempeniar);
 		}
 	}
 }

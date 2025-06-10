@@ -9,8 +9,6 @@ namespace Proyecto_Final_Algoritmos
 		// Arraylist meses el cual almacena atraves de un for 12 meses
 		private ArrayList meses;
 		private ArrayList listaDeEventos;
-		private int mes_actual;
-		private int dia_actual;
 		
 		// No pasamos los parametros dia y mes debido a que en el metodo agendarTurno lo pasamos por consola con Console.Readline
 		public Calendario()
@@ -182,19 +180,6 @@ namespace Proyecto_Final_Algoritmos
 				return meses;
 			}
 		}
-
-		public int Mes_actual{
-			get{
-				return mes_actual;
-			}
-		}
-		public int Dia_actual{
-			get{
-				return dia_actual;
-			}
-		}
-
-
 	}
 
 }

@@ -26,5 +26,10 @@ namespace Proyecto_Final_Algoritmos
 				return descripcion_serv;
 			}
 		}
+		
+		public void mostrar_info(){
+			Console.WriteLine("----------------------------------------------");
+			Console.WriteLine("| Servicio: {0}\n| - Descripción: {1}", nombre_servicio, descripcion_serv);
+		}
 	}
 }

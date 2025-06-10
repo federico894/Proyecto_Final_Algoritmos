@@ -52,5 +52,10 @@ namespace Proyecto_Final_Algoritmos
 				return dinero_que_debe;
 			}
 		}
+		
+		public void mostrar_info(){
+			Console.WriteLine("----------------------------------------------");
+			Console.WriteLine("| Cliente: {0} {1}\n| - Dni: {2}\n| - Dinero que debe: ${3}", nombre, apellido, dni, dinero_que_debe);
+		}
 	}
 }

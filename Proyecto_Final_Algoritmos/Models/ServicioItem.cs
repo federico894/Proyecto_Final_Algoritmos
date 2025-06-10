@@ -34,5 +34,9 @@ namespace Proyecto_Final_Algoritmos
 				return costo_unitario;
 			}
 		}
+		
+		public void mostrar_info(){
+			Console.WriteLine("|  - {0}\n|   - Cantidad: {1}\n|   - Precio unitario: ${2}", servicio_asociado.Nombre_servicio, cant_solicitada, costo_unitario);
+		}
 	}
 }
