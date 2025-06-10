@@ -172,8 +172,7 @@ namespace Proyecto_Final_Algoritmos
     
 		public ArrayList ListaDeEventos
 		{
-			get
-			{
+			get{
 				return listaDeEventos;
 			}
 		}
@@ -188,16 +187,10 @@ namespace Proyecto_Final_Algoritmos
 			get{
 				return mes_actual;
 			}
-			set{
-				mes_actual = value;
-			}
 		}
 		public int Dia_actual{
 			get{
 				return dia_actual;
-			}
-			set{
-				dia_actual = value;
 			}
 		}
 

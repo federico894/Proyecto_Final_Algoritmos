@@ -285,7 +285,7 @@ namespace Proyecto_Final_Algoritmos
 						Salon.reservar_salon(nuevoEvento);
 						
 						// Le restamos el dinero al cliente
-						cliente_del_evento.Dinero_que_debe += nuevoEvento.Costo_total - senia;
+						cliente_del_evento.aumentar_dinero(nuevoEvento.Costo_total - senia);
 						
 						// Fin
 						Console.WriteLine("\nReserva realizada con exito!");

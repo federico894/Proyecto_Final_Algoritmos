@@ -27,11 +27,11 @@ namespace Proyecto_Final_Algoritmos
 		}
 		
 		// Todas las propiedades
-		public string Nombre {get{return nombre;} set{nombre = value;} }
-		public string Apellido {get{return apellido;} set{apellido = value;} }
-		public int Dni {get{return dni;} set{dni = value;} }
-		public int NroDeLegajo {get{return nro_legajo;} set{nro_legajo = value;} }
-		public string TareaDesempeniar {get{return tareaDesempeniar;} set{tareaDesempeniar = value;} }
+		public string Nombre {get{return nombre;}}
+		public string Apellido {get{return apellido;}}
+		public int Dni {get{return dni;}}
+		public int NroDeLegajo {get{return nro_legajo;}}
+		public string TareaDesempeniar {get{return tareaDesempeniar;}}
 		
 		public void MostrarInformación(){
 			Console.WriteLine("Nombre: {0} {1}", Nombre, Apellido);

@@ -20,9 +20,6 @@ namespace Proyecto_Final_Algoritmos
 			get {
 				return servicio_asociado;
 			}
-			set {
-				servicio_asociado = value;
-			}
 		}
 		
 		public int Cant_solicitada
@@ -30,17 +27,11 @@ namespace Proyecto_Final_Algoritmos
 			get {
 				return cant_solicitada;
 			}
-			set {
-				cant_solicitada = value;
-			}
 		}
 		public double Costo_unitario
 		{
 			get {
 				return costo_unitario;
-			}
-			set{
-				costo_unitario = value;
 			}
 		}
 	}
