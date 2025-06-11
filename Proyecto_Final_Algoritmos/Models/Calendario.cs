@@ -98,10 +98,18 @@ namespace Proyecto_Final_Algoritmos
 			listaDeEventos.Add(nuevoEvento);//Se agrega a la lista los eventos con sus servicios y datos
 		}
 		
-		public ArrayList buscar_eventos_por_mes(int mes_seleccionado){
+		public void Borrar_evento(Evento evento)//metodo para borrar el evento de la lista sin tener que acceder a las propiedades para usar .Remove
+		{
+			listaDeEventos.Remove(evento);
+		}
+		
+		public ArrayList buscar_eventos_por_mes(int mes_seleccionado)
+		{
 			ArrayList eventos_en_ese_mes = new ArrayList();
-			foreach (Evento evento in listaDeEventos) {
-				if (evento.Mes_reserva == mes_seleccionado){
+			foreach (Evento evento in listaDeEventos)
+			{
+				if (evento.Mes_reserva == mes_seleccionado)
+				{
 					eventos_en_ese_mes.Add(evento);
 				}
 			}

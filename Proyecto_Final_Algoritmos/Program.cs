@@ -314,12 +314,8 @@ namespace Proyecto_Final_Algoritmos
 						//usamos metodo para ver que fechas ya estan reservadas
 						Salon.Calendario.mostrar_fechas_reservadas(eventoenMes);
 						dia_c = pedir_int("Ingrese el dia del evento: ");
-						//declaramos variable para guardar la posicion
-						int posicion_guardada = -1;
-						
-						//indice para saber en que indice estamos parados en el foreach
-						int posicion_bucle = 0;
-						
+						//declaramos variable para guardar el evento a eliminar
+						Evento evento_a_eliminar = null;
 						//recorremos la lista de eventos
 						foreach (Evento e in Salon.Calendario.ListaDeEventos)
 						{
@@ -327,25 +323,13 @@ namespace Proyecto_Final_Algoritmos
 							//si el parametro mes es igual a mes y dia reservado
 							if (mes_c == e.Mes_reserva && dia_c == e.Dia_reserva)
 							{
-								//se guarda la posicion la cual es el indice en el cual estamos parados
-								posicion_guardada = posicion_bucle;
+								evento_a_eliminar = e;//entonces se guarda este evento en la variable
 								break;
 							}
-							else if (mes_c == e.Mes_reserva && dia_c != e.Dia_reserva)
-							{
-								Console.WriteLine("No existe la fecha ingresada...");
-								break;
-							}
-							//termina el recorrido pero antes sumamos para que ahora el indice cambie a 1
-							posicion_bucle++;
 						}
 						
-						//si la posicion guardada es != de -1 significa que la fecha se encontro y se guardo
-						if (posicion_guardada != -1)
+						if (evento_a_eliminar != null)
 						{
-							//casteamos el evento de esa posicion para luego acceder a sus atributos
-							Evento item = (Evento)eventoenMes[posicion_guardada];
-							
 							//array con 2 opciones
 							String[] siNo = { "Si", "No" };
 							
@@ -359,7 +343,7 @@ namespace Proyecto_Final_Algoritmos
 								//Console.Clear para redibujar la consola cada que pulsemos una tecla
 								Console.Clear();
 								Console.Write("               ");
-								Console.WriteLine("Evento a cancelar de la fecha " + item.Dia_reserva + "/" + item.Mes_reserva + " a nombre de " + item.Cliente.Nombre + " " + item.Cliente.Apellido + " (" + item.Cliente.Dni + ")");
+								Console.WriteLine("Evento a cancelar de la fecha " + evento_a_eliminar.Dia_reserva + "/" + evento_a_eliminar.Mes_reserva + " a nombre de " + evento_a_eliminar.Cliente.Nombre + " " + evento_a_eliminar.Cliente.Apellido + " (" + evento_a_eliminar.Cliente.Dni + ")");
 								Console.Write("                                       ");
 								Console.WriteLine("¿Esta seguro desea cancelar el evento?");
 								Console.Write("                                                  ");
@@ -404,7 +388,7 @@ namespace Proyecto_Final_Algoritmos
 								else if (tecla_pulsada.Key == ConsoleKey.Enter && p_eleccion == 0)
 								{
 									//si pulsamos enter y estamos en la posicion 0 entonces significa que apretamos Si, entonces se cancela el evento
-									Salon.cancelar_evento(item, posicion_guardada);
+									Salon.cancelar_evento(evento_a_eliminar);
 									Console.WriteLine("\nSe ha cancelado el evento con exito!");
 									
 									//bool cambia de valor para salir del while
@@ -421,7 +405,7 @@ namespace Proyecto_Final_Algoritmos
 									break;
 								}
 							}
-						}
+						}else{Console.WriteLine("No existe la fecha ingresada...");}
 					}
 					else
 					{
