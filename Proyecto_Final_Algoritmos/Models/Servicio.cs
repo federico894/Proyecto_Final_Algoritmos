@@ -19,18 +19,17 @@ namespace Proyecto_Final_Algoritmos
 			get {
 				return nombre_servicio;
 			}
-			set {
-				nombre_servicio = value;
-			}
 		}
 		public String Descripcion_serv
 		{
 			get {
 				return descripcion_serv;
 			}
-			set {
-				descripcion_serv = value;
-			}
+		}
+		
+		public void mostrar_info(){
+			Console.WriteLine("----------------------------------------------");
+			Console.WriteLine("| Servicio: {0}\n| - Descripción: {1}", nombre_servicio, descripcion_serv);
 		}
 	}
 }

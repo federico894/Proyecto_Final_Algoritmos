@@ -71,13 +71,13 @@ namespace Proyecto_Final_Algoritmos
 			calendario.agendar_turno(nuevoEvento);
 		}
 
-		public static void cancelar_evento(Evento evento, int posicion_guardada) // Parametros los cuales pasamos en Program
+		public static void cancelar_evento(Evento evento) // Parametros los cuales pasamos en Program
 		{
 			if(calendario.cancela_con_antelacion(evento.Dia_reserva, evento.Mes_reserva)){
-				evento.Cliente.Dinero_que_debe -= (evento.Costo_total - evento.Senia);
+				evento.Cliente.reducir_dinero(evento.Costo_total - evento.Senia);
 			}
-			//se elimina de la lista de eventos, pasamos como parametro la posicion guardada previamente en el foreach
-			calendario.ListaDeEventos.RemoveAt(posicion_guardada);
+			//se elimina de la lista de eventos
+			calendario.Borrar_evento(evento);
 		}
 		
 		public static Cliente buscar_cliente(int cliente_dni){
@@ -98,9 +98,6 @@ namespace Proyecto_Final_Algoritmos
 		public static String Nombre{
 			get {
 				return nombre;
-			}
-			set{
-				nombre = value;
 			}
 		}
 		

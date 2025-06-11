@@ -9,8 +9,6 @@ namespace Proyecto_Final_Algoritmos
 		// Arraylist meses el cual almacena atraves de un for 12 meses
 		private ArrayList meses;
 		private ArrayList listaDeEventos;
-		private int mes_actual;
-		private int dia_actual;
 		
 		// No pasamos los parametros dia y mes debido a que en el metodo agendarTurno lo pasamos por consola con Console.Readline
 		public Calendario()
@@ -100,10 +98,18 @@ namespace Proyecto_Final_Algoritmos
 			listaDeEventos.Add(nuevoEvento);//Se agrega a la lista los eventos con sus servicios y datos
 		}
 		
-		public ArrayList buscar_eventos_por_mes(int mes_seleccionado){
+		public void Borrar_evento(Evento evento)//metodo para borrar el evento de la lista sin tener que acceder a las propiedades para usar .Remove
+		{
+			listaDeEventos.Remove(evento);
+		}
+		
+		public ArrayList buscar_eventos_por_mes(int mes_seleccionado)
+		{
 			ArrayList eventos_en_ese_mes = new ArrayList();
-			foreach (Evento evento in listaDeEventos) {
-				if (evento.Mes_reserva == mes_seleccionado){
+			foreach (Evento evento in listaDeEventos)
+			{
+				if (evento.Mes_reserva == mes_seleccionado)
+				{
 					eventos_en_ese_mes.Add(evento);
 				}
 			}
@@ -172,8 +178,7 @@ namespace Proyecto_Final_Algoritmos
     
 		public ArrayList ListaDeEventos
 		{
-			get
-			{
+			get{
 				return listaDeEventos;
 			}
 		}
@@ -183,25 +188,6 @@ namespace Proyecto_Final_Algoritmos
 				return meses;
 			}
 		}
-
-		public int Mes_actual{
-			get{
-				return mes_actual;
-			}
-			set{
-				mes_actual = value;
-			}
-		}
-		public int Dia_actual{
-			get{
-				return dia_actual;
-			}
-			set{
-				dia_actual = value;
-			}
-		}
-
-
 	}
 
 }

@@ -107,5 +107,14 @@ namespace Proyecto_Final_Algoritmos
 				return senia;
 			}
 		}
+		
+		public void mostrar_info(){
+			Console.WriteLine("----------------------------------------------");
+			Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7} ({8})\n| - Costo total: ${9}\n| - Seña: ${10}", cliente.Nombre, cliente.Apellido, cliente.Dni, dia_reserva, mes_reserva, tipo_evento, encargado.Nombre, encargado.Apellido, encargado.NroDeLegajo, costo_total, senia);
+			Console.WriteLine("| - Servicios contratados:");
+			foreach (ServicioItem s in servicios_items) {
+				s.mostrar_info();
+			}
+		}
 	}
 }

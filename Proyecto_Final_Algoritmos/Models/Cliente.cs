@@ -19,15 +19,19 @@ namespace Proyecto_Final_Algoritmos
 			this.dni = dni;
 		}
 		
+		public void reducir_dinero(double dinero){
+			dinero_que_debe = dinero_que_debe - dinero;
+		}
+		
+		public void aumentar_dinero(double dinero){
+			dinero_que_debe = dinero_que_debe + dinero;
+		}
+		
 		// Creación de propiedad la cual utilizamos para asignarle valor a las variables privadas
 		public String Nombre {
 			get {
 				//get, nos devuelve el valor de la variable
 				return nombre;
-			} 
-			set {
-				//determinamos el valor de la variable cuando instanciemos
-				nombre = value;
 			}
 		}
     
@@ -35,17 +39,11 @@ namespace Proyecto_Final_Algoritmos
 			get {
 				return dni;
 			}
-			set {
-				dni = value;
-			}
 		}
     	
 		public String Apellido {
 			get {
 				return apellido;
-			}
-			set{
-				apellido = value;
 			}
 		}
 		
@@ -53,9 +51,11 @@ namespace Proyecto_Final_Algoritmos
 			get {
 				return dinero_que_debe;
 			}
-			set{
-				dinero_que_debe = value;
-			}
+		}
+		
+		public void mostrar_info(){
+			Console.WriteLine("----------------------------------------------");
+			Console.WriteLine("| Cliente: {0} {1}\n| - Dni: {2}\n| - Dinero que debe: ${3}", nombre, apellido, dni, dinero_que_debe);
 		}
 	}
 }
