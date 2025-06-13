@@ -27,6 +27,11 @@ namespace Proyecto_Final_Algoritmos
 			dinero_que_debe = dinero_que_debe + dinero;
 		}
 		
+		public void mostrar_info(){
+			Console.WriteLine("----------------------------------------------");
+			Console.WriteLine("| Cliente: {0} {1}\n| - Dni: {2}\n| - Dinero que debe: ${3}", nombre, apellido, dni, dinero_que_debe);
+		}
+		
 		// Creación de propiedad la cual utilizamos para asignarle valor a las variables privadas
 		public String Nombre {
 			get {
@@ -51,11 +56,6 @@ namespace Proyecto_Final_Algoritmos
 			get {
 				return dinero_que_debe;
 			}
-		}
-		
-		public void mostrar_info(){
-			Console.WriteLine("----------------------------------------------");
-			Console.WriteLine("| Cliente: {0} {1}\n| - Dni: {2}\n| - Dinero que debe: ${3}", nombre, apellido, dni, dinero_que_debe);
 		}
 	}
 }

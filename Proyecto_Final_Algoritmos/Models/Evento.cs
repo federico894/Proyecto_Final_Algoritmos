@@ -41,24 +41,14 @@ namespace Proyecto_Final_Algoritmos
 			costo_total = total;
 		}
 		
-		/*
-		public void eliminar_servicio(string nombre){//Parametro nombre para luego pasarlo desde el main
-			bool encontrado = false;//Declaracion de booleano falso para luego verificar que se encontro el servicio
-			for (int i = 0; i < servicios_items.Count; i++)//for para recorrer el indice del arraylist servicios
-			{
-				ServicioItem s = (ServicioItem)servicios_items[i];//hacemos un casteo del objeto para que sea de tipo Servicios y asi poder acceder a sus propiedades
-				if (s.Nombre_servicio == nombre)
-				{//Si el nombre del servicio en el indice en el cual estamos parado es igual al nombre que ingresamos 
-					servicios_items.Remove(s);//entonces se remueve ese servicio completo porque se encontro
-					Console.WriteLine("¡Servicio eliminado con exito!");//ESTOS CWL se pueden sacar y ya
-					encontrado = true;//ahora encontrado cambia su valor a true 
-					break;
-				}
+		public void mostrar_info(){
+			Console.WriteLine("----------------------------------------------");
+			Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7} ({8})\n| - Costo total: ${9}\n| - Seña: ${10}", cliente.Nombre, cliente.Apellido, cliente.Dni, dia_reserva, mes_reserva, tipo_evento, encargado.Nombre, encargado.Apellido, encargado.NroDeLegajo, costo_total, senia);
+			Console.WriteLine("| - Servicios contratados:");
+			foreach (ServicioItem s in servicios_items) {
+				s.mostrar_info();
 			}
-			if (!encontrado) { // Si encontrado sigue siendo false entonces no se encontro el servicio a eliminar
-				Console.WriteLine("No se encontro el servicio a eliminar.");
-			}
-		}*/
+		}
 		
 		public ArrayList Servicios{
 			get {
@@ -105,15 +95,6 @@ namespace Proyecto_Final_Algoritmos
 		public double Senia{
 			get {
 				return senia;
-			}
-		}
-		
-		public void mostrar_info(){
-			Console.WriteLine("----------------------------------------------");
-			Console.WriteLine("| Evento a nombre de: {0} {1}\n| - DNI: {2}\n| - Fecha de reserva: {3}/{4}\n| - Tipo de evento: {5}\n| - Encargado: {6} {7} ({8})\n| - Costo total: ${9}\n| - Seña: ${10}", cliente.Nombre, cliente.Apellido, cliente.Dni, dia_reserva, mes_reserva, tipo_evento, encargado.Nombre, encargado.Apellido, encargado.NroDeLegajo, costo_total, senia);
-			Console.WriteLine("| - Servicios contratados:");
-			foreach (ServicioItem s in servicios_items) {
-				s.mostrar_info();
 			}
 		}
 	}

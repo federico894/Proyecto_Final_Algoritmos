@@ -11,7 +11,6 @@ namespace Proyecto_Final_Algoritmos
 	{
 		public static void Main(string[] args)
 		{
-			// Preparación del salón
 			mostrar_menu();
 		}
 		
@@ -41,6 +40,7 @@ namespace Proyecto_Final_Algoritmos
 				
 				// Cargar y mostrar el logo
 				mostrar_logo();
+				
 				Console.WriteLine("Elija una opción:\n");
 				
 				// for para recorrer la lista de opciones y posicionarnos en su indice
@@ -86,10 +86,15 @@ namespace Proyecto_Final_Algoritmos
 					posicion--;
 				}
 				
-				// Apartir de aca entran todos los else if los cuales seran cuando presionemos enter en alguna opcion//entonces compara en que posicion pulsamos Enter y genera la accion de esa opcion elegida
+				// Apartir de aca entran todos los else if los cuales seran cuando
+				// presionemos enter en alguna opcion
+				// entonces compara en que posicion pulsamos Enter y
+				// genera la accion de esa opcion elegida
+
+				// Agregar un servicio
 				else if (tecla.Key == ConsoleKey.Enter && posicion == 0) {
 					Console.Clear();
-					// Agregar un servicio
+					
 					Console.Write("Ingrese nombre de servicio: ");
 					String nom_serv = Console.ReadLine();
 						
@@ -106,16 +111,21 @@ namespace Proyecto_Final_Algoritmos
 					String nombre_serv_a_buscar = Console.ReadLine();
 
 					Servicio servicio_buscado = Salon.buscar_servicio(nombre_serv_a_buscar);
+					
 					if (servicio_buscado != null) {
 						Salon.eliminar_servicio(servicio_buscado);
 						Console.WriteLine("Servicio '{0}' eliminado con exito", servicio_buscado.Nombre_servicio);
 					} else {
 						Console.WriteLine("No se encontró el servicio");
 					}
+					
 					Console.ReadKey(true);
 				
-				} else if (tecla.Key == ConsoleKey.Enter && posicion == 2) {
-					// Dar de alta un empleado
+				}
+				
+				// Dar de alta un empleado
+				else if (tecla.Key == ConsoleKey.Enter && posicion == 2) {
+					
 					Console.Clear();
 					
 					Console.Write("Ingrese nombre de empleado/encargado: ");
@@ -145,9 +155,11 @@ namespace Proyecto_Final_Algoritmos
 						Empleado e = new Empleado(nombre, apellido, dni, legajo, salario, tarea);
 						Salon.subir_empleado(e);
 					}
-				} else if (tecla.Key == ConsoleKey.Enter && posicion == 3) {
+				}
+				
+				// Dar de baja un empleado
+				else if (tecla.Key == ConsoleKey.Enter && posicion == 3) {
 					Console.Clear();
-					// Dar de baja un empleado
 					
 					int leg = pedir_int("Ingrese legajo de empleado/encargado: ");
 
@@ -159,17 +171,21 @@ namespace Proyecto_Final_Algoritmos
 					} else {
 						Console.WriteLine("No se encontró el empleado");
 					}
+					
 					Console.ReadKey(true);
-				} else if (tecla.Key == ConsoleKey.Enter && posicion == 4) {
+				}
+				
+				// Reservar el salón para un evento
+				else if (tecla.Key == ConsoleKey.Enter && posicion == 4) {
 					Console.Clear();
-					// Reservar el salón para un evento
-
+					
 					// Ingresar info del cliente
 					String cliente_nombre, cliente_apellido;
 					Cliente cliente_del_evento;
 					
 					int cliente_dni = pedir_int("Ingrese dni del cliente: ");
 					Cliente client_busq = Salon.buscar_cliente(cliente_dni);
+					
 					if(client_busq == null){
 						// No se encontró un cliente en el programa
 						Console.Write("Ingrese nombre del cliente: ");
@@ -210,6 +226,7 @@ namespace Proyecto_Final_Algoritmos
 					bool salir_loop = false;
 					int p_eleccion= 0;
 					String[] siOno = { "Si", "No" };
+					
 					while (!salir_loop)
 					{
 						Console.Clear();
@@ -226,15 +243,19 @@ namespace Proyecto_Final_Algoritmos
 							}
 							else { Console.Write("  "); Console.Write(" " + siOno[i] + " "); }
 						}
+						
 						ConsoleKeyInfo teclaq = Console.ReadKey(true);
+						
 						if (teclaq.Key == ConsoleKey.RightArrow && p_eleccion < siOno.Length - 1)
 						{
 							p_eleccion++;
 						}
+						
 						else if (teclaq.Key == ConsoleKey.LeftArrow && p_eleccion > 0)
 						{
 							p_eleccion--;
 						}
+						
 						else if (teclaq.Key == ConsoleKey.Enter && p_eleccion == 0 && Salon.Servicios.Count != 0)
 						{
 							Console.Clear();
@@ -260,6 +281,7 @@ namespace Proyecto_Final_Algoritmos
 							Console.WriteLine("\nServicio agregado con exito!");
 							Console.ReadKey(true);
 						}
+						
 						else if (teclaq.Key == ConsoleKey.Enter && p_eleccion == 0 && Salon.Servicios.Count == 0)
 						{
 							Console.WriteLine("\nNo hay servicios disponibles en este momento");
@@ -267,14 +289,12 @@ namespace Proyecto_Final_Algoritmos
 							Console.ReadKey(true);
 							break;
 						}
+						
 						else if (teclaq.Key == ConsoleKey.Enter && p_eleccion == 1)
 						{
-							//Console.WriteLine("\nReserva realizada con exito!");
-						 	//Console.ReadKey(true);
 							salir_loop = true;
 							break;
 						}
-						
 					}
 
 					// Calculamos el costo total del evento a partir de los servicios contratados
@@ -295,18 +315,22 @@ namespace Proyecto_Final_Algoritmos
 						Console.WriteLine("\nError: {0}", ex.Message);
 						Console.ReadKey(true);
 					}
-						
-				} else if (tecla.Key == ConsoleKey.Enter && posicion == 5) {
+				}
+				
+				// Eliminar un evento
+				else if (tecla.Key == ConsoleKey.Enter && posicion == 5) {
 					// Se limpia la consola al entrar a la opcion elegida
 					Console.Clear();
 					
 					//variable para pasar por parametro luego
 					int mes_c = pedir_int("Ingrese el numero de mes del evento: ");
 					
-					//arraylist el cual llama al metodo el cual guarda la lista de eventos en ese mes
+					//arraylist el cual llama al metodo el cual
+					// guarda la lista de eventos en ese mes
 					ArrayList eventoenMes = Salon.Calendario.buscar_eventos_por_mes(mes_c);
-					int dia_c;
+					
 					//Ingresamos el dia del mes el cual vamos a cancelar
+					int dia_c;
 					
 					//si la lista de eventos no esta vacia entonces
 					if (Salon.Calendario.ListaDeEventos.Count != 0 && eventoenMes.Count != 0)
@@ -314,8 +338,10 @@ namespace Proyecto_Final_Algoritmos
 						//usamos metodo para ver que fechas ya estan reservadas
 						Salon.Calendario.mostrar_fechas_reservadas(eventoenMes);
 						dia_c = pedir_int("Ingrese el dia del evento: ");
+						
 						//declaramos variable para guardar el evento a eliminar
 						Evento evento_a_eliminar = null;
+						
 						//recorremos la lista de eventos
 						foreach (Evento e in Salon.Calendario.ListaDeEventos)
 						{
@@ -338,6 +364,7 @@ namespace Proyecto_Final_Algoritmos
 							
 							//variable para comparar en que posicion estamos parados de las opciones
 							int p_eleccion = 0;
+							
 							while (!salir_eleccion)
 							{
 								//Console.Clear para redibujar la consola cada que pulsemos una tecla
@@ -362,6 +389,7 @@ namespace Proyecto_Final_Algoritmos
 										//se resetea los colores antes de salir
 										Console.ResetColor();
 									}
+									
 									else
 									{
 										//esta va a ser la opcion en la que no estamos parados por ende no tiene color
@@ -405,8 +433,11 @@ namespace Proyecto_Final_Algoritmos
 									break;
 								}
 							}
-						}else{Console.WriteLine("No existe la fecha ingresada...");}
+						} else {
+							Console.WriteLine("No existe la fecha ingresada...");
+						}
 					}
+					
 					else
 					{
 						// si la lista esta vacia entonces se ejecuta todo lo anterior
@@ -414,14 +445,23 @@ namespace Proyecto_Final_Algoritmos
 					}
 					Console.ReadKey(true);
 				
-				} else if (tecla.Key == ConsoleKey.Enter && posicion == 6) {
+				}
+				
+				// Mostrar info adicional
+				else if (tecla.Key == ConsoleKey.Enter && posicion == 6) {
 					Console.Clear();
 					mostrar_info();
 				
-				} else if (tecla.Key == ConsoleKey.Enter && posicion == 7) { //ultima opcion la cual es salir, y si presionamos Enter finaliza el while
+				}
+				
+				// ultima opcion la cual es salir, y si presionamos Enter finaliza el while
+				else if (tecla.Key == ConsoleKey.Enter && posicion == 7) {
 					salir = true;
 				
-				} else {
+				}
+				
+				// usuario hizo algo que no deberia
+				else {
 					Console.WriteLine("");
 				}
 			}
@@ -615,7 +655,7 @@ namespace Proyecto_Final_Algoritmos
 		public static void mostrar_logo()
 		{
 			String dir = @"..\..\Logos\Logo.txt"; // Directorio del logo
-			//Console.WriteLine("Directorio actual: {0}" Environment.CurrentDirectory);
+			// Sacar el directorio actual --> Console.WriteLine("Directorio actual: {0}" Environment.CurrentDirectory);
 			
 			// Verifico si existe el logo
 			if (File.Exists(dir)) {

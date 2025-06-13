@@ -13,6 +13,11 @@ namespace Proyecto_Final_Algoritmos
 			this.nombre_servicio = nombre_servicio;
 			this.descripcion_serv = descripcion_serv;
 		}
+		
+		public void mostrar_info(){
+			Console.WriteLine("----------------------------------------------");
+			Console.WriteLine("| Servicio: {0}\n| - Descripción: {1}", nombre_servicio, descripcion_serv);
+		}
 
 		public String Nombre_servicio
 		{
@@ -25,11 +30,6 @@ namespace Proyecto_Final_Algoritmos
 			get {
 				return descripcion_serv;
 			}
-		}
-		
-		public void mostrar_info(){
-			Console.WriteLine("----------------------------------------------");
-			Console.WriteLine("| Servicio: {0}\n| - Descripción: {1}", nombre_servicio, descripcion_serv);
 		}
 	}
 }
