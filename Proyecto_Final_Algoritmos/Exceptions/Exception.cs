@@ -6,7 +6,6 @@ namespace Proyecto_Final_Algoritmos
 	{
 		public ReservaExistenteException()
 			: base("Ya existe una reserva para esa fecha y cliente.")
-		{
-		}
+		{}
 	}
 }
