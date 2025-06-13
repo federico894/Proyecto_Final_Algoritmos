@@ -31,7 +31,7 @@ namespace Proyecto_Final_Algoritmos
 						meses.Add(31);
 						break;
 					case 1:
-						// ! Agrega solo el numero pero no es que agrega esa cant de objetos
+						// Agrega solo el numero pero no es que agrega esa cant de objetos
 						meses.Add(28);
 						break;
 					case 2:
@@ -115,22 +115,8 @@ namespace Proyecto_Final_Algoritmos
 			}
 			return eventos_en_ese_mes;
 		}
-		public void mostrar_fechas_reservadas(ArrayList eventoenMes)
-		{
-			//metodo para ver fechas reservadas
-			
-			if (ListaDeEventos.Count != 0)
-			{
-				foreach (Evento item in eventoenMes)
-				{
-					Console.Write("Fechas reservada: ");
-					Console.Write(item.Dia_reserva + "/" + item.Mes_reserva + "  ");
-				}
-			}
-		}
 		
 		public bool ya_reservado(Evento nuevoEvento){
-			//recorremos la lista de eventos la cual esta en la clase calendario
 			foreach (Evento e in ListaDeEventos)
 			{
 				if (e.Mes_reserva == nuevoEvento.Mes_reserva && e.Dia_reserva == nuevoEvento.Dia_reserva)
@@ -175,16 +161,29 @@ namespace Proyecto_Final_Algoritmos
 			}
 			return diferenciaDias;
 		}
-    
-		public ArrayList ListaDeEventos
+		
+		public void mostrar_fechas_reservadas(ArrayList eventoenMes)
 		{
-			get{
+			//metodo para ver fechas reservadas
+			
+			if (ListaDeEventos.Count != 0)
+			{
+				foreach (Evento item in eventoenMes)
+				{
+					Console.Write("Fechas reservada: ");
+					Console.Write(item.Dia_reserva + "/" + item.Mes_reserva + "  ");
+				}
+			}
+		}
+    
+		public ArrayList ListaDeEventos {
+			get {
 				return listaDeEventos;
 			}
 		}
 		
-		public ArrayList Meses{
-			get{
+		public ArrayList Meses {
+			get {
 				return meses;
 			}
 		}
