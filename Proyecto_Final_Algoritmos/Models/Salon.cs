@@ -9,9 +9,7 @@ namespace Proyecto_Final_Algoritmos
 		private static ArrayList clientes;
 		private static ArrayList servicios;
 		private static Calendario calendario;
-		
-		// Nombre genérico por defecto
-		private static String nombre = "Salon de fiestas";
+		private static String nombre = "Salon de fiestas"; // Nombre genérico por defecto
 
 		static Salon()
 		{
@@ -19,6 +17,14 @@ namespace Proyecto_Final_Algoritmos
 			calendario = new Calendario();
 			clientes = new ArrayList();
 			servicios = new ArrayList();
+		}
+		
+		public static void agregar_servicio(Servicio servicio){
+			servicios.Add(servicio);
+		}
+		
+		public static void eliminar_servicio(Servicio servicio){
+			servicios.Remove(servicio);
 		}
 		
 		public static Servicio buscar_servicio(String nombre_serv_a_buscar){
@@ -30,14 +36,6 @@ namespace Proyecto_Final_Algoritmos
 			
 			// No se encontró
 			return null;
-		}
-		
-		public static void agregar_servicio(Servicio servicio){
-			servicios.Add(servicio);
-		}
-		
-		public static void eliminar_servicio(Servicio servicio){
-			servicios.Remove(servicio);
 		}
 		
 		public static void subir_empleado(Empleado empleado){
@@ -59,8 +57,8 @@ namespace Proyecto_Final_Algoritmos
 			return null;
 		}
 
+		//Se agregan parametros al metodo para luego asignarle los valores en el main
 		public static void reservar_salon(Evento nuevoEvento) {
-			//Se agregan parametros al metodo para luego asignarle los valores en el main
 			
 			if(calendario.ya_reservado(nuevoEvento)){
 				throw new ReservaExistenteException();
@@ -70,14 +68,19 @@ namespace Proyecto_Final_Algoritmos
 			//dias ideales, y si cumple todo se guarda en ListaDeEventos con todos los datos del evento y los servicios contratados
 			calendario.agendar_turno(nuevoEvento);
 		}
-
+		
 		public static void cancelar_evento(Evento evento) // Parametros los cuales pasamos en Program
 		{
 			if(calendario.cancela_con_antelacion(evento.Dia_reserva, evento.Mes_reserva)){
 				evento.Cliente.reducir_dinero(evento.Costo_total - evento.Senia);
 			}
+			
 			//se elimina de la lista de eventos
 			calendario.Borrar_evento(evento);
+		}
+		
+		public static void agregar_cliente(Cliente c){
+			clientes.Add(c);
 		}
 		
 		public static Cliente buscar_cliente(int cliente_dni){
@@ -89,10 +92,6 @@ namespace Proyecto_Final_Algoritmos
 			
 			// No se encontró
 			return null;
-		}
-		
-		public static void agregar_cliente(Cliente c){
-			clientes.Add(c);
 		}
 		
 		public static String Nombre{
