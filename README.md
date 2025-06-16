@@ -6,6 +6,14 @@ Proyecto final para la materia Algoritmos y Programación, del segundo año de l
 * Torres Federico
 * Agüero Rocío
 
+## UML
+
+<div align="center">
+
+<img src="https://github.com/user-attachments/assets/081b3f34-cf03-4cfa-8a32-289235b94ed9"/>
+
+</div>
+
 ## Consigna
 En un salón de fiestas se tienen registrados los eventos contratados y el conjunto de empleados que
 trabaja de forma fija en los eventos. De cada evento se almacena: nombre y dni del cliente, fecha y
