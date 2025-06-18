@@ -10,7 +10,7 @@ Proyecto final para la materia Algoritmos y Programación, del segundo año de l
 
 <div align="center">
 
-<img src="https://github.com/user-attachments/assets/f0c45e34-1805-4426-97d5-622fa9dd9746"/>
+<img src="https://github.com/user-attachments/assets/bfe0639d-0504-4400-b16e-98144a017840"/>
 
 </div>
 
