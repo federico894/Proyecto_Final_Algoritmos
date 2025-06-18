@@ -4,12 +4,12 @@ namespace Proyecto_Final_Algoritmos
 {
 	public class Empleado
 	{
-		private String nombre;
-		private String apellido;
-		private int nro_legajo;
+		protected String nombre;
+		protected String apellido;
+		protected int nro_legajo;
 		protected double salario;
-		private String tareaDesempeniar;
-		private int dni;
+		protected String tareaDesempeniar;
+		protected int dni;
 
 		public Empleado(String nombre, String apellido, int dni, int nro_legajo, double salario, String tareaDesempeniar)
 		{
